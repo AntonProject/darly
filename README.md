@@ -2,20 +2,44 @@
 
 ![DARLY logo](assets/images/logo34.webp)
 
-FlutterFlow-exported iOS application source for DARLY, focused on women's health tracking and wellbeing.
+## Overview
 
-## Stack
+DARLY is a FlutterFlow-based women's health application focused on wellbeing tracking, personalized content, AI-assisted flows, and in-app engagement scenarios.
 
-- Flutter
-- Dart
-- FlutterFlow
-- Firebase
+## Platforms
+
+- iOS
+- Android source is present in the export
+- Web support is present in the FlutterFlow export
 
 ## Store Links
 
 - App Store: https://apps.apple.com/us/app/darli-%D0%B6%D0%B5%D0%BD%D1%81%D0%BA%D0%BE%D0%B5-%D0%B7%D0%B4%D0%BE%D1%80%D0%BE%D0%B2%D1%8C%D0%B5/id6754849512
 
-## Notes
+## Tech Stack
 
-- Repository prepared for portfolio publishing from an available FlutterFlow copy.
-- Sensitive Firebase client config files are intentionally excluded from git.
+- Flutter
+- Dart
+- FlutterFlow
+- Firebase Auth
+- Cloud Firestore
+- Cloud Functions
+- Firebase Analytics
+- Firebase Messaging
+- Firebase Performance Monitoring
+- Firebase Remote Config
+- Firebase Storage
+- Firebase Vertex AI
+
+## Notable Capabilities
+
+- authentication with Google and Apple sign-in
+- audio playback via `just_audio`, `audio_service`, and `just_audio_background`
+- markdown-driven content rendering
+- file and image pickers for user-generated content
+- remote configuration and analytics-backed product iteration
+
+## Repository Notes
+
+- repository prepared from an accessible FlutterFlow copy
+- sensitive Firebase client config files are intentionally excluded from git
