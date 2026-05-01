@@ -2,6 +2,11 @@
 
 ![DARLY logo](assets/images/logo34.webp)
 
+![Flutter](https://img.shields.io/badge/Flutter-3.x-02569B?logo=flutter&logoColor=white)
+![Dart](https://img.shields.io/badge/Dart-3.x-0175C2?logo=dart&logoColor=white)
+![FlutterFlow](https://img.shields.io/badge/FlutterFlow-export-6C63FF)
+![Firebase](https://img.shields.io/badge/Firebase-used-FFCA28?logo=firebase&logoColor=black)
+
 ## Overview
 
 DARLY is a FlutterFlow-based women's health application focused on wellbeing tracking, personalized content, AI-assisted flows, and in-app engagement scenarios.
