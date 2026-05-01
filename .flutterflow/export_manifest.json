@@ -1,0 +1,2308 @@
+{
+  "schema_version": 1,
+  "project": {
+    "id": "woman-103qa6",
+    "name": "Woman",
+    "directory": "woman"
+  },
+  "build": {
+    "mode": "export",
+    "format": true
+  },
+  "exported_at": "2026-05-01T11:56:05.385271Z",
+  "files": [
+    ".flutterflow/export_manifest.json",
+    "README.md",
+    "analysis_options.yaml",
+    "android/.gitignore",
+    "android/app/build.gradle",
+    "android/app/google-services.json",
+    "android/app/proguard-rules.pro",
+    "android/app/src/debug/AndroidManifest.xml",
+    "android/app/src/main/AndroidManifest.xml",
+    "android/app/src/main/kotlin/com/example/my_project/MainActivity.kt",
+    "android/app/src/main/res/drawable/launch_background.xml",
+    "android/app/src/main/res/mipmap-hdpi/ic_launcher.png",
+    "android/app/src/main/res/mipmap-mdpi/ic_launcher.png",
+    "android/app/src/main/res/mipmap-xhdpi/ic_launcher.png",
+    "android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png",
+    "android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+    "android/app/src/main/res/values-night-v31/styles.xml",
+    "android/app/src/main/res/values-night/styles.xml",
+    "android/app/src/main/res/values-v31/styles.xml",
+    "android/app/src/main/res/values/strings.xml",
+    "android/app/src/main/res/values/styles.xml",
+    "android/app/src/profile/AndroidManifest.xml",
+    "android/build.gradle",
+    "android/gradle.properties",
+    "android/gradle/wrapper/gradle-wrapper.properties",
+    "android/settings.gradle",
+    "assets/audios/favicon.png",
+    "assets/environment_values/environment.json",
+    "assets/fonts/favicon.png",
+    "assets/images/favicon.png",
+    "assets/jsons/favicon.png",
+    "assets/pdfs/favicon.png",
+    "assets/rive_animations/favicon.png",
+    "assets/videos/favicon.png",
+    "firebase/custom_cloud_functions/chat_message_stream.js",
+    "firebase/custom_cloud_functions/check_cloud_payments.js",
+    "firebase/custom_cloud_functions/create_calendar_for_user.js",
+    "firebase/custom_cloud_functions/create_notifications_for_users.js",
+    "firebase/custom_cloud_functions/get_course_webhook.js",
+    "firebase/custom_cloud_functions/index.js",
+    "firebase/custom_cloud_functions/package.json",
+    "firebase/custom_cloud_functions/push_menstruation_day.js",
+    "firebase/custom_cloud_functions/push_no_audio.js",
+    "firebase/custom_cloud_functions/push_no_chat.js",
+    "firebase/custom_cloud_functions/push_no_login.js",
+    "firebase/custom_cloud_functions/restore_purchase.js",
+    "firebase/custom_cloud_functions/set_default_hide_on_create.js",
+    "firebase/custom_cloud_functions/set_news_hide_default.js",
+    "firebase/custom_cloud_functions/set_videos_hide_default.js",
+    "firebase/firebase.json",
+    "firebase/firestore.indexes.json",
+    "firebase/firestore.rules",
+    "firebase/functions/api_manager.js",
+    "firebase/functions/index.js",
+    "firebase/functions/package.json",
+    "firebase/storage.rules",
+    "ios/.gitignore",
+    "ios/Flutter/AppFrameworkInfo.plist",
+    "ios/Flutter/Debug.xcconfig",
+    "ios/Flutter/Release.xcconfig",
+    "ios/ImageNotification/Info.plist",
+    "ios/ImageNotification/NotificationService.swift",
+    "ios/Podfile",
+    "ios/Runner.xcodeproj/project.pbxproj",
+    "ios/Runner.xcodeproj/project.xcworkspace/contents.xcworkspacedata",
+    "ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist",
+    "ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings",
+    "ios/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme",
+    "ios/Runner.xcworkspace/contents.xcworkspacedata",
+    "ios/Runner.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist",
+    "ios/Runner.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings",
+    "ios/Runner/AppDelegate.swift",
+    "ios/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json",
+    "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024@1x.png",
+    "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@1x.png",
+    "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@2x.png",
+    "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@3x.png",
+    "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@1x.png",
+    "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@2x.png",
+    "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@3x.png",
+    "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@1x.png",
+    "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@2x.png",
+    "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@3x.png",
+    "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@2x.png",
+    "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@3x.png",
+    "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@1x.png",
+    "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@2x.png",
+    "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-83.5x83.5@2x.png",
+    "ios/Runner/Assets.xcassets/LaunchImage.imageset/Contents.json",
+    "ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage.png",
+    "ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@2x.png",
+    "ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@3x.png",
+    "ios/Runner/Assets.xcassets/LaunchImage.imageset/README.md",
+    "ios/Runner/Base.lproj/LaunchScreen.storyboard",
+    "ios/Runner/Base.lproj/Main.storyboard",
+    "ios/Runner/GoogleService-Info.plist",
+    "ios/Runner/Info.plist",
+    "ios/Runner/PrivacyInfo.xcprivacy",
+    "ios/Runner/Runner-Bridging-Header.h",
+    "ios/Runner/Runner.entitlements",
+    "lib/app_constants.dart",
+    "lib/app_state.dart",
+    "lib/auth/auth_manager.dart",
+    "lib/auth/base_auth_user_provider.dart",
+    "lib/auth/firebase_auth/anonymous_auth.dart",
+    "lib/auth/firebase_auth/apple_auth.dart",
+    "lib/auth/firebase_auth/auth_util.dart",
+    "lib/auth/firebase_auth/email_auth.dart",
+    "lib/auth/firebase_auth/firebase_auth_manager.dart",
+    "lib/auth/firebase_auth/firebase_user_provider.dart",
+    "lib/auth/firebase_auth/github_auth.dart",
+    "lib/auth/firebase_auth/google_auth.dart",
+    "lib/auth/firebase_auth/jwt_token_auth.dart",
+    "lib/backend/ai_agents/ai_agent.dart",
+    "lib/backend/ai_agents/ai_agent_cloud_function_call.dart",
+    "lib/backend/api_requests/api_calls.dart",
+    "lib/backend/api_requests/api_manager.dart",
+    "lib/backend/api_requests/browser_client_stub.dart",
+    "lib/backend/api_requests/get_streamed_response.dart",
+    "lib/backend/backend.dart",
+    "lib/backend/cloud_functions/cloud_functions.dart",
+    "lib/backend/custom_cloud_functions/custom_cloud_function_response_manager.dart",
+    "lib/backend/firebase/firebase_config.dart",
+    "lib/backend/firebase_analytics/analytics.dart",
+    "lib/backend/firebase_storage/storage.dart",
+    "lib/backend/push_notifications/push_notifications_handler.dart",
+    "lib/backend/push_notifications/push_notifications_util.dart",
+    "lib/backend/push_notifications/serialization_util.dart",
+    "lib/backend/schema/audio_record.dart",
+    "lib/backend/schema/calendar_record.dart",
+    "lib/backend/schema/chat_messages_record.dart",
+    "lib/backend/schema/chats_record.dart",
+    "lib/backend/schema/education_module_lesson_chapters_record.dart",
+    "lib/backend/schema/education_module_lessons_record.dart",
+    "lib/backend/schema/education_module_notes_record.dart",
+    "lib/backend/schema/education_modules_record.dart",
+    "lib/backend/schema/education_record.dart",
+    "lib/backend/schema/education_reviews_record.dart",
+    "lib/backend/schema/education_schedule_record.dart",
+    "lib/backend/schema/index.dart",
+    "lib/backend/schema/message_letter_record.dart",
+    "lib/backend/schema/meta_cards_record.dart",
+    "lib/backend/schema/news_record.dart",
+    "lib/backend/schema/notifications_record.dart",
+    "lib/backend/schema/order_record.dart",
+    "lib/backend/schema/payments_record.dart",
+    "lib/backend/schema/structs/audio_file_struct.dart",
+    "lib/backend/schema/structs/calendar_struct.dart",
+    "lib/backend/schema/structs/chat_assistant_message_struct.dart",
+    "lib/backend/schema/structs/file_d_t_struct.dart",
+    "lib/backend/schema/structs/index.dart",
+    "lib/backend/schema/structs/month_cycle_struct.dart",
+    "lib/backend/schema/structs/news_struct.dart",
+    "lib/backend/schema/structs/video_file_struct.dart",
+    "lib/backend/schema/users_record.dart",
+    "lib/backend/schema/util/firestore_util.dart",
+    "lib/backend/schema/util/schema_util.dart",
+    "lib/backend/schema/videos_record.dart",
+    "lib/components/audio_day_home/audio_day_home_model.dart",
+    "lib/components/audio_day_home/audio_day_home_widget.dart",
+    "lib/components/audio_player_comp/audio_player_comp_model.dart",
+    "lib/components/audio_player_comp/audio_player_comp_widget.dart",
+    "lib/components/back_button/back_button_model.dart",
+    "lib/components/back_button/back_button_widget.dart",
+    "lib/components/calendar_day_comp/calendar_day_comp_model.dart",
+    "lib/components/calendar_day_comp/calendar_day_comp_widget.dart",
+    "lib/components/dialogs/country_dialog/country_dialog_model.dart",
+    "lib/components/dialogs/country_dialog/country_dialog_widget.dart",
+    "lib/components/dialogs/notification_dialog/notification_dialog_model.dart",
+    "lib/components/dialogs/notification_dialog/notification_dialog_widget.dart",
+    "lib/components/dialogs/photo_upload_dialog/photo_upload_dialog_model.dart",
+    "lib/components/dialogs/photo_upload_dialog/photo_upload_dialog_widget.dart",
+    "lib/components/dialogs/restore_purchase/restore_purchase_model.dart",
+    "lib/components/dialogs/restore_purchase/restore_purchase_widget.dart",
+    "lib/components/empty_list/empty_list_model.dart",
+    "lib/components/empty_list/empty_list_widget.dart",
+    "lib/components/file_comp/file_comp_model.dart",
+    "lib/components/file_comp/file_comp_widget.dart",
+    "lib/components/loader/loader_model.dart",
+    "lib/components/loader/loader_widget.dart",
+    "lib/components/meta_card_comp/meta_card_comp_model.dart",
+    "lib/components/meta_card_comp/meta_card_comp_widget.dart",
+    "lib/components/month_day/month_day_model.dart",
+    "lib/components/month_day/month_day_widget.dart",
+    "lib/components/nav_tab/nav_tab_model.dart",
+    "lib/components/nav_tab/nav_tab_widget.dart",
+    "lib/components/navbar/navbar_model.dart",
+    "lib/components/navbar/navbar_widget.dart",
+    "lib/components/navbar_copy/navbar_copy_model.dart",
+    "lib/components/navbar_copy/navbar_copy_widget.dart",
+    "lib/components/notif_comp/notif_comp_model.dart",
+    "lib/components/notif_comp/notif_comp_widget.dart",
+    "lib/components/payment_chat_button/payment_chat_button_model.dart",
+    "lib/components/payment_chat_button/payment_chat_button_widget.dart",
+    "lib/components/support_button/support_button_model.dart",
+    "lib/components/support_button/support_button_widget.dart",
+    "lib/components/video_comp/video_comp_model.dart",
+    "lib/components/video_comp/video_comp_widget.dart",
+    "lib/components/video_home_comp/video_home_comp_model.dart",
+    "lib/components/video_home_comp/video_home_comp_widget.dart",
+    "lib/components/video_preview/video_preview_model.dart",
+    "lib/components/video_preview/video_preview_widget.dart",
+    "lib/custom_code/actions/audio_ref.dart",
+    "lib/custom_code/actions/close_keyboard.dart",
+    "lib/custom_code/actions/get_file_metadata_from_storage.dart",
+    "lib/custom_code/actions/index.dart",
+    "lib/custom_code/actions/just_audio_background.dart",
+    "lib/custom_code/actions/lock_landscape_mode.dart",
+    "lib/custom_code/actions/message_letter_query.dart",
+    "lib/custom_code/actions/open_store_listing.dart",
+    "lib/custom_code/actions/pakage_info.dart",
+    "lib/custom_code/actions/practic_of_day_audio.dart",
+    "lib/custom_code/actions/refresh_firebase_remote_config.dart",
+    "lib/custom_code/actions/set_status_bar_color.dart",
+    "lib/custom_code/actions/unlock_landscape_mode.dart",
+    "lib/custom_code/actions/upload_audio_with_metadata.dart",
+    "lib/custom_code/actions/upload_file_with_metadata.dart",
+    "lib/custom_code/widgets/custom_markdown.dart",
+    "lib/custom_code/widgets/custom_slider.dart",
+    "lib/custom_code/widgets/cycle_info_timeline.dart",
+    "lib/custom_code/widgets/double_row_list.dart",
+    "lib/custom_code/widgets/enhanced_podcast_player.dart",
+    "lib/custom_code/widgets/f_f_liquid_glass.dart",
+    "lib/custom_code/widgets/full_screen_video.dart",
+    "lib/custom_code/widgets/horizontal_day_scroller.dart",
+    "lib/custom_code/widgets/index.dart",
+    "lib/custom_code/widgets/liquid_glass_nav_bar.dart",
+    "lib/custom_code/widgets/masked_image.dart",
+    "lib/custom_code/widgets/message_letter_widget.dart",
+    "lib/custom_code/widgets/payment_webview.dart",
+    "lib/custom_code/widgets/typewriter_loop.dart",
+    "lib/custom_code/widgets/wheel_list_home.dart",
+    "lib/environment_values.dart",
+    "lib/flutter_flow/custom_functions.dart",
+    "lib/flutter_flow/custom_icons.dart",
+    "lib/flutter_flow/firebase_remote_config_util.dart",
+    "lib/flutter_flow/flutter_flow_animations.dart",
+    "lib/flutter_flow/flutter_flow_drop_down.dart",
+    "lib/flutter_flow/flutter_flow_icon_button.dart",
+    "lib/flutter_flow/flutter_flow_model.dart",
+    "lib/flutter_flow/flutter_flow_theme.dart",
+    "lib/flutter_flow/flutter_flow_util.dart",
+    "lib/flutter_flow/flutter_flow_widgets.dart",
+    "lib/flutter_flow/flutter_flow_youtube_player.dart",
+    "lib/flutter_flow/form_field_controller.dart",
+    "lib/flutter_flow/internationalization.dart",
+    "lib/flutter_flow/lat_lng.dart",
+    "lib/flutter_flow/nav/nav.dart",
+    "lib/flutter_flow/nav/serialization_util.dart",
+    "lib/flutter_flow/place.dart",
+    "lib/flutter_flow/request_manager.dart",
+    "lib/flutter_flow/upload_data.dart",
+    "lib/flutter_flow/uploaded_file.dart",
+    "lib/index.dart",
+    "lib/main.dart",
+    "lib/pages/audio/audio_category/audio_category_model.dart",
+    "lib/pages/audio/audio_category/audio_category_widget.dart",
+    "lib/pages/audio/audio_dialog/audio_dialog_model.dart",
+    "lib/pages/audio/audio_dialog/audio_dialog_widget.dart",
+    "lib/pages/audio/audio_education/audio_education_model.dart",
+    "lib/pages/audio/audio_education/audio_education_widget.dart",
+    "lib/pages/audio/audio_excl/audio_excl_model.dart",
+    "lib/pages/audio/audio_excl/audio_excl_widget.dart",
+    "lib/pages/audio/audio_home_comp/audio_home_comp_model.dart",
+    "lib/pages/audio/audio_home_comp/audio_home_comp_widget.dart",
+    "lib/pages/audio/audio_page/audio_page_model.dart",
+    "lib/pages/audio/audio_page/audio_page_widget.dart",
+    "lib/pages/audio/audio_player/audio_player_model.dart",
+    "lib/pages/audio/audio_player/audio_player_widget.dart",
+    "lib/pages/audio/audio_wish/audio_wish_model.dart",
+    "lib/pages/audio/audio_wish/audio_wish_widget.dart",
+    "lib/pages/audio/rowtitle/rowtitle_model.dart",
+    "lib/pages/audio/rowtitle/rowtitle_widget.dart",
+    "lib/pages/auth/about_you/about_you_model.dart",
+    "lib/pages/auth/about_you/about_you_widget.dart",
+    "lib/pages/auth/login/login_model.dart",
+    "lib/pages/auth/login/login_widget.dart",
+    "lib/pages/auth/reset_password/reset_password_model.dart",
+    "lib/pages/auth/reset_password/reset_password_widget.dart",
+    "lib/pages/auth/reset_password_email_sent/reset_password_email_sent_model.dart",
+    "lib/pages/auth/reset_password_email_sent/reset_password_email_sent_widget.dart",
+    "lib/pages/auth/sign_up/sign_up_model.dart",
+    "lib/pages/auth/sign_up/sign_up_widget.dart",
+    "lib/pages/auth/splash_page/splash_page_model.dart",
+    "lib/pages/auth/splash_page/splash_page_widget.dart",
+    "lib/pages/auth/start_page/start_page_model.dart",
+    "lib/pages/auth/start_page/start_page_widget.dart",
+    "lib/pages/auth/update_app/update_app_model.dart",
+    "lib/pages/auth/update_app/update_app_widget.dart",
+    "lib/pages/calendar/add_date_dialog/add_date_dialog_model.dart",
+    "lib/pages/calendar/add_date_dialog/add_date_dialog_widget.dart",
+    "lib/pages/calendar/add_end_date_dialog/add_end_date_dialog_model.dart",
+    "lib/pages/calendar/add_end_date_dialog/add_end_date_dialog_widget.dart",
+    "lib/pages/calendar/add_start_date_dialog/add_start_date_dialog_model.dart",
+    "lib/pages/calendar/add_start_date_dialog/add_start_date_dialog_widget.dart",
+    "lib/pages/calendar/calendar_months_page/calendar_months_page_model.dart",
+    "lib/pages/calendar/calendar_months_page/calendar_months_page_widget.dart",
+    "lib/pages/calendar/calendar_page/calendar_page_model.dart",
+    "lib/pages/calendar/calendar_page/calendar_page_widget.dart",
+    "lib/pages/calendar/calendar_start/calendar_start_model.dart",
+    "lib/pages/calendar/calendar_start/calendar_start_widget.dart",
+    "lib/pages/calendar/days_dropdown_dialog/days_dropdown_dialog_model.dart",
+    "lib/pages/calendar/days_dropdown_dialog/days_dropdown_dialog_widget.dart",
+    "lib/pages/calendar/edit_cycle_length/edit_cycle_length_model.dart",
+    "lib/pages/calendar/edit_cycle_length/edit_cycle_length_widget.dart",
+    "lib/pages/calendar/remove_date_dialog/remove_date_dialog_model.dart",
+    "lib/pages/calendar/remove_date_dialog/remove_date_dialog_widget.dart",
+    "lib/pages/chats/chat_delete_dialog/chat_delete_dialog_model.dart",
+    "lib/pages/chats/chat_delete_dialog/chat_delete_dialog_widget.dart",
+    "lib/pages/chats/chat_dialog/chat_dialog_model.dart",
+    "lib/pages/chats/chat_dialog/chat_dialog_widget.dart",
+    "lib/pages/chats/chat_dialog_icon/chat_dialog_icon_model.dart",
+    "lib/pages/chats/chat_dialog_icon/chat_dialog_icon_widget.dart",
+    "lib/pages/chats/chat_message_start/chat_message_start_model.dart",
+    "lib/pages/chats/chat_message_start/chat_message_start_widget.dart",
+    "lib/pages/chats/chat_page/chat_page_model.dart",
+    "lib/pages/chats/chat_page/chat_page_widget.dart",
+    "lib/pages/chats/empty_messages/empty_messages_model.dart",
+    "lib/pages/chats/empty_messages/empty_messages_widget.dart",
+    "lib/pages/chats/file_upload_dialog/file_upload_dialog_model.dart",
+    "lib/pages/chats/file_upload_dialog/file_upload_dialog_widget.dart",
+    "lib/pages/chats/image_expand/image_expand_model.dart",
+    "lib/pages/chats/image_expand/image_expand_widget.dart",
+    "lib/pages/education/education_info_dialog/education_info_dialog_model.dart",
+    "lib/pages/education/education_info_dialog/education_info_dialog_widget.dart",
+    "lib/pages/education/education_lesson_note_dialog/education_lesson_note_dialog_model.dart",
+    "lib/pages/education/education_lesson_note_dialog/education_lesson_note_dialog_widget.dart",
+    "lib/pages/education/education_module_comp/education_module_comp_model.dart",
+    "lib/pages/education/education_module_comp/education_module_comp_widget.dart",
+    "lib/pages/education/education_module_lesson_comp/education_module_lesson_comp_model.dart",
+    "lib/pages/education/education_module_lesson_comp/education_module_lesson_comp_widget.dart",
+    "lib/pages/education/education_module_lesson_page/education_module_lesson_page_model.dart",
+    "lib/pages/education/education_module_lesson_page/education_module_lesson_page_widget.dart",
+    "lib/pages/education/education_module_page/education_module_page_model.dart",
+    "lib/pages/education/education_module_page/education_module_page_widget.dart",
+    "lib/pages/education/education_note_dialog/education_note_dialog_model.dart",
+    "lib/pages/education/education_note_dialog/education_note_dialog_widget.dart",
+    "lib/pages/education/education_page/education_page_model.dart",
+    "lib/pages/education/education_page/education_page_widget.dart",
+    "lib/pages/education/lesson_chapter/lesson_chapter_model.dart",
+    "lib/pages/education/lesson_chapter/lesson_chapter_widget.dart",
+    "lib/pages/education/review/review_model.dart",
+    "lib/pages/education/review/review_widget.dart",
+    "lib/pages/education/review_dialog/review_dialog_model.dart",
+    "lib/pages/education/review_dialog/review_dialog_widget.dart",
+    "lib/pages/home_page/home_page_model.dart",
+    "lib/pages/home_page/home_page_widget.dart",
+    "lib/pages/message_letter/message_letter_page/message_letter_page_model.dart",
+    "lib/pages/message_letter/message_letter_page/message_letter_page_widget.dart",
+    "lib/pages/meta_cards/meta_card_page/meta_card_page_model.dart",
+    "lib/pages/meta_cards/meta_card_page/meta_card_page_widget.dart",
+    "lib/pages/meta_cards/meta_card_select_page/meta_card_select_page_model.dart",
+    "lib/pages/meta_cards/meta_card_select_page/meta_card_select_page_widget.dart",
+    "lib/pages/news_page/news_page_model.dart",
+    "lib/pages/news_page/news_page_widget.dart",
+    "lib/pages/notification_page/notification_page_model.dart",
+    "lib/pages/notification_page/notification_page_widget.dart",
+    "lib/pages/payment/cloud_payment_page/cloud_payment_page_model.dart",
+    "lib/pages/payment/cloud_payment_page/cloud_payment_page_widget.dart",
+    "lib/pages/payment/fail_payment/fail_payment_model.dart",
+    "lib/pages/payment/fail_payment/fail_payment_widget.dart",
+    "lib/pages/payment/payment_page/payment_page_model.dart",
+    "lib/pages/payment/payment_page/payment_page_widget.dart",
+    "lib/pages/payment/premium/premium_model.dart",
+    "lib/pages/payment/premium/premium_widget.dart",
+    "lib/pages/payment/premium_chat_dialog/premium_chat_dialog_model.dart",
+    "lib/pages/payment/premium_chat_dialog/premium_chat_dialog_widget.dart",
+    "lib/pages/payment/success_payment/success_payment_model.dart",
+    "lib/pages/payment/success_payment/success_payment_widget.dart",
+    "lib/pages/profile/about_app_page/about_app_page_model.dart",
+    "lib/pages/profile/about_app_page/about_app_page_widget.dart",
+    "lib/pages/profile/delete_acc_dialog/delete_acc_dialog_model.dart",
+    "lib/pages/profile/delete_acc_dialog/delete_acc_dialog_widget.dart",
+    "lib/pages/profile/edit_password/edit_password_model.dart",
+    "lib/pages/profile/edit_password/edit_password_widget.dart",
+    "lib/pages/profile/edit_password_success/edit_password_success_model.dart",
+    "lib/pages/profile/edit_password_success/edit_password_success_widget.dart",
+    "lib/pages/profile/logout_dialog/logout_dialog_model.dart",
+    "lib/pages/profile/logout_dialog/logout_dialog_widget.dart",
+    "lib/pages/profile/profile_edit_page/profile_edit_page_model.dart",
+    "lib/pages/profile/profile_edit_page/profile_edit_page_widget.dart",
+    "lib/pages/profile/profile_page/profile_page_model.dart",
+    "lib/pages/profile/profile_page/profile_page_widget.dart",
+    "lib/pages/profile/support_page/support_page_model.dart",
+    "lib/pages/profile/support_page/support_page_widget.dart",
+    "lib/pages/video_page/video_page_model.dart",
+    "lib/pages/video_page/video_page_widget.dart",
+    "lib/pages/video_player/video_player_model.dart",
+    "lib/pages/video_player/video_player_widget.dart",
+    "lib/web/navbar_web/navbar_web_model.dart",
+    "lib/web/navbar_web/navbar_web_widget.dart",
+    "lib/web/profile_web_dialog/profile_web_dialog_model.dart",
+    "lib/web/profile_web_dialog/profile_web_dialog_widget.dart",
+    "pubspec.yaml",
+    "test/widget_test.dart",
+    "web/favicon.png",
+    "web/flutter_bootstrap.js",
+    "web/icons/Icon-192.png",
+    "web/icons/Icon-512.png",
+    "web/index.html",
+    "web/manifest.json"
+  ],
+  "entities": [
+    {
+      "type": "api_call",
+      "key": "8406n",
+      "name": "message",
+      "primary_files": [
+        "lib/backend/api_requests/api_calls.dart"
+      ],
+      "group_name": "chatAssistant"
+    },
+    {
+      "type": "api_call",
+      "key": "vat90",
+      "name": "chatId",
+      "primary_files": [
+        "lib/backend/api_requests/api_calls.dart"
+      ],
+      "group_name": "chatAssistant"
+    },
+    {
+      "type": "component",
+      "key": "Container_0i68iopd",
+      "name": "NotificationDialog",
+      "primary_files": [
+        "lib/components/dialogs/notification_dialog/notification_dialog_model.dart",
+        "lib/components/dialogs/notification_dialog/notification_dialog_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_18u09jpw",
+      "name": "navbarCopy",
+      "primary_files": [
+        "lib/components/navbar_copy/navbar_copy_model.dart",
+        "lib/components/navbar_copy/navbar_copy_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_22fzgocj",
+      "name": "addStartDateDialog",
+      "primary_files": [
+        "lib/pages/calendar/add_start_date_dialog/add_start_date_dialog_model.dart",
+        "lib/pages/calendar/add_start_date_dialog/add_start_date_dialog_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_265juyz3",
+      "name": "emptyList",
+      "primary_files": [
+        "lib/components/empty_list/empty_list_model.dart",
+        "lib/components/empty_list/empty_list_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_2yxz7c6k",
+      "name": "failPayment",
+      "primary_files": [
+        "lib/pages/payment/fail_payment/fail_payment_model.dart",
+        "lib/pages/payment/fail_payment/fail_payment_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_49523sac",
+      "name": "EducationNoteDialog",
+      "primary_files": [
+        "lib/pages/education/education_note_dialog/education_note_dialog_model.dart",
+        "lib/pages/education/education_note_dialog/education_note_dialog_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_4k2s5nxs",
+      "name": "photoUploadDialog",
+      "primary_files": [
+        "lib/components/dialogs/photo_upload_dialog/photo_upload_dialog_model.dart",
+        "lib/components/dialogs/photo_upload_dialog/photo_upload_dialog_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_4osfytxf",
+      "name": "videoPreview",
+      "primary_files": [
+        "lib/components/video_preview/video_preview_model.dart",
+        "lib/components/video_preview/video_preview_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_6fyb9uiz",
+      "name": "deleteAccDialog",
+      "primary_files": [
+        "lib/pages/profile/delete_acc_dialog/delete_acc_dialog_model.dart",
+        "lib/pages/profile/delete_acc_dialog/delete_acc_dialog_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_6wg2r10q",
+      "name": "educationModuleLessonComp",
+      "primary_files": [
+        "lib/pages/education/education_module_lesson_comp/education_module_lesson_comp_model.dart",
+        "lib/pages/education/education_module_lesson_comp/education_module_lesson_comp_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_75rmh2bk",
+      "name": "premiumChatDialog",
+      "primary_files": [
+        "lib/pages/payment/premium_chat_dialog/premium_chat_dialog_model.dart",
+        "lib/pages/payment/premium_chat_dialog/premium_chat_dialog_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_7k9dn2zr",
+      "name": "fileComp",
+      "primary_files": [
+        "lib/components/file_comp/file_comp_model.dart",
+        "lib/components/file_comp/file_comp_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_7lsblvhs",
+      "name": "premium",
+      "primary_files": [
+        "lib/pages/payment/premium/premium_model.dart",
+        "lib/pages/payment/premium/premium_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_8j3obt4s",
+      "name": "successPayment",
+      "primary_files": [
+        "lib/pages/payment/success_payment/success_payment_model.dart",
+        "lib/pages/payment/success_payment/success_payment_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_91g2etvc",
+      "name": "monthDay",
+      "primary_files": [
+        "lib/components/month_day/month_day_model.dart",
+        "lib/components/month_day/month_day_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_91tb34bv",
+      "name": "supportButton",
+      "primary_files": [
+        "lib/components/support_button/support_button_model.dart",
+        "lib/components/support_button/support_button_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_9djjk5l9",
+      "name": "daysDropdownDialog",
+      "primary_files": [
+        "lib/pages/calendar/days_dropdown_dialog/days_dropdown_dialog_model.dart",
+        "lib/pages/calendar/days_dropdown_dialog/days_dropdown_dialog_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_9fo8m128",
+      "name": "EducationLessonNoteDialog",
+      "primary_files": [
+        "lib/pages/education/education_lesson_note_dialog/education_lesson_note_dialog_model.dart",
+        "lib/pages/education/education_lesson_note_dialog/education_lesson_note_dialog_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_9xakuzvs",
+      "name": "removeDateDialog",
+      "primary_files": [
+        "lib/pages/calendar/remove_date_dialog/remove_date_dialog_model.dart",
+        "lib/pages/calendar/remove_date_dialog/remove_date_dialog_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_a7pbo301",
+      "name": "navbarWeb",
+      "primary_files": [
+        "lib/web/navbar_web/navbar_web_model.dart",
+        "lib/web/navbar_web/navbar_web_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_cr8e7rrs",
+      "name": "educationModuleComp",
+      "primary_files": [
+        "lib/pages/education/education_module_comp/education_module_comp_model.dart",
+        "lib/pages/education/education_module_comp/education_module_comp_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_dlglkwpr",
+      "name": "videoComp",
+      "primary_files": [
+        "lib/components/video_comp/video_comp_model.dart",
+        "lib/components/video_comp/video_comp_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_ekco1re0",
+      "name": "videoHomeComp",
+      "primary_files": [
+        "lib/components/video_home_comp/video_home_comp_model.dart",
+        "lib/components/video_home_comp/video_home_comp_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_fahzg58l",
+      "name": "emptyMessages",
+      "primary_files": [
+        "lib/pages/chats/empty_messages/empty_messages_model.dart",
+        "lib/pages/chats/empty_messages/empty_messages_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_favlhv4e",
+      "name": "notifComp",
+      "primary_files": [
+        "lib/components/notif_comp/notif_comp_model.dart",
+        "lib/components/notif_comp/notif_comp_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_god5omfd",
+      "name": "paymentChatButton",
+      "primary_files": [
+        "lib/components/payment_chat_button/payment_chat_button_model.dart",
+        "lib/components/payment_chat_button/payment_chat_button_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_gpz2gvlz",
+      "name": "restorePurchase",
+      "primary_files": [
+        "lib/components/dialogs/restore_purchase/restore_purchase_model.dart",
+        "lib/components/dialogs/restore_purchase/restore_purchase_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_gutcdvvo",
+      "name": "ChatDialogIcon",
+      "primary_files": [
+        "lib/pages/chats/chat_dialog_icon/chat_dialog_icon_model.dart",
+        "lib/pages/chats/chat_dialog_icon/chat_dialog_icon_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_hbdwy5wr",
+      "name": "EducationInfoDialog",
+      "primary_files": [
+        "lib/pages/education/education_info_dialog/education_info_dialog_model.dart",
+        "lib/pages/education/education_info_dialog/education_info_dialog_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_he6nfvim",
+      "name": "calendarDayComp",
+      "primary_files": [
+        "lib/components/calendar_day_comp/calendar_day_comp_model.dart",
+        "lib/components/calendar_day_comp/calendar_day_comp_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_hvzu77hj",
+      "name": "audioEducation",
+      "primary_files": [
+        "lib/pages/audio/audio_education/audio_education_model.dart",
+        "lib/pages/audio/audio_education/audio_education_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_ilcvp9ys",
+      "name": "chatDeleteDialog",
+      "primary_files": [
+        "lib/pages/chats/chat_delete_dialog/chat_delete_dialog_model.dart",
+        "lib/pages/chats/chat_delete_dialog/chat_delete_dialog_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_kxghdy7z",
+      "name": "rowtitle",
+      "primary_files": [
+        "lib/pages/audio/rowtitle/rowtitle_model.dart",
+        "lib/pages/audio/rowtitle/rowtitle_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_l48l8hkj",
+      "name": "logoutDialog",
+      "primary_files": [
+        "lib/pages/profile/logout_dialog/logout_dialog_model.dart",
+        "lib/pages/profile/logout_dialog/logout_dialog_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_l9sv27hb",
+      "name": "AudioPlayerComp",
+      "primary_files": [
+        "lib/components/audio_player_comp/audio_player_comp_model.dart",
+        "lib/components/audio_player_comp/audio_player_comp_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_lpd47to4",
+      "name": "profileWebDialog",
+      "primary_files": [
+        "lib/web/profile_web_dialog/profile_web_dialog_model.dart",
+        "lib/web/profile_web_dialog/profile_web_dialog_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_lxq2qzaw",
+      "name": "backButton",
+      "primary_files": [
+        "lib/components/back_button/back_button_model.dart",
+        "lib/components/back_button/back_button_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_mjfhvny6",
+      "name": "audioCategory",
+      "primary_files": [
+        "lib/pages/audio/audio_category/audio_category_model.dart",
+        "lib/pages/audio/audio_category/audio_category_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_nkelzzmy",
+      "name": "review",
+      "primary_files": [
+        "lib/pages/education/review/review_model.dart",
+        "lib/pages/education/review/review_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_otkovs2y",
+      "name": "navbar",
+      "primary_files": [
+        "lib/components/navbar/navbar_model.dart",
+        "lib/components/navbar/navbar_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_qc2qm0sc",
+      "name": "lessonChapter",
+      "primary_files": [
+        "lib/pages/education/lesson_chapter/lesson_chapter_model.dart",
+        "lib/pages/education/lesson_chapter/lesson_chapter_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_rtt6nooi",
+      "name": "fileUploadDialog",
+      "primary_files": [
+        "lib/pages/chats/file_upload_dialog/file_upload_dialog_model.dart",
+        "lib/pages/chats/file_upload_dialog/file_upload_dialog_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_vhi8ftja",
+      "name": "ReviewDialog",
+      "primary_files": [
+        "lib/pages/education/review_dialog/review_dialog_model.dart",
+        "lib/pages/education/review_dialog/review_dialog_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_vjql9fw1",
+      "name": "imageExpand",
+      "primary_files": [
+        "lib/pages/chats/image_expand/image_expand_model.dart",
+        "lib/pages/chats/image_expand/image_expand_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_vjvqjbuy",
+      "name": "metaCardComp",
+      "primary_files": [
+        "lib/components/meta_card_comp/meta_card_comp_model.dart",
+        "lib/components/meta_card_comp/meta_card_comp_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_vwdiijcj",
+      "name": "audioDialog",
+      "primary_files": [
+        "lib/pages/audio/audio_dialog/audio_dialog_model.dart",
+        "lib/pages/audio/audio_dialog/audio_dialog_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_vxi3sfum",
+      "name": "addEndDateDialog",
+      "primary_files": [
+        "lib/pages/calendar/add_end_date_dialog/add_end_date_dialog_model.dart",
+        "lib/pages/calendar/add_end_date_dialog/add_end_date_dialog_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_vxpwrdoz",
+      "name": "audioHomeComp",
+      "primary_files": [
+        "lib/pages/audio/audio_home_comp/audio_home_comp_model.dart",
+        "lib/pages/audio/audio_home_comp/audio_home_comp_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_x5ihqnz2",
+      "name": "navTab",
+      "primary_files": [
+        "lib/components/nav_tab/nav_tab_model.dart",
+        "lib/components/nav_tab/nav_tab_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_xgdghiwh",
+      "name": "loader",
+      "primary_files": [
+        "lib/components/loader/loader_model.dart",
+        "lib/components/loader/loader_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_y1wuhxss",
+      "name": "addDateDialog",
+      "primary_files": [
+        "lib/pages/calendar/add_date_dialog/add_date_dialog_model.dart",
+        "lib/pages/calendar/add_date_dialog/add_date_dialog_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_ym0yvbl3",
+      "name": "ChatDialog",
+      "primary_files": [
+        "lib/pages/chats/chat_dialog/chat_dialog_model.dart",
+        "lib/pages/chats/chat_dialog/chat_dialog_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_ymuuthtd",
+      "name": "chatMessageStart",
+      "primary_files": [
+        "lib/pages/chats/chat_message_start/chat_message_start_model.dart",
+        "lib/pages/chats/chat_message_start/chat_message_start_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_z03fr0d9",
+      "name": "editCycleLength",
+      "primary_files": [
+        "lib/pages/calendar/edit_cycle_length/edit_cycle_length_model.dart",
+        "lib/pages/calendar/edit_cycle_length/edit_cycle_length_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_z0pgkwzy",
+      "name": "audioDayHome",
+      "primary_files": [
+        "lib/components/audio_day_home/audio_day_home_model.dart",
+        "lib/components/audio_day_home/audio_day_home_widget.dart"
+      ]
+    },
+    {
+      "type": "component",
+      "key": "Container_z2hw6cc3",
+      "name": "countryDialog",
+      "primary_files": [
+        "lib/components/dialogs/country_dialog/country_dialog_model.dart",
+        "lib/components/dialogs/country_dialog/country_dialog_widget.dart"
+      ]
+    },
+    {
+      "type": "custom_action",
+      "key": "1c3ia",
+      "name": "setStatusBarColor",
+      "primary_files": [
+        "lib/custom_code/actions/set_status_bar_color.dart"
+      ],
+      "related_files": [
+        "lib/custom_code/actions/index.dart"
+      ]
+    },
+    {
+      "type": "custom_action",
+      "key": "87qr4",
+      "name": "refreshFirebaseRemoteConfig",
+      "primary_files": [
+        "lib/custom_code/actions/refresh_firebase_remote_config.dart"
+      ],
+      "related_files": [
+        "lib/custom_code/actions/index.dart"
+      ]
+    },
+    {
+      "type": "custom_action",
+      "key": "ask3y",
+      "name": "justAudioBackground",
+      "primary_files": [
+        "lib/custom_code/actions/just_audio_background.dart"
+      ],
+      "related_files": [
+        "lib/custom_code/actions/index.dart"
+      ]
+    },
+    {
+      "type": "custom_action",
+      "key": "djiyw",
+      "name": "openStoreListing",
+      "primary_files": [
+        "lib/custom_code/actions/open_store_listing.dart"
+      ],
+      "related_files": [
+        "lib/custom_code/actions/index.dart"
+      ]
+    },
+    {
+      "type": "custom_action",
+      "key": "e8uhx",
+      "name": "closeKeyboard",
+      "primary_files": [
+        "lib/custom_code/actions/close_keyboard.dart"
+      ],
+      "related_files": [
+        "lib/custom_code/actions/index.dart"
+      ]
+    },
+    {
+      "type": "custom_action",
+      "key": "eh82j",
+      "name": "messageLetterQuery",
+      "primary_files": [
+        "lib/custom_code/actions/message_letter_query.dart"
+      ],
+      "related_files": [
+        "lib/custom_code/actions/index.dart"
+      ]
+    },
+    {
+      "type": "custom_action",
+      "key": "khp6m",
+      "name": "pakageInfo",
+      "primary_files": [
+        "lib/custom_code/actions/pakage_info.dart"
+      ],
+      "related_files": [
+        "lib/custom_code/actions/index.dart"
+      ]
+    },
+    {
+      "type": "custom_action",
+      "key": "lvmki",
+      "name": "getFileMetadataFromStorage",
+      "primary_files": [
+        "lib/custom_code/actions/get_file_metadata_from_storage.dart"
+      ],
+      "related_files": [
+        "lib/custom_code/actions/index.dart"
+      ]
+    },
+    {
+      "type": "custom_action",
+      "key": "n6mbu",
+      "name": "uploadFileWithMetadata",
+      "primary_files": [
+        "lib/custom_code/actions/upload_file_with_metadata.dart"
+      ],
+      "related_files": [
+        "lib/custom_code/actions/index.dart"
+      ]
+    },
+    {
+      "type": "custom_action",
+      "key": "nwgaa",
+      "name": "lockLandscapeMode",
+      "primary_files": [
+        "lib/custom_code/actions/lock_landscape_mode.dart"
+      ],
+      "related_files": [
+        "lib/custom_code/actions/index.dart"
+      ]
+    },
+    {
+      "type": "custom_action",
+      "key": "qu3uk",
+      "name": "audioRef",
+      "primary_files": [
+        "lib/custom_code/actions/audio_ref.dart"
+      ],
+      "related_files": [
+        "lib/custom_code/actions/index.dart"
+      ]
+    },
+    {
+      "type": "custom_action",
+      "key": "qze4z",
+      "name": "uploadAudioWithMetadata",
+      "primary_files": [
+        "lib/custom_code/actions/upload_audio_with_metadata.dart"
+      ],
+      "related_files": [
+        "lib/custom_code/actions/index.dart"
+      ]
+    },
+    {
+      "type": "custom_action",
+      "key": "sz6sc",
+      "name": "unlockLandscapeMode",
+      "primary_files": [
+        "lib/custom_code/actions/unlock_landscape_mode.dart"
+      ],
+      "related_files": [
+        "lib/custom_code/actions/index.dart"
+      ]
+    },
+    {
+      "type": "custom_action",
+      "key": "vw6mn",
+      "name": "practicOfDayAudio",
+      "primary_files": [
+        "lib/custom_code/actions/practic_of_day_audio.dart"
+      ],
+      "related_files": [
+        "lib/custom_code/actions/index.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "02b77",
+      "name": "daysList",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "1733y",
+      "name": "audioFileRandom",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "1gecn",
+      "name": "startMensDay",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "3fl99",
+      "name": "dateMinusYears",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "4lj74",
+      "name": "audioCategories",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "5ulqm",
+      "name": "countries",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "7m6rq",
+      "name": "urlToVideoPath",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "7wuno",
+      "name": "mensDayText",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "8b6vs",
+      "name": "checkVersion",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "8gce1",
+      "name": "currentMonthInCalendarExist",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "8s8p4",
+      "name": "monthDaysWithOffset",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "bmsa9",
+      "name": "monthDays",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "c6heo",
+      "name": "monthsText",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "c6qsn",
+      "name": "dateAddMonth",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "cfn39",
+      "name": "createCloudPaymentsWebViewSubs",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "d5ipn",
+      "name": "monthTitle",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "efz56",
+      "name": "addStartDayToMensCycle",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "f7io5",
+      "name": "startDay",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "ghj6q",
+      "name": "dateTextNow",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "gl05n",
+      "name": "search",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "hi3c7",
+      "name": "monthTitlePremium",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "i1gex",
+      "name": "dayText",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "j5vfo",
+      "name": "cycleDay",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "kgqfa",
+      "name": "imagePathToString",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "ksgg9",
+      "name": "titleNew",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "lawud",
+      "name": "addCurrentMonthCycle",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "ll5dk",
+      "name": "ovulationDayText",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "llk83",
+      "name": "endDay",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "lohx3",
+      "name": "checkVersionReview",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "lriyr",
+      "name": "dateGreatherThanToday",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "masee",
+      "name": "nameLettters",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "pbl9q",
+      "name": "addDayToMensCycle",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "pp5ab",
+      "name": "mensDayInDays",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "ptt4m",
+      "name": "ovulationDayInDaysNumber",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "qi468",
+      "name": "removeDayToMensCycle",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "rh0bo",
+      "name": "cyclePhase",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "rvx5c",
+      "name": "phaseBannerText",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "sivmg",
+      "name": "ovulationCentralDayInDays",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "suzrv",
+      "name": "audioList",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "svfov",
+      "name": "emptyAudioList",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "tb199",
+      "name": "editDurationMonthCycle",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "ti68l",
+      "name": "periodFormat",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "tkprd",
+      "name": "ovulationDayInDays",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "uicct",
+      "name": "priceFormat",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "umyxk",
+      "name": "addEndDayToMensCycle",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "uwn4f",
+      "name": "nameHome",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "v9d51",
+      "name": "pressets",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "x27cm",
+      "name": "dayGreatherThanToday",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_function",
+      "key": "y1lnr",
+      "name": "calendarMonths",
+      "primary_files": [
+        "lib/flutter_flow/custom_functions.dart"
+      ]
+    },
+    {
+      "type": "custom_widget",
+      "key": "2a7t9",
+      "name": "PaymentWebview",
+      "primary_files": [
+        "lib/custom_code/widgets/payment_webview.dart"
+      ],
+      "related_files": [
+        "lib/custom_code/widgets/index.dart"
+      ]
+    },
+    {
+      "type": "custom_widget",
+      "key": "52sf5",
+      "name": "CycleInfoTimeline",
+      "primary_files": [
+        "lib/custom_code/widgets/cycle_info_timeline.dart"
+      ],
+      "related_files": [
+        "lib/custom_code/widgets/index.dart"
+      ]
+    },
+    {
+      "type": "custom_widget",
+      "key": "7xk2b",
+      "name": "CustomMarkdown",
+      "primary_files": [
+        "lib/custom_code/widgets/custom_markdown.dart"
+      ],
+      "related_files": [
+        "lib/custom_code/widgets/index.dart"
+      ]
+    },
+    {
+      "type": "custom_widget",
+      "key": "a97w5",
+      "name": "MessageLetterWidget",
+      "primary_files": [
+        "lib/custom_code/widgets/message_letter_widget.dart"
+      ],
+      "related_files": [
+        "lib/custom_code/widgets/index.dart"
+      ]
+    },
+    {
+      "type": "custom_widget",
+      "key": "d2jom",
+      "name": "CustomSlider",
+      "primary_files": [
+        "lib/custom_code/widgets/custom_slider.dart"
+      ],
+      "related_files": [
+        "lib/custom_code/widgets/index.dart"
+      ]
+    },
+    {
+      "type": "custom_widget",
+      "key": "fq9jm",
+      "name": "WheelListHome",
+      "primary_files": [
+        "lib/custom_code/widgets/wheel_list_home.dart"
+      ],
+      "related_files": [
+        "lib/custom_code/widgets/index.dart"
+      ]
+    },
+    {
+      "type": "custom_widget",
+      "key": "g1kae",
+      "name": "FFLiquidGlass",
+      "primary_files": [
+        "lib/custom_code/widgets/f_f_liquid_glass.dart"
+      ],
+      "related_files": [
+        "lib/custom_code/widgets/index.dart"
+      ]
+    },
+    {
+      "type": "custom_widget",
+      "key": "i3whc",
+      "name": "HorizontalDayScroller",
+      "primary_files": [
+        "lib/custom_code/widgets/horizontal_day_scroller.dart"
+      ],
+      "related_files": [
+        "lib/custom_code/widgets/index.dart"
+      ]
+    },
+    {
+      "type": "custom_widget",
+      "key": "qtna5",
+      "name": "FullScreenVideo",
+      "primary_files": [
+        "lib/custom_code/widgets/full_screen_video.dart"
+      ],
+      "related_files": [
+        "lib/custom_code/widgets/index.dart"
+      ]
+    },
+    {
+      "type": "custom_widget",
+      "key": "rtawh",
+      "name": "MaskedImage",
+      "primary_files": [
+        "lib/custom_code/widgets/masked_image.dart"
+      ],
+      "related_files": [
+        "lib/custom_code/widgets/index.dart"
+      ]
+    },
+    {
+      "type": "custom_widget",
+      "key": "t8yqr",
+      "name": "TypewriterLoop",
+      "primary_files": [
+        "lib/custom_code/widgets/typewriter_loop.dart"
+      ],
+      "related_files": [
+        "lib/custom_code/widgets/index.dart"
+      ]
+    },
+    {
+      "type": "custom_widget",
+      "key": "twnqk",
+      "name": "DoubleRowList",
+      "primary_files": [
+        "lib/custom_code/widgets/double_row_list.dart"
+      ],
+      "related_files": [
+        "lib/custom_code/widgets/index.dart"
+      ]
+    },
+    {
+      "type": "custom_widget",
+      "key": "uspvg",
+      "name": "EnhancedPodcastPlayer",
+      "primary_files": [
+        "lib/custom_code/widgets/enhanced_podcast_player.dart"
+      ],
+      "related_files": [
+        "lib/custom_code/widgets/index.dart"
+      ]
+    },
+    {
+      "type": "custom_widget",
+      "key": "zeqom",
+      "name": "LiquidGlassNavBar",
+      "primary_files": [
+        "lib/custom_code/widgets/liquid_glass_nav_bar.dart"
+      ],
+      "related_files": [
+        "lib/custom_code/widgets/index.dart"
+      ]
+    },
+    {
+      "type": "data_struct",
+      "key": "36yv9",
+      "name": "calendar",
+      "primary_files": [
+        "lib/backend/schema/structs/calendar_struct.dart"
+      ],
+      "related_files": [
+        "lib/backend/schema/structs/index.dart",
+        "lib/backend/schema/util/schema_util.dart"
+      ]
+    },
+    {
+      "type": "data_struct",
+      "key": "gik9x",
+      "name": "chatAssistantMessage",
+      "primary_files": [
+        "lib/backend/schema/structs/chat_assistant_message_struct.dart"
+      ],
+      "related_files": [
+        "lib/backend/schema/structs/index.dart",
+        "lib/backend/schema/util/schema_util.dart"
+      ]
+    },
+    {
+      "type": "data_struct",
+      "key": "jgn20",
+      "name": "monthCycle",
+      "primary_files": [
+        "lib/backend/schema/structs/month_cycle_struct.dart"
+      ],
+      "related_files": [
+        "lib/backend/schema/structs/index.dart",
+        "lib/backend/schema/util/schema_util.dart"
+      ]
+    },
+    {
+      "type": "data_struct",
+      "key": "mqtsm",
+      "name": "fileDT",
+      "primary_files": [
+        "lib/backend/schema/structs/file_d_t_struct.dart"
+      ],
+      "related_files": [
+        "lib/backend/schema/structs/index.dart",
+        "lib/backend/schema/util/schema_util.dart"
+      ]
+    },
+    {
+      "type": "data_struct",
+      "key": "mr9ft",
+      "name": "news",
+      "primary_files": [
+        "lib/backend/schema/structs/news_struct.dart"
+      ],
+      "related_files": [
+        "lib/backend/schema/structs/index.dart",
+        "lib/backend/schema/util/schema_util.dart"
+      ]
+    },
+    {
+      "type": "data_struct",
+      "key": "sepxi",
+      "name": "videoFile",
+      "primary_files": [
+        "lib/backend/schema/structs/video_file_struct.dart"
+      ],
+      "related_files": [
+        "lib/backend/schema/structs/index.dart",
+        "lib/backend/schema/util/schema_util.dart"
+      ]
+    },
+    {
+      "type": "data_struct",
+      "key": "xpovd",
+      "name": "audioFile",
+      "primary_files": [
+        "lib/backend/schema/structs/audio_file_struct.dart"
+      ],
+      "related_files": [
+        "lib/backend/schema/structs/index.dart",
+        "lib/backend/schema/util/schema_util.dart"
+      ]
+    },
+    {
+      "type": "firestore_collection",
+      "key": "2b20r0x2",
+      "name": "metaCards",
+      "primary_files": [
+        "lib/backend/schema/meta_cards_record.dart"
+      ],
+      "related_files": [
+        "lib/backend/schema/index.dart",
+        "lib/backend/schema/util/schema_util.dart"
+      ]
+    },
+    {
+      "type": "firestore_collection",
+      "key": "3sm5qkri",
+      "name": "education_module_notes",
+      "primary_files": [
+        "lib/backend/schema/education_module_notes_record.dart"
+      ],
+      "related_files": [
+        "lib/backend/schema/index.dart",
+        "lib/backend/schema/util/schema_util.dart"
+      ]
+    },
+    {
+      "type": "firestore_collection",
+      "key": "44nvu742",
+      "name": "notifications",
+      "primary_files": [
+        "lib/backend/schema/notifications_record.dart"
+      ],
+      "related_files": [
+        "lib/backend/schema/index.dart",
+        "lib/backend/schema/util/schema_util.dart"
+      ]
+    },
+    {
+      "type": "firestore_collection",
+      "key": "7hmm3j0c",
+      "name": "news",
+      "primary_files": [
+        "lib/backend/schema/news_record.dart"
+      ],
+      "related_files": [
+        "lib/backend/schema/index.dart",
+        "lib/backend/schema/util/schema_util.dart"
+      ]
+    },
+    {
+      "type": "firestore_collection",
+      "key": "9khcj1bo",
+      "name": "education_module_lesson_chapters",
+      "primary_files": [
+        "lib/backend/schema/education_module_lesson_chapters_record.dart"
+      ],
+      "related_files": [
+        "lib/backend/schema/index.dart",
+        "lib/backend/schema/util/schema_util.dart"
+      ]
+    },
+    {
+      "type": "firestore_collection",
+      "key": "bap1jaek",
+      "name": "payments",
+      "primary_files": [
+        "lib/backend/schema/payments_record.dart"
+      ],
+      "related_files": [
+        "lib/backend/schema/index.dart",
+        "lib/backend/schema/util/schema_util.dart"
+      ]
+    },
+    {
+      "type": "firestore_collection",
+      "key": "bq7muiae",
+      "name": "videos",
+      "primary_files": [
+        "lib/backend/schema/videos_record.dart"
+      ],
+      "related_files": [
+        "lib/backend/schema/index.dart",
+        "lib/backend/schema/util/schema_util.dart"
+      ]
+    },
+    {
+      "type": "firestore_collection",
+      "key": "fjjwb4s4",
+      "name": "education_schedule",
+      "primary_files": [
+        "lib/backend/schema/education_schedule_record.dart"
+      ],
+      "related_files": [
+        "lib/backend/schema/index.dart",
+        "lib/backend/schema/util/schema_util.dart"
+      ]
+    },
+    {
+      "type": "firestore_collection",
+      "key": "ghizqj4a",
+      "name": "audio",
+      "primary_files": [
+        "lib/backend/schema/audio_record.dart"
+      ],
+      "related_files": [
+        "lib/backend/schema/index.dart",
+        "lib/backend/schema/util/schema_util.dart"
+      ]
+    },
+    {
+      "type": "firestore_collection",
+      "key": "hxppktft",
+      "name": "chats",
+      "primary_files": [
+        "lib/backend/schema/chats_record.dart"
+      ],
+      "related_files": [
+        "lib/backend/schema/index.dart",
+        "lib/backend/schema/util/schema_util.dart"
+      ]
+    },
+    {
+      "type": "firestore_collection",
+      "key": "j48kgicx",
+      "name": "calendar",
+      "primary_files": [
+        "lib/backend/schema/calendar_record.dart"
+      ],
+      "related_files": [
+        "lib/backend/schema/index.dart",
+        "lib/backend/schema/util/schema_util.dart"
+      ]
+    },
+    {
+      "type": "firestore_collection",
+      "key": "och2hsk3",
+      "name": "education_modules",
+      "primary_files": [
+        "lib/backend/schema/education_modules_record.dart"
+      ],
+      "related_files": [
+        "lib/backend/schema/index.dart",
+        "lib/backend/schema/util/schema_util.dart"
+      ]
+    },
+    {
+      "type": "firestore_collection",
+      "key": "pdh6v0we",
+      "name": "order",
+      "primary_files": [
+        "lib/backend/schema/order_record.dart"
+      ],
+      "related_files": [
+        "lib/backend/schema/index.dart",
+        "lib/backend/schema/util/schema_util.dart"
+      ]
+    },
+    {
+      "type": "firestore_collection",
+      "key": "r8g1u03k",
+      "name": "education_module_lessons",
+      "primary_files": [
+        "lib/backend/schema/education_module_lessons_record.dart"
+      ],
+      "related_files": [
+        "lib/backend/schema/index.dart",
+        "lib/backend/schema/util/schema_util.dart"
+      ]
+    },
+    {
+      "type": "firestore_collection",
+      "key": "rnrtfged",
+      "name": "messageLetter",
+      "primary_files": [
+        "lib/backend/schema/message_letter_record.dart"
+      ],
+      "related_files": [
+        "lib/backend/schema/index.dart",
+        "lib/backend/schema/util/schema_util.dart"
+      ]
+    },
+    {
+      "type": "firestore_collection",
+      "key": "ul4ef7t3",
+      "name": "users",
+      "primary_files": [
+        "lib/backend/schema/users_record.dart"
+      ],
+      "related_files": [
+        "lib/backend/schema/index.dart",
+        "lib/backend/schema/util/schema_util.dart"
+      ]
+    },
+    {
+      "type": "firestore_collection",
+      "key": "vv9kmxqj",
+      "name": "education",
+      "primary_files": [
+        "lib/backend/schema/education_record.dart"
+      ],
+      "related_files": [
+        "lib/backend/schema/index.dart",
+        "lib/backend/schema/util/schema_util.dart"
+      ]
+    },
+    {
+      "type": "firestore_collection",
+      "key": "wd4yby0a",
+      "name": "education_reviews",
+      "primary_files": [
+        "lib/backend/schema/education_reviews_record.dart"
+      ],
+      "related_files": [
+        "lib/backend/schema/index.dart",
+        "lib/backend/schema/util/schema_util.dart"
+      ]
+    },
+    {
+      "type": "firestore_collection",
+      "key": "xzcwx6vf",
+      "name": "chat_messages",
+      "primary_files": [
+        "lib/backend/schema/chat_messages_record.dart"
+      ],
+      "related_files": [
+        "lib/backend/schema/index.dart",
+        "lib/backend/schema/util/schema_util.dart"
+      ]
+    },
+    {
+      "type": "global",
+      "key": "app_state",
+      "name": "app_state",
+      "primary_files": [
+        "lib/app_state.dart"
+      ]
+    },
+    {
+      "type": "global",
+      "key": "index",
+      "name": "index.dart",
+      "primary_files": [
+        "lib/index.dart"
+      ]
+    },
+    {
+      "type": "global",
+      "key": "main",
+      "name": "main.dart",
+      "primary_files": [
+        "lib/main.dart"
+      ]
+    },
+    {
+      "type": "global",
+      "key": "routing",
+      "name": "routing",
+      "primary_files": [
+        "lib/flutter_flow/nav/nav.dart",
+        "lib/flutter_flow/nav/serialization_util.dart"
+      ]
+    },
+    {
+      "type": "global",
+      "key": "theme",
+      "name": "theme",
+      "primary_files": [
+        "lib/flutter_flow/flutter_flow_theme.dart"
+      ]
+    },
+    {
+      "type": "page",
+      "key": "Scaffold_2bvl11ra",
+      "name": "AboutYou",
+      "primary_files": [
+        "lib/pages/auth/about_you/about_you_model.dart",
+        "lib/pages/auth/about_you/about_you_widget.dart"
+      ]
+    },
+    {
+      "type": "page",
+      "key": "Scaffold_2lmbd48e",
+      "name": "Login",
+      "primary_files": [
+        "lib/pages/auth/login/login_model.dart",
+        "lib/pages/auth/login/login_widget.dart"
+      ]
+    },
+    {
+      "type": "page",
+      "key": "Scaffold_3fqecl42",
+      "name": "EducationModuleLessonPage",
+      "primary_files": [
+        "lib/pages/education/education_module_lesson_page/education_module_lesson_page_model.dart",
+        "lib/pages/education/education_module_lesson_page/education_module_lesson_page_widget.dart"
+      ]
+    },
+    {
+      "type": "page",
+      "key": "Scaffold_3me9z5da",
+      "name": "EducationModulePage",
+      "primary_files": [
+        "lib/pages/education/education_module_page/education_module_page_model.dart",
+        "lib/pages/education/education_module_page/education_module_page_widget.dart"
+      ]
+    },
+    {
+      "type": "page",
+      "key": "Scaffold_3sjf5hif",
+      "name": "CalendarPage",
+      "primary_files": [
+        "lib/pages/calendar/calendar_page/calendar_page_model.dart",
+        "lib/pages/calendar/calendar_page/calendar_page_widget.dart"
+      ]
+    },
+    {
+      "type": "page",
+      "key": "Scaffold_3ygc16st",
+      "name": "editPassword",
+      "primary_files": [
+        "lib/pages/profile/edit_password/edit_password_model.dart",
+        "lib/pages/profile/edit_password/edit_password_widget.dart"
+      ]
+    },
+    {
+      "type": "page",
+      "key": "Scaffold_6bgygi4i",
+      "name": "VideoPage",
+      "primary_files": [
+        "lib/pages/video_page/video_page_model.dart",
+        "lib/pages/video_page/video_page_widget.dart"
+      ]
+    },
+    {
+      "type": "page",
+      "key": "Scaffold_8u2xlyj4",
+      "name": "NewsPage",
+      "primary_files": [
+        "lib/pages/news_page/news_page_model.dart",
+        "lib/pages/news_page/news_page_widget.dart"
+      ]
+    },
+    {
+      "type": "page",
+      "key": "Scaffold_9dp7dsdp",
+      "name": "ProfileEditPage",
+      "primary_files": [
+        "lib/pages/profile/profile_edit_page/profile_edit_page_model.dart",
+        "lib/pages/profile/profile_edit_page/profile_edit_page_widget.dart"
+      ]
+    },
+    {
+      "type": "page",
+      "key": "Scaffold_arh5211y",
+      "name": "AudioWish",
+      "primary_files": [
+        "lib/pages/audio/audio_wish/audio_wish_model.dart",
+        "lib/pages/audio/audio_wish/audio_wish_widget.dart"
+      ]
+    },
+    {
+      "type": "page",
+      "key": "Scaffold_cg274neo",
+      "name": "ResetPasswordEmailSent",
+      "primary_files": [
+        "lib/pages/auth/reset_password_email_sent/reset_password_email_sent_model.dart",
+        "lib/pages/auth/reset_password_email_sent/reset_password_email_sent_widget.dart"
+      ]
+    },
+    {
+      "type": "page",
+      "key": "Scaffold_exoxobj9",
+      "name": "ChatPage",
+      "primary_files": [
+        "lib/pages/chats/chat_page/chat_page_model.dart",
+        "lib/pages/chats/chat_page/chat_page_widget.dart"
+      ]
+    },
+    {
+      "type": "page",
+      "key": "Scaffold_flrhi64z",
+      "name": "AudioPage",
+      "primary_files": [
+        "lib/pages/audio/audio_page/audio_page_model.dart",
+        "lib/pages/audio/audio_page/audio_page_widget.dart"
+      ]
+    },
+    {
+      "type": "page",
+      "key": "Scaffold_g0hm0lja",
+      "name": "ProfilePage",
+      "primary_files": [
+        "lib/pages/profile/profile_page/profile_page_model.dart",
+        "lib/pages/profile/profile_page/profile_page_widget.dart"
+      ]
+    },
+    {
+      "type": "page",
+      "key": "Scaffold_hcjfgu19",
+      "name": "SupportPage",
+      "primary_files": [
+        "lib/pages/profile/support_page/support_page_model.dart",
+        "lib/pages/profile/support_page/support_page_widget.dart"
+      ]
+    },
+    {
+      "type": "page",
+      "key": "Scaffold_icc2miex",
+      "name": "SignUp",
+      "primary_files": [
+        "lib/pages/auth/sign_up/sign_up_model.dart",
+        "lib/pages/auth/sign_up/sign_up_widget.dart"
+      ]
+    },
+    {
+      "type": "page",
+      "key": "Scaffold_j198p7kr",
+      "name": "splashPage",
+      "primary_files": [
+        "lib/pages/auth/splash_page/splash_page_model.dart",
+        "lib/pages/auth/splash_page/splash_page_widget.dart"
+      ]
+    },
+    {
+      "type": "page",
+      "key": "Scaffold_k26wfx0e",
+      "name": "ResetPassword",
+      "primary_files": [
+        "lib/pages/auth/reset_password/reset_password_model.dart",
+        "lib/pages/auth/reset_password/reset_password_widget.dart"
+      ]
+    },
+    {
+      "type": "page",
+      "key": "Scaffold_lu97xh50",
+      "name": "AudioPlayer",
+      "primary_files": [
+        "lib/pages/audio/audio_player/audio_player_model.dart",
+        "lib/pages/audio/audio_player/audio_player_widget.dart"
+      ]
+    },
+    {
+      "type": "page",
+      "key": "Scaffold_m39q4pqy",
+      "name": "startPage",
+      "primary_files": [
+        "lib/pages/auth/start_page/start_page_model.dart",
+        "lib/pages/auth/start_page/start_page_widget.dart"
+      ]
+    },
+    {
+      "type": "page",
+      "key": "Scaffold_mjhlwvvu",
+      "name": "editPasswordSuccess",
+      "primary_files": [
+        "lib/pages/profile/edit_password_success/edit_password_success_model.dart",
+        "lib/pages/profile/edit_password_success/edit_password_success_widget.dart"
+      ]
+    },
+    {
+      "type": "page",
+      "key": "Scaffold_mtyel2qn",
+      "name": "CloudPaymentPage",
+      "primary_files": [
+        "lib/pages/payment/cloud_payment_page/cloud_payment_page_model.dart",
+        "lib/pages/payment/cloud_payment_page/cloud_payment_page_widget.dart"
+      ]
+    },
+    {
+      "type": "page",
+      "key": "Scaffold_nh8bag3w",
+      "name": "MetaCardSelectPage",
+      "primary_files": [
+        "lib/pages/meta_cards/meta_card_select_page/meta_card_select_page_model.dart",
+        "lib/pages/meta_cards/meta_card_select_page/meta_card_select_page_widget.dart"
+      ]
+    },
+    {
+      "type": "page",
+      "key": "Scaffold_o28eb18l",
+      "name": "PaymentPage",
+      "primary_files": [
+        "lib/pages/payment/payment_page/payment_page_model.dart",
+        "lib/pages/payment/payment_page/payment_page_widget.dart"
+      ]
+    },
+    {
+      "type": "page",
+      "key": "Scaffold_p887rb24",
+      "name": "EducationPage",
+      "primary_files": [
+        "lib/pages/education/education_page/education_page_model.dart",
+        "lib/pages/education/education_page/education_page_widget.dart"
+      ]
+    },
+    {
+      "type": "page",
+      "key": "Scaffold_sndquzw6",
+      "name": "aboutAppPage",
+      "primary_files": [
+        "lib/pages/profile/about_app_page/about_app_page_model.dart",
+        "lib/pages/profile/about_app_page/about_app_page_widget.dart"
+      ]
+    },
+    {
+      "type": "page",
+      "key": "Scaffold_uruph6e3",
+      "name": "updateApp",
+      "primary_files": [
+        "lib/pages/auth/update_app/update_app_model.dart",
+        "lib/pages/auth/update_app/update_app_widget.dart"
+      ]
+    },
+    {
+      "type": "page",
+      "key": "Scaffold_v1a0sowm",
+      "name": "CalendarMonthsPage",
+      "primary_files": [
+        "lib/pages/calendar/calendar_months_page/calendar_months_page_model.dart",
+        "lib/pages/calendar/calendar_months_page/calendar_months_page_widget.dart"
+      ]
+    },
+    {
+      "type": "page",
+      "key": "Scaffold_wc246qrv",
+      "name": "AudioExcl",
+      "primary_files": [
+        "lib/pages/audio/audio_excl/audio_excl_model.dart",
+        "lib/pages/audio/audio_excl/audio_excl_widget.dart"
+      ]
+    },
+    {
+      "type": "page",
+      "key": "Scaffold_wnw9ykwd",
+      "name": "NotificationPage",
+      "primary_files": [
+        "lib/pages/notification_page/notification_page_model.dart",
+        "lib/pages/notification_page/notification_page_widget.dart"
+      ]
+    },
+    {
+      "type": "page",
+      "key": "Scaffold_xzh2otda",
+      "name": "videoPlayer",
+      "primary_files": [
+        "lib/pages/video_player/video_player_model.dart",
+        "lib/pages/video_player/video_player_widget.dart"
+      ]
+    },
+    {
+      "type": "page",
+      "key": "Scaffold_zalkrg9z",
+      "name": "MessageLetterPage",
+      "primary_files": [
+        "lib/pages/message_letter/message_letter_page/message_letter_page_model.dart",
+        "lib/pages/message_letter/message_letter_page/message_letter_page_widget.dart"
+      ]
+    },
+    {
+      "type": "page",
+      "key": "Scaffold_ztnpx1ky",
+      "name": "HomePage",
+      "primary_files": [
+        "lib/pages/home_page/home_page_model.dart",
+        "lib/pages/home_page/home_page_widget.dart"
+      ]
+    },
+    {
+      "type": "page",
+      "key": "Scaffold_ztx1hpsv",
+      "name": "MetaCardPage",
+      "primary_files": [
+        "lib/pages/meta_cards/meta_card_page/meta_card_page_model.dart",
+        "lib/pages/meta_cards/meta_card_page/meta_card_page_widget.dart"
+      ]
+    },
+    {
+      "type": "page",
+      "key": "Scaffold_zyirnenh",
+      "name": "CalendarStart",
+      "primary_files": [
+        "lib/pages/calendar/calendar_start/calendar_start_model.dart",
+        "lib/pages/calendar/calendar_start/calendar_start_widget.dart"
+      ]
+    }
+  ]
+}
