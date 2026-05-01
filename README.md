@@ -1,8 +1,8 @@
-# Darli - Zhenskoe zdorove
+# DARLY
 
-![Darli logo](assets/images/logo34.webp)
+![DARLY logo](assets/images/logo34.webp)
 
-FlutterFlow-exported iOS application source for Darli, focused on women's health tracking and wellbeing.
+FlutterFlow-exported iOS application source for DARLY, focused on women's health tracking and wellbeing.
 
 ## Stack
 
