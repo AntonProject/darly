@@ -113,6 +113,7 @@ class _MetaCardSelectPageWidgetState extends State<MetaCardSelectPageWidget> {
                           animationDuration: 1800,
                           staggerDelay: 50,
                           topOffset: 200.0,
+                          title: 'ВЫБЕРИ КАРТУ',
                           metaCards: widget!.cards!,
                           image:
                               'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/woman-103qa6/assets/4h5xqbhg7mj2/cardFront.webp',
@@ -167,24 +168,6 @@ class _MetaCardSelectPageWidgetState extends State<MetaCardSelectPageWidget> {
                                     },
                                   ),
                                 ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 16.0, 0.0, 0.0),
-                              child: Text(
-                                'ВЫБЕРИ КАРТУ',
-                                style: FlutterFlowTheme.of(context)
-                                    .headlineMedium
-                                    .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .headlineMediumFamily,
-                                      letterSpacing: 0.0,
-                                      lineHeight: 1.2,
-                                      useGoogleFonts:
-                                          !FlutterFlowTheme.of(context)
-                                              .headlineMediumIsCustom,
-                                    ),
                               ),
                             ),
                           ],
