@@ -113,10 +113,10 @@ class _MetaCardSelectPageWidgetState extends State<MetaCardSelectPageWidget> {
                           animationDuration: 1800,
                           staggerDelay: 50,
                           topOffset: 200.0,
-                          title: 'ВЫБЕРИ КАРТУ',
                           metaCards: widget!.cards!,
                           image:
-                              'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/woman-103qa6/assets/4h5xqbhg7mj2/cardFront.webp',
+                              'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/woman-103qa6/assets/0mna6qdpitis/CardNew.webp',
+                          title: 'ВЫБЕРИ КАРТУ',
                           onCardTap: (card) async {
                             logFirebaseEvent(
                                 'META_CARD_SELECT_Container_5ul15hnu_CALL');

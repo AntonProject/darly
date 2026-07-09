@@ -84,13 +84,15 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
 
   @override
   Widget build(BuildContext context) => _loading
-      ? Container(
-          color: Colors.transparent,
-          child: Image.asset(
-            'assets/images/ezgif.com-webp-maker_(1).webp',
-            fit: BoxFit.cover,
-          ),
-        )
+      ? isWeb
+          ? Container()
+          : Container(
+              color: Colors.transparent,
+              child: Image.asset(
+                'assets/images/Page-Calendar.webp',
+                fit: BoxFit.cover,
+              ),
+            )
       : widget.child;
 }
 
@@ -140,12 +142,7 @@ final parametersBuilderMap =
               data, 'news', NewsRecord.fromSnapshot),
         },
       ),
-  'MessageLetterPage': (data) async => ParameterData(
-        allParams: {
-          'message': getParameter<String>(data, 'message'),
-          'messageImg': getParameter<String>(data, 'messageImg'),
-        },
-      ),
+  'MessageLetterPageStart': ParameterData.none(),
   'VideoPage': ParameterData.none(),
   'MetaCardPage': (data) async => ParameterData(
         allParams: {
@@ -242,6 +239,13 @@ final parametersBuilderMap =
           'fisrtdate': getParameter<DateTime>(data, 'fisrtdate'),
         },
       ),
+  'MessageLetterPage': (data) async => ParameterData(
+        allParams: {
+          'message': getParameter<String>(data, 'message'),
+          'messageImg': getParameter<String>(data, 'messageImg'),
+        },
+      ),
+  'splashStartPage': ParameterData.none(),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

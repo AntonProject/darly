@@ -6,6 +6,7 @@ import 'dart:async';
 import 'dart:math';
 import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -64,18 +65,6 @@ class _StartPageWidgetState extends State<StartPageWidget>
     });
 
     animationsMap.addAll({
-      'imageOnPageLoadAnimation': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          FadeEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 300.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-        ],
-      ),
       'columnOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
@@ -122,21 +111,20 @@ class _StartPageWidgetState extends State<StartPageWidget>
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             body: Stack(
               children: [
-                if (responsiveVisibility(
-                  context: context,
-                  tabletLandscape: false,
-                  desktop: false,
-                ))
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(0.0),
-                    child: Image.asset(
-                      'assets/images/ezgif.com-webp-maker_(1).webp',
-                      width: double.infinity,
-                      height: MediaQuery.sizeOf(context).height * 1.0,
-                      fit: BoxFit.cover,
-                    ),
-                  ).animateOnPageLoad(
-                      animationsMap['imageOnPageLoadAnimation']!),
+                Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  child: custom_widgets.FullScreenVideo(
+                    width: double.infinity,
+                    height: double.infinity,
+                    videoUrl:
+                        'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/woman-103qa6/assets/vtc11yrlhemz/final_pro_658-ezgif.com-mute-video.mp4',
+                    looping: true,
+                    autoPlay: true,
+                    radius: 0.0,
+                    onVideoEnd: () async {},
+                  ),
+                ),
                 Align(
                   alignment: AlignmentDirectional(0.0, 1.0),
                   child: Container(

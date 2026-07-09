@@ -43,10 +43,10 @@ class _MetaCardCompWidgetState extends State<MetaCardCompWidget> {
     return ClipRRect(
       borderRadius: BorderRadius.circular(8.0),
       child: Image.asset(
-        'assets/images/cardFront.webp',
+        'assets/images/CardNew.webp',
         width: 90.0,
         height: 140.0,
-        fit: BoxFit.cover,
+        fit: BoxFit.fill,
       ),
     );
   }

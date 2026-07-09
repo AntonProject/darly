@@ -80,6 +80,9 @@ class _RowtitleWidgetState extends State<RowtitleWidget>
         logFirebaseEvent('ROWTITLE_COMP_Container_0wgg8xvp_ON_TAP');
         logFirebaseEvent('Container_haptic_feedback');
         HapticFeedback.lightImpact();
+        logFirebaseEvent('Container_update_app_state');
+        FFAppState().pressetChat = widget!.title;
+        safeSetState(() {});
         logFirebaseEvent('Container_execute_callback');
         await widget.select?.call(
           widget!.title,

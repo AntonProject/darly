@@ -256,257 +256,200 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       child: AudioDayHomeWidget(),
                                     ),
                                   ),
-                                  Container(
-                                    decoration: BoxDecoration(),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          20.0, 0.0, 20.0, 0.0),
-                                      child: ClipRRect(
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        20.0, 0.0, 20.0, 0.0),
+                                    child: Container(
+                                      width: double.infinity,
+                                      height: 335.0,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .white12,
+                                        image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: Image.asset(
+                                            'assets/images/Widget_-_Message_of_the_Day13.webp',
+                                          ).image,
+                                        ),
                                         borderRadius:
                                             BorderRadius.circular(24.0),
-                                        child: BackdropFilter(
-                                          filter: ImageFilter.blur(
-                                            sigmaX: 12.0,
-                                            sigmaY: 12.0,
-                                          ),
-                                          child: Container(
-                                            width: double.infinity,
-                                            height: 335.0,
-                                            decoration: BoxDecoration(
-                                              color:
+                                        border: Border.all(
+                                          color: FlutterFlowTheme.of(context)
+                                              .white12,
+                                        ),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            16.0, 24.0, 16.0, 16.0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Text(
+                                              'ПОСЛАНИЕ ДНЯ',
+                                              style:
                                                   FlutterFlowTheme.of(context)
-                                                      .white12,
-                                              image: DecorationImage(
-                                                fit: BoxFit.cover,
-                                                image: Image.asset(
-                                                  'assets/images/Widget_-_Message_of_the_Day13.webp',
-                                                ).image,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(24.0),
-                                              border: Border.all(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .white12,
-                                              ),
-                                            ),
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      16.0, 24.0, 16.0, 16.0),
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Text(
-                                                    'ПОСЛАНИЕ ДНЯ',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .headlineMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .headlineMediumFamily,
-                                                          letterSpacing: 0.0,
-                                                          lineHeight: 1.0,
-                                                          useGoogleFonts:
-                                                              !FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .headlineMediumIsCustom,
-                                                        ),
-                                                  ),
-                                                  Expanded(
-                                                    child: Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  4.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      child: Text(
-                                                        'Каждый день получай уникальное послание от Darly',
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily,
-                                                              fontSize: 15.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              lineHeight: 1.2,
-                                                              useGoogleFonts:
-                                                                  !FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumIsCustom,
-                                                            ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            100.0),
-                                                    child: BackdropFilter(
-                                                      filter: ImageFilter.blur(
-                                                        sigmaX: 12.0,
-                                                        sigmaY: 12.0,
-                                                      ),
-                                                      child: Container(
-                                                        width: double.infinity,
-                                                        height: 56.0,
-                                                        child: custom_widgets
-                                                            .CustomSlider(
-                                                          width:
-                                                              double.infinity,
-                                                          height: 56.0,
-                                                          borderColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .white24,
-                                                          icon: Icon(
-                                                            FFIcons
-                                                                .krightDouble,
-                                                            color: FlutterFlowTheme
+                                                      .headlineMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .headlineMediumFamily,
+                                                        letterSpacing: 0.0,
+                                                        lineHeight: 1.0,
+                                                        useGoogleFonts:
+                                                            !FlutterFlowTheme
                                                                     .of(context)
-                                                                .primaryText,
-                                                            size: 24.0,
-                                                          ),
-                                                          text:
-                                                              'Проведите, чтобы открыть',
-                                                          buttonColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .white24,
-                                                          textSize: 15.0,
-                                                          action: () async {
-                                                            logFirebaseEvent(
-                                                                'HOME_Container_cow825tq_CALLBACK');
-                                                            logFirebaseEvent(
-                                                                'CustomSlider_haptic_feedback');
-                                                            HapticFeedback
-                                                                .lightImpact();
-                                                            if (dateTimeFormat(
-                                                                  "d/M/y",
-                                                                  currentUserDocument
-                                                                      ?.messageLetterDate,
-                                                                  locale: FFLocalizations.of(
-                                                                          context)
-                                                                      .languageCode,
-                                                                ) ==
-                                                                dateTimeFormat(
-                                                                  "d/M/y",
-                                                                  getCurrentTimestamp,
-                                                                  locale: FFLocalizations.of(
-                                                                          context)
-                                                                      .languageCode,
-                                                                )) {
-                                                              logFirebaseEvent(
-                                                                  'CustomSlider_navigate_to');
-
-                                                              context.pushNamed(
-                                                                MessageLetterPageWidget
-                                                                    .routeName,
-                                                                queryParameters:
-                                                                    {
-                                                                  'message':
-                                                                      serializeParam(
-                                                                    valueOrDefault(
-                                                                        currentUserDocument
-                                                                            ?.messageLetterDay,
-                                                                        ''),
-                                                                    ParamType
-                                                                        .String,
-                                                                  ),
-                                                                  'messageImg':
-                                                                      serializeParam(
-                                                                    valueOrDefault(
-                                                                        currentUserDocument
-                                                                            ?.messageLetterDayImage,
-                                                                        ''),
-                                                                    ParamType
-                                                                        .String,
-                                                                  ),
-                                                                }.withoutNulls,
-                                                                extra: <String,
-                                                                    dynamic>{
-                                                                  '__transition_info__':
-                                                                      TransitionInfo(
-                                                                    hasTransition:
-                                                                        true,
-                                                                    transitionType:
-                                                                        PageTransitionType
-                                                                            .fade,
-                                                                  ),
-                                                                },
-                                                              );
-                                                            } else {
-                                                              logFirebaseEvent(
-                                                                  'CustomSlider_custom_action');
-                                                              _model.messageDoc =
-                                                                  await actions
-                                                                      .messageLetterQuery(
-                                                                currentUserUid,
-                                                                (currentUserDocument
-                                                                            ?.messageShown
-                                                                            ?.toList() ??
-                                                                        [])
-                                                                    .toList(),
-                                                              );
-                                                              logFirebaseEvent(
-                                                                  'CustomSlider_navigate_to');
-
-                                                              context.pushNamed(
-                                                                MessageLetterPageWidget
-                                                                    .routeName,
-                                                                queryParameters:
-                                                                    {
-                                                                  'message':
-                                                                      serializeParam(
-                                                                    _model
-                                                                        .messageDoc
-                                                                        ?.text,
-                                                                    ParamType
-                                                                        .String,
-                                                                  ),
-                                                                  'messageImg':
-                                                                      serializeParam(
-                                                                    _model
-                                                                        .messageDoc
-                                                                        ?.image,
-                                                                    ParamType
-                                                                        .String,
-                                                                  ),
-                                                                }.withoutNulls,
-                                                                extra: <String,
-                                                                    dynamic>{
-                                                                  '__transition_info__':
-                                                                      TransitionInfo(
-                                                                    hasTransition:
-                                                                        true,
-                                                                    transitionType:
-                                                                        PageTransitionType
-                                                                            .fade,
-                                                                  ),
-                                                                },
-                                                              );
-                                                            }
-
-                                                            safeSetState(() {});
-                                                          },
-                                                        ),
+                                                                .headlineMediumIsCustom,
                                                       ),
-                                                    ),
-                                                  ),
-                                                ],
+                                            ),
+                                            Expanded(
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 4.0, 0.0, 0.0),
+                                                child: Text(
+                                                  'Каждый день получай уникальное послание от Darly',
+                                                  textAlign: TextAlign.center,
+                                                  style:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily,
+                                                            fontSize: 15.0,
+                                                            letterSpacing: 0.0,
+                                                            lineHeight: 1.2,
+                                                            useGoogleFonts:
+                                                                !FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumIsCustom,
+                                                          ),
+                                                ),
                                               ),
                                             ),
-                                          ),
+                                            Container(
+                                              width: double.infinity,
+                                              height: 56.0,
+                                              child:
+                                                  custom_widgets.CustomSlider(
+                                                width: double.infinity,
+                                                height: 56.0,
+                                                borderColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .white24,
+                                                icon: Icon(
+                                                  FFIcons.krightDouble,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                  size: 24.0,
+                                                ),
+                                                text:
+                                                    'Проведите, чтобы открыть',
+                                                buttonColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .white24,
+                                                textSize: 15.0,
+                                                action: () async {
+                                                  logFirebaseEvent(
+                                                      'HOME_Container_cow825tq_CALLBACK');
+                                                  logFirebaseEvent(
+                                                      'CustomSlider_haptic_feedback');
+                                                  HapticFeedback.lightImpact();
+                                                  if ((dateTimeFormat(
+                                                            "d/M/y",
+                                                            currentUserDocument
+                                                                ?.messageLetterDate,
+                                                            locale: FFLocalizations
+                                                                    .of(context)
+                                                                .languageCode,
+                                                          ) ==
+                                                          dateTimeFormat(
+                                                            "d/M/y",
+                                                            getCurrentTimestamp,
+                                                            locale: FFLocalizations
+                                                                    .of(context)
+                                                                .languageCode,
+                                                          )) &&
+                                                      (valueOrDefault(
+                                                                  currentUserDocument
+                                                                      ?.messageLetterDayImage,
+                                                                  '') !=
+                                                              null &&
+                                                          valueOrDefault(
+                                                                  currentUserDocument
+                                                                      ?.messageLetterDayImage,
+                                                                  '') !=
+                                                              '') &&
+                                                      (valueOrDefault(
+                                                                  currentUserDocument
+                                                                      ?.messageLetterDay,
+                                                                  '') !=
+                                                              null &&
+                                                          valueOrDefault(
+                                                                  currentUserDocument
+                                                                      ?.messageLetterDay,
+                                                                  '') !=
+                                                              '')) {
+                                                    logFirebaseEvent(
+                                                        'CustomSlider_navigate_to');
+
+                                                    context.pushNamed(
+                                                      MessageLetterPageWidget
+                                                          .routeName,
+                                                      queryParameters: {
+                                                        'message':
+                                                            serializeParam(
+                                                          valueOrDefault(
+                                                              currentUserDocument
+                                                                  ?.messageLetterDay,
+                                                              ''),
+                                                          ParamType.String,
+                                                        ),
+                                                        'messageImg':
+                                                            serializeParam(
+                                                          valueOrDefault(
+                                                              currentUserDocument
+                                                                  ?.messageLetterDayImage,
+                                                              ''),
+                                                          ParamType.String,
+                                                        ),
+                                                      }.withoutNulls,
+                                                      extra: <String, dynamic>{
+                                                        '__transition_info__':
+                                                            TransitionInfo(
+                                                          hasTransition: true,
+                                                          transitionType:
+                                                              PageTransitionType
+                                                                  .fade,
+                                                        ),
+                                                      },
+                                                    );
+                                                  } else {
+                                                    logFirebaseEvent(
+                                                        'CustomSlider_navigate_to');
+
+                                                    context.pushNamed(
+                                                      MessageLetterPageStartWidget
+                                                          .routeName,
+                                                      extra: <String, dynamic>{
+                                                        '__transition_info__':
+                                                            TransitionInfo(
+                                                          hasTransition: true,
+                                                          transitionType:
+                                                              PageTransitionType
+                                                                  .fade,
+                                                        ),
+                                                      },
+                                                    );
+                                                  }
+                                                },
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ),
@@ -612,6 +555,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       'DoubleRowList_update_app_state');
                                                   FFAppState().chatRef = null;
                                                   FFAppState().chatId = '';
+                                                  FFAppState().pressetChat =
+                                                      title!;
                                                   FFAppState().update(() {});
                                                   logFirebaseEvent(
                                                       'DoubleRowList_navigate_to');
@@ -962,251 +907,217 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         20.0, 32.0, 20.0, 0.0),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(24.0),
-                                      child: BackdropFilter(
-                                        filter: ImageFilter.blur(
-                                          sigmaX: 12.0,
-                                          sigmaY: 12.0,
-                                        ),
-                                        child: FutureBuilder<
-                                            List<MetaCardsRecord>>(
-                                          future: queryMetaCardsRecordOnce(),
-                                          builder: (context, snapshot) {
-                                            // Customize what your widget looks like when it's loading.
-                                            if (!snapshot.hasData) {
-                                              return Center(
-                                                child: SizedBox(
-                                                  width: 20.0,
-                                                  height: 20.0,
-                                                  child:
-                                                      CircularProgressIndicator(
-                                                    valueColor:
-                                                        AlwaysStoppedAnimation<
-                                                            Color>(
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primary,
+                                    child: FutureBuilder<List<MetaCardsRecord>>(
+                                      future: queryMetaCardsRecordOnce(),
+                                      builder: (context, snapshot) {
+                                        // Customize what your widget looks like when it's loading.
+                                        if (!snapshot.hasData) {
+                                          return Center(
+                                            child: SizedBox(
+                                              width: 20.0,
+                                              height: 20.0,
+                                              child: CircularProgressIndicator(
+                                                valueColor:
+                                                    AlwaysStoppedAnimation<
+                                                        Color>(
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        }
+                                        List<MetaCardsRecord>
+                                            metaCardMetaCardsRecordList =
+                                            snapshot.data!;
+
+                                        return Container(
+                                          width: double.infinity,
+                                          height: 335.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .white12,
+                                            borderRadius:
+                                                BorderRadius.circular(24.0),
+                                            border: Border.all(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .white12,
+                                            ),
+                                          ),
+                                          child: Container(
+                                            width: double.infinity,
+                                            height: double.infinity,
+                                            child: Stack(
+                                              children: [
+                                                Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          0.0, 0.0),
+                                                  child: Container(
+                                                    width: double.infinity,
+                                                    height: 335.0,
+                                                    child: custom_widgets
+                                                        .FullScreenVideo(
+                                                      width: double.infinity,
+                                                      height: 335.0,
+                                                      videoUrl:
+                                                          'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/woman-103qa6/assets/bbsgnt9e39ot/Woman-ezgif.com-gif-maker_(1).mp4',
+                                                      looping: true,
+                                                      autoPlay: true,
+                                                      radius: 24.0,
+                                                      onVideoEnd: () async {},
                                                     ),
                                                   ),
                                                 ),
-                                              );
-                                            }
-                                            List<MetaCardsRecord>
-                                                metaCardMetaCardsRecordList =
-                                                snapshot.data!;
-
-                                            return Container(
-                                              width: double.infinity,
-                                              height: 335.0,
-                                              decoration: BoxDecoration(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .white12,
-                                                borderRadius:
-                                                    BorderRadius.circular(24.0),
-                                                border: Border.all(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .white12,
-                                                ),
-                                              ),
-                                              child: Container(
-                                                width: double.infinity,
-                                                height: double.infinity,
-                                                child: Stack(
-                                                  children: [
-                                                    Align(
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              0.0, 0.0),
-                                                      child: Container(
-                                                        width: double.infinity,
-                                                        height: 335.0,
-                                                        child: custom_widgets
-                                                            .FullScreenVideo(
-                                                          width:
-                                                              double.infinity,
-                                                          height: 335.0,
-                                                          videoUrl:
-                                                              'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/woman-103qa6/assets/ia9ybfw354oh/Woman-ezgif.com-crop-video.mp4',
-                                                          looping: true,
-                                                          autoPlay: true,
-                                                          radius: 24.0,
-                                                          onVideoEnd:
-                                                              () async {},
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  16.0,
-                                                                  24.0,
-                                                                  16.0,
-                                                                  16.0),
-                                                      child: Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: [
-                                                          Expanded(
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .end,
-                                                              children: [
-                                                                Text(
-                                                                  'МЕТАФОРИЧЕСКИЕ \nКАРТЫ',
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .headlineSmall
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            FlutterFlowTheme.of(context).headlineSmallFamily,
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primaryText,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        lineHeight:
-                                                                            1.0,
-                                                                        useGoogleFonts:
-                                                                            !FlutterFlowTheme.of(context).headlineSmallIsCustom,
-                                                                      ),
-                                                                ),
-                                                                Padding(
-                                                                  padding: EdgeInsetsDirectional
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(16.0, 24.0,
+                                                          16.0, 16.0),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Expanded(
+                                                        child: Column(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .end,
+                                                          children: [
+                                                            Text(
+                                                              'МЕТАФОРИЧЕСКИЕ \nКАРТЫ',
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .headlineSmall
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .headlineSmallFamily,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryText,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    lineHeight:
+                                                                        1.0,
+                                                                    useGoogleFonts:
+                                                                        !FlutterFlowTheme.of(context)
+                                                                            .headlineSmallIsCustom,
+                                                                  ),
+                                                            ),
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           4.0,
                                                                           0.0,
                                                                           0.0),
-                                                                  child: Text(
-                                                                    'Вытяни карту, чтобы прояснить мысли и чувства',
-                                                                    textAlign:
-                                                                        TextAlign
-                                                                            .center,
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              FlutterFlowTheme.of(context).bodyMediumFamily,
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).secondaryText,
-                                                                          fontSize:
-                                                                              15.0,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          lineHeight:
-                                                                              1.2,
-                                                                          useGoogleFonts:
-                                                                              !FlutterFlowTheme.of(context).bodyMediumIsCustom,
-                                                                        ),
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                          ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        100.0),
-                                                            child:
-                                                                BackdropFilter(
-                                                              filter:
-                                                                  ImageFilter
-                                                                      .blur(
-                                                                sigmaX: 12.0,
-                                                                sigmaY: 12.0,
-                                                              ),
-                                                              child: Container(
-                                                                width: double
-                                                                    .infinity,
-                                                                height: 56.0,
-                                                                child: custom_widgets
-                                                                    .CustomSlider(
-                                                                  width: double
-                                                                      .infinity,
-                                                                  height: 56.0,
-                                                                  borderColor:
-                                                                      FlutterFlowTheme.of(
+                                                              child: Text(
+                                                                'Вытяни карту, чтобы прояснить мысли и чувства',
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily,
+                                                                      color: FlutterFlowTheme.of(
                                                                               context)
-                                                                          .white24,
-                                                                  icon: Icon(
-                                                                    FFIcons
-                                                                        .krightDouble,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primaryText,
-                                                                    size: 24.0,
-                                                                  ),
-                                                                  text:
-                                                                      'Проведите, чтобы открыть',
-                                                                  buttonColor:
-                                                                      FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .white24,
-                                                                  textSize:
-                                                                      15.0,
-                                                                  action:
-                                                                      () async {
-                                                                    logFirebaseEvent(
-                                                                        'HOME_Container_g05v5qqg_CALLBACK');
-                                                                    logFirebaseEvent(
-                                                                        'CustomSlider_haptic_feedback');
-                                                                    HapticFeedback
-                                                                        .lightImpact();
-                                                                    logFirebaseEvent(
-                                                                        'CustomSlider_navigate_to');
-
-                                                                    context
-                                                                        .pushNamed(
-                                                                      MetaCardSelectPageWidget
-                                                                          .routeName,
-                                                                      queryParameters:
-                                                                          {
-                                                                        'cards':
-                                                                            serializeParam(
-                                                                          metaCardMetaCardsRecordList,
-                                                                          ParamType
-                                                                              .Document,
-                                                                          isList:
-                                                                              true,
-                                                                        ),
-                                                                      }.withoutNulls,
-                                                                      extra: <String,
-                                                                          dynamic>{
-                                                                        'cards':
-                                                                            metaCardMetaCardsRecordList,
-                                                                      },
-                                                                    );
-                                                                  },
-                                                                ),
+                                                                          .secondaryText,
+                                                                      fontSize:
+                                                                          15.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      lineHeight:
+                                                                          1.2,
+                                                                      useGoogleFonts:
+                                                                          !FlutterFlowTheme.of(context)
+                                                                              .bodyMediumIsCustom,
+                                                                    ),
                                                               ),
                                                             ),
-                                                          ),
-                                                        ].divide(SizedBox(
-                                                            height: 8.0)),
+                                                          ],
+                                                        ),
                                                       ),
-                                                    ),
-                                                  ],
+                                                      Container(
+                                                        width: double.infinity,
+                                                        height: 56.0,
+                                                        child: custom_widgets
+                                                            .CustomSlider(
+                                                          width:
+                                                              double.infinity,
+                                                          height: 56.0,
+                                                          borderColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .white24,
+                                                          icon: Icon(
+                                                            FFIcons
+                                                                .krightDouble,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryText,
+                                                            size: 24.0,
+                                                          ),
+                                                          text:
+                                                              'Проведите, чтобы открыть',
+                                                          buttonColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .white24,
+                                                          textSize: 15.0,
+                                                          action: () async {
+                                                            logFirebaseEvent(
+                                                                'HOME_Container_g05v5qqg_CALLBACK');
+                                                            logFirebaseEvent(
+                                                                'CustomSlider_haptic_feedback');
+                                                            HapticFeedback
+                                                                .lightImpact();
+                                                            logFirebaseEvent(
+                                                                'CustomSlider_navigate_to');
+
+                                                            context.pushNamed(
+                                                              MetaCardSelectPageWidget
+                                                                  .routeName,
+                                                              queryParameters: {
+                                                                'cards':
+                                                                    serializeParam(
+                                                                  metaCardMetaCardsRecordList,
+                                                                  ParamType
+                                                                      .Document,
+                                                                  isList: true,
+                                                                ),
+                                                              }.withoutNulls,
+                                                              extra: <String,
+                                                                  dynamic>{
+                                                                'cards':
+                                                                    metaCardMetaCardsRecordList,
+                                                              },
+                                                            );
+                                                          },
+                                                        ),
+                                                      ),
+                                                    ].divide(
+                                                        SizedBox(height: 8.0)),
+                                                  ),
                                                 ),
-                                              ),
-                                            );
-                                          },
-                                        ),
-                                      ),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      },
                                     ),
                                   ),
                                   if (!functions.dateGreatherThanToday(
@@ -1287,254 +1198,211 @@ class _HomePageWidgetState extends State<HomePageWidget> {
 
                                         return Container(
                                           decoration: BoxDecoration(),
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(24.0),
-                                            child: BackdropFilter(
-                                              filter: ImageFilter.blur(
-                                                sigmaX: 12.0,
-                                                sigmaY: 12.0,
-                                              ),
-                                              child: Container(
-                                                width: double.infinity,
-                                                height: 335.0,
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
+                                          child: Container(
+                                            width: double.infinity,
+                                            height: 335.0,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
                                                       .white12,
-                                                  image: DecorationImage(
-                                                    fit: BoxFit.cover,
-                                                    image: Image.asset(
-                                                      'assets/images/calendar2.webp',
-                                                    ).image,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          24.0),
-                                                  border: Border.all(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
+                                              image: DecorationImage(
+                                                fit: BoxFit.cover,
+                                                image: Image.asset(
+                                                  'assets/images/calendar2.webp',
+                                                ).image,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(24.0),
+                                              border: Border.all(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
                                                         .white12,
-                                                  ),
-                                                ),
-                                                child: Padding(
-                                                  padding: EdgeInsets.all(16.0),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.min,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceAround,
-                                                    children: [
-                                                      Spacer(flex: 10),
-                                                      Text(
-                                                        valueOrDefault<String>(
-                                                          containerCalendarRecord !=
-                                                                  null
-                                                              ? valueOrDefault<
-                                                                  String>(
-                                                                  valueOrDefault<
-                                                                              int>(
-                                                                            functions.cycleDay(getCurrentTimestamp,
-                                                                                containerCalendarRecord!.monthCycles.toList()),
-                                                                            1,
-                                                                          ) >
-                                                                          0
-                                                                      ? '${valueOrDefault<String>(
-                                                                          functions
-                                                                              .cycleDay(getCurrentTimestamp, containerCalendarRecord!.monthCycles.toList())
-                                                                              .toString(),
-                                                                          '1',
-                                                                        )} ДЕНЬ ЦИКЛА'
-                                                                      : 'КАЛЕНДАРЬ ЦИКЛА',
-                                                                  'ЗАПОЛНИТЬ',
-                                                                )
-                                                              : 'КАЛЕНДАРЬ ЦИКЛА',
-                                                          'КАЛЕНДАРЬ ЦИКЛА',
+                                              ),
+                                            ),
+                                            child: Padding(
+                                              padding: EdgeInsets.all(16.0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceAround,
+                                                children: [
+                                                  Spacer(flex: 10),
+                                                  Text(
+                                                    valueOrDefault<String>(
+                                                      containerCalendarRecord !=
+                                                              null
+                                                          ? valueOrDefault<
+                                                              String>(
+                                                              valueOrDefault<
+                                                                          int>(
+                                                                        functions.cycleDay(
+                                                                            getCurrentTimestamp,
+                                                                            containerCalendarRecord!.monthCycles.toList()),
+                                                                        1,
+                                                                      ) >
+                                                                      0
+                                                                  ? '${valueOrDefault<String>(
+                                                                      functions
+                                                                          .cycleDay(
+                                                                              getCurrentTimestamp,
+                                                                              containerCalendarRecord!.monthCycles.toList())
+                                                                          .toString(),
+                                                                      '1',
+                                                                    )} ДЕНЬ ЦИКЛА'
+                                                                  : 'КАЛЕНДАРЬ ЦИКЛА',
+                                                              'ЗАПОЛНИТЬ',
+                                                            )
+                                                          : 'КАЛЕНДАРЬ ЦИКЛА',
+                                                      'КАЛЕНДАРЬ ЦИКЛА',
+                                                    ),
+                                                    textAlign: TextAlign.center,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .headlineMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .headlineMediumFamily,
+                                                          letterSpacing: 0.0,
+                                                          lineHeight: 1.0,
+                                                          useGoogleFonts:
+                                                              !FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .headlineMediumIsCustom,
                                                         ),
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .headlineMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .headlineMediumFamily,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              lineHeight: 1.0,
-                                                              useGoogleFonts:
-                                                                  !FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .headlineMediumIsCustom,
-                                                            ),
-                                                      ),
-                                                      if (valueOrDefault<bool>(
-                                                        containerCalendarRecord !=
-                                                                null
-                                                            ? valueOrDefault<
-                                                                bool>(
-                                                                valueOrDefault<
-                                                                        int>(
-                                                                      functions.cycleDay(
-                                                                          getCurrentTimestamp,
-                                                                          containerCalendarRecord!
-                                                                              .monthCycles
-                                                                              .toList()),
-                                                                      1,
-                                                                    ) >
-                                                                    0,
-                                                                false,
-                                                              )
-                                                            : false,
-                                                        false,
-                                                      ))
-                                                        Text(
-                                                          functions.phaseBannerText(
-                                                              functions.cyclePhase(
-                                                                  containerCalendarRecord
-                                                                      ?.monthCycles
-                                                                      ?.toList(),
-                                                                  getCurrentTimestamp)),
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          maxLines: 3,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .titleMedium
-                                                              .override(
-                                                                fontFamily: FlutterFlowTheme.of(
+                                                  ),
+                                                  if (valueOrDefault<bool>(
+                                                    containerCalendarRecord !=
+                                                            null
+                                                        ? valueOrDefault<bool>(
+                                                            valueOrDefault<int>(
+                                                                  functions.cycleDay(
+                                                                      getCurrentTimestamp,
+                                                                      containerCalendarRecord!
+                                                                          .monthCycles
+                                                                          .toList()),
+                                                                  1,
+                                                                ) >
+                                                                0,
+                                                            false,
+                                                          )
+                                                        : false,
+                                                    false,
+                                                  ))
+                                                    Text(
+                                                      functions.phaseBannerText(
+                                                          functions.cyclePhase(
+                                                              containerCalendarRecord
+                                                                  ?.monthCycles
+                                                                  ?.toList(),
+                                                              getCurrentTimestamp)),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      maxLines: 3,
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .titleMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                FlutterFlowTheme.of(
                                                                         context)
                                                                     .titleMediumFamily,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                lineHeight:
-                                                                    1.25,
-                                                                useGoogleFonts:
-                                                                    !FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .titleMediumIsCustom,
-                                                              ),
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
-                                                        ),
-                                                      Spacer(),
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    16.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        child: FFButtonWidget(
-                                                          onPressed: () async {
-                                                            logFirebaseEvent(
-                                                                'HOME_PAGE_PAGE_Button_9kzl89nm_ON_TAP');
-                                                            var _shouldSetState =
-                                                                false;
-                                                            logFirebaseEvent(
-                                                                'Button_haptic_feedback');
-                                                            HapticFeedback
-                                                                .mediumImpact();
-                                                            if (!(containerCalendarRecord !=
-                                                                null)) {
-                                                              logFirebaseEvent(
-                                                                  'Button_backend_call');
+                                                            letterSpacing: 0.0,
+                                                            lineHeight: 1.25,
+                                                            useGoogleFonts:
+                                                                !FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleMediumIsCustom,
+                                                          ),
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                    ),
+                                                  Spacer(),
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 16.0,
+                                                                0.0, 0.0),
+                                                    child: FFButtonWidget(
+                                                      onPressed: () async {
+                                                        logFirebaseEvent(
+                                                            'HOME_PAGE_PAGE_Button_9kzl89nm_ON_TAP');
+                                                        var _shouldSetState =
+                                                            false;
+                                                        logFirebaseEvent(
+                                                            'Button_haptic_feedback');
+                                                        HapticFeedback
+                                                            .mediumImpact();
+                                                        if (!(containerCalendarRecord !=
+                                                            null)) {
+                                                          logFirebaseEvent(
+                                                              'Button_backend_call');
 
-                                                              var calendarRecordReference =
-                                                                  CalendarRecord
-                                                                      .collection
-                                                                      .doc();
-                                                              await calendarRecordReference
-                                                                  .set(
-                                                                      createCalendarRecordData(
-                                                                createdAt:
-                                                                    getCurrentTimestamp,
-                                                                createdBy:
-                                                                    currentUserUid,
-                                                              ));
-                                                              _model.newCalend =
-                                                                  CalendarRecord
-                                                                      .getDocumentFromData(
-                                                                          createCalendarRecordData(
-                                                                            createdAt:
-                                                                                getCurrentTimestamp,
-                                                                            createdBy:
-                                                                                currentUserUid,
-                                                                          ),
-                                                                          calendarRecordReference);
-                                                              _shouldSetState =
-                                                                  true;
-                                                              logFirebaseEvent(
-                                                                  'Button_navigate_to');
-
-                                                              context.pushNamed(
-                                                                CalendarStartWidget
-                                                                    .routeName,
-                                                                queryParameters:
-                                                                    {
-                                                                  'calendar':
-                                                                      serializeParam(
-                                                                    _model
-                                                                        .newCalend
-                                                                        ?.reference,
-                                                                    ParamType
-                                                                        .DocumentReference,
+                                                          var calendarRecordReference =
+                                                              CalendarRecord
+                                                                  .collection
+                                                                  .doc();
+                                                          await calendarRecordReference
+                                                              .set(
+                                                                  createCalendarRecordData(
+                                                            createdAt:
+                                                                getCurrentTimestamp,
+                                                            createdBy:
+                                                                currentUserUid,
+                                                          ));
+                                                          _model.newCalend = CalendarRecord
+                                                              .getDocumentFromData(
+                                                                  createCalendarRecordData(
+                                                                    createdAt:
+                                                                        getCurrentTimestamp,
+                                                                    createdBy:
+                                                                        currentUserUid,
                                                                   ),
-                                                                }.withoutNulls,
-                                                              );
-                                                            } else {
-                                                              if (valueOrDefault<
-                                                                  bool>(
-                                                                (containerCalendarRecord!
-                                                                            .monthCycles
-                                                                            .length >
-                                                                        0) &&
-                                                                    (containerCalendarRecord !=
-                                                                        null),
-                                                                false,
-                                                              )) {
-                                                                if (functions.currentMonthInCalendarExist(
-                                                                    containerCalendarRecord!
+                                                                  calendarRecordReference);
+                                                          _shouldSetState =
+                                                              true;
+                                                          logFirebaseEvent(
+                                                              'Button_navigate_to');
+
+                                                          context.pushNamed(
+                                                            CalendarStartWidget
+                                                                .routeName,
+                                                            queryParameters: {
+                                                              'calendar':
+                                                                  serializeParam(
+                                                                _model.newCalend
+                                                                    ?.reference,
+                                                                ParamType
+                                                                    .DocumentReference,
+                                                              ),
+                                                            }.withoutNulls,
+                                                          );
+                                                        } else {
+                                                          if (valueOrDefault<
+                                                              bool>(
+                                                            (containerCalendarRecord!
                                                                         .monthCycles
-                                                                        .toList())) {
-                                                                  logFirebaseEvent(
-                                                                      'Button_navigate_to');
-
-                                                                  context
-                                                                      .pushNamed(
-                                                                    CalendarPageWidget
-                                                                        .routeName,
-                                                                    queryParameters:
-                                                                        {
-                                                                      'calendarUser':
-                                                                          serializeParam(
-                                                                        containerCalendarRecord
-                                                                            ?.reference,
-                                                                        ParamType
-                                                                            .DocumentReference,
-                                                                      ),
-                                                                    }.withoutNulls,
-                                                                  );
-
-                                                                  if (_shouldSetState)
-                                                                    safeSetState(
-                                                                        () {});
-                                                                  return;
-                                                                }
-                                                              }
+                                                                        .length >
+                                                                    0) &&
+                                                                (containerCalendarRecord !=
+                                                                    null),
+                                                            false,
+                                                          )) {
+                                                            if (functions.currentMonthInCalendarExist(
+                                                                containerCalendarRecord!
+                                                                    .monthCycles
+                                                                    .toList())) {
                                                               logFirebaseEvent(
                                                                   'Button_navigate_to');
 
                                                               context.pushNamed(
-                                                                CalendarStartWidget
+                                                                CalendarPageWidget
                                                                     .routeName,
                                                                 queryParameters:
                                                                     {
-                                                                  'calendar':
+                                                                  'calendarUser':
                                                                       serializeParam(
                                                                     containerCalendarRecord
                                                                         ?.reference,
@@ -1543,77 +1411,98 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                   ),
                                                                 }.withoutNulls,
                                                               );
-                                                            }
 
-                                                            if (_shouldSetState)
-                                                              safeSetState(
-                                                                  () {});
-                                                          },
-                                                          text: valueOrDefault<
-                                                              String>(
-                                                            (containerCalendarRecord !=
-                                                                        null) &&
-                                                                    valueOrDefault<
-                                                                        bool>(
-                                                                      containerCalendarRecord?.monthCycles !=
-                                                                              null &&
-                                                                          (containerCalendarRecord?.monthCycles)!
-                                                                              .isNotEmpty,
-                                                                      false,
-                                                                    )
-                                                                ? 'ПОДРОБНЕЕ'
-                                                                : 'ЗАПОЛНИТЬ',
-                                                            'ПОДРОБНЕЕ',
-                                                          ),
-                                                          options:
-                                                              FFButtonOptions(
-                                                            height: 40.0,
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        20.0,
-                                                                        0.0,
-                                                                        20.0,
-                                                                        0.0),
-                                                            iconPadding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primary,
-                                                            textStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmall
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .titleSmallFamily,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryText,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      useGoogleFonts:
-                                                                          !FlutterFlowTheme.of(context)
-                                                                              .titleSmallIsCustom,
-                                                                    ),
-                                                            elevation: 0.0,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        56.0),
-                                                          ),
-                                                        ),
+                                                              if (_shouldSetState)
+                                                                safeSetState(
+                                                                    () {});
+                                                              return;
+                                                            }
+                                                          }
+                                                          logFirebaseEvent(
+                                                              'Button_navigate_to');
+
+                                                          context.pushNamed(
+                                                            CalendarStartWidget
+                                                                .routeName,
+                                                            queryParameters: {
+                                                              'calendar':
+                                                                  serializeParam(
+                                                                containerCalendarRecord
+                                                                    ?.reference,
+                                                                ParamType
+                                                                    .DocumentReference,
+                                                              ),
+                                                            }.withoutNulls,
+                                                          );
+                                                        }
+
+                                                        if (_shouldSetState)
+                                                          safeSetState(() {});
+                                                      },
+                                                      text: valueOrDefault<
+                                                          String>(
+                                                        (containerCalendarRecord !=
+                                                                    null) &&
+                                                                valueOrDefault<
+                                                                    bool>(
+                                                                  containerCalendarRecord
+                                                                              ?.monthCycles !=
+                                                                          null &&
+                                                                      (containerCalendarRecord
+                                                                              ?.monthCycles)!
+                                                                          .isNotEmpty,
+                                                                  false,
+                                                                )
+                                                            ? 'ПОДРОБНЕЕ'
+                                                            : 'ЗАПОЛНИТЬ',
+                                                        'ПОДРОБНЕЕ',
                                                       ),
-                                                    ].divide(
-                                                        SizedBox(height: 4.0)),
+                                                      options: FFButtonOptions(
+                                                        height: 40.0,
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    20.0,
+                                                                    0.0,
+                                                                    20.0,
+                                                                    0.0),
+                                                        iconPadding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        textStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmall
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmallFamily,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  useGoogleFonts:
+                                                                      !FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .titleSmallIsCustom,
+                                                                ),
+                                                        elevation: 0.0,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(56.0),
+                                                      ),
+                                                    ),
                                                   ),
-                                                ),
+                                                ].divide(SizedBox(height: 4.0)),
                                               ),
                                             ),
                                           ),
@@ -1641,134 +1530,115 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      ClipOval(
-                                        child: BackdropFilter(
-                                          filter: ImageFilter.blur(
-                                            sigmaX: 12.0,
-                                            sigmaY: 12.0,
-                                          ),
-                                          child: InkWell(
-                                            splashColor: Colors.transparent,
-                                            focusColor: Colors.transparent,
-                                            hoverColor: Colors.transparent,
-                                            highlightColor: Colors.transparent,
-                                            onTap: () async {
-                                              logFirebaseEvent(
-                                                  'HOME_PAGE_PAGE_Container_53cdnk0n_ON_TAP');
-                                              logFirebaseEvent(
-                                                  'Container_haptic_feedback');
-                                              HapticFeedback.mediumImpact();
-                                              logFirebaseEvent(
-                                                  'Container_navigate_to');
+                                      InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          logFirebaseEvent(
+                                              'HOME_PAGE_PAGE_Container_53cdnk0n_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Container_haptic_feedback');
+                                          HapticFeedback.mediumImpact();
+                                          logFirebaseEvent(
+                                              'Container_navigate_to');
 
-                                              context.pushNamed(
-                                                ProfilePageWidget.routeName,
-                                                extra: <String, dynamic>{
-                                                  '__transition_info__':
-                                                      TransitionInfo(
-                                                    hasTransition: true,
-                                                    transitionType:
-                                                        PageTransitionType.fade,
-                                                    duration: Duration(
-                                                        milliseconds: 0),
-                                                  ),
-                                                },
-                                              );
-                                            },
-                                            child: Container(
-                                              width: 56.0,
-                                              height: 56.0,
-                                              decoration: BoxDecoration(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .white12,
-                                                shape: BoxShape.circle,
-                                                border: Border.all(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .white12,
-                                                ),
+                                          context.pushNamed(
+                                            ProfilePageWidget.routeName,
+                                            extra: <String, dynamic>{
+                                              '__transition_info__':
+                                                  TransitionInfo(
+                                                hasTransition: true,
+                                                transitionType:
+                                                    PageTransitionType.fade,
+                                                duration:
+                                                    Duration(milliseconds: 0),
                                               ),
-                                              child: Builder(
-                                                builder: (context) {
-                                                  if (currentUserPhoto !=
-                                                          null &&
-                                                      currentUserPhoto != '') {
-                                                    return Container(
-                                                      width: 56.0,
-                                                      height: 56.0,
-                                                      clipBehavior:
-                                                          Clip.antiAlias,
-                                                      decoration: BoxDecoration(
-                                                        shape: BoxShape.circle,
+                                            },
+                                          );
+                                        },
+                                        child: Container(
+                                          width: 56.0,
+                                          height: 56.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .white12,
+                                            shape: BoxShape.circle,
+                                            border: Border.all(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .white12,
+                                            ),
+                                          ),
+                                          child: Builder(
+                                            builder: (context) {
+                                              if (currentUserPhoto != null &&
+                                                  currentUserPhoto != '') {
+                                                return Container(
+                                                  width: 56.0,
+                                                  height: 56.0,
+                                                  clipBehavior: Clip.antiAlias,
+                                                  decoration: BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                  ),
+                                                  child: CachedNetworkImage(
+                                                    fadeInDuration: Duration(
+                                                        milliseconds: 500),
+                                                    fadeOutDuration: Duration(
+                                                        milliseconds: 500),
+                                                    imageUrl: getCORSProxyUrl(
+                                                      currentUserPhoto,
+                                                    ),
+                                                    fit: BoxFit.cover,
+                                                    errorWidget: (context,
+                                                            error,
+                                                            stackTrace) =>
+                                                        Image.asset(
+                                                      'assets/images/error_image.jpg',
+                                                      fit: BoxFit.cover,
+                                                    ),
+                                                  ),
+                                                );
+                                              } else {
+                                                return Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          0.0, 0.0),
+                                                  child: AuthUserStreamWidget(
+                                                    builder: (context) => Text(
+                                                      valueOrDefault<String>(
+                                                        functions.nameLettters(
+                                                            currentUserDisplayName,
+                                                            valueOrDefault(
+                                                                currentUserDocument
+                                                                    ?.surname,
+                                                                '')),
+                                                        'WN',
                                                       ),
-                                                      child: CachedNetworkImage(
-                                                        fadeInDuration:
-                                                            Duration(
-                                                                milliseconds:
-                                                                    500),
-                                                        fadeOutDuration:
-                                                            Duration(
-                                                                milliseconds:
-                                                                    500),
-                                                        imageUrl:
-                                                            getCORSProxyUrl(
-                                                          currentUserPhoto,
-                                                        ),
-                                                        fit: BoxFit.cover,
-                                                        errorWidget: (context,
-                                                                error,
-                                                                stackTrace) =>
-                                                            Image.asset(
-                                                          'assets/images/error_image.jpg',
-                                                          fit: BoxFit.cover,
-                                                        ),
-                                                      ),
-                                                    );
-                                                  } else {
-                                                    return Align(
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              0.0, 0.0),
-                                                      child:
-                                                          AuthUserStreamWidget(
-                                                        builder: (context) =>
-                                                            Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            functions.nameLettters(
-                                                                currentUserDisplayName,
-                                                                valueOrDefault(
-                                                                    currentUserDocument
-                                                                        ?.surname,
-                                                                    '')),
-                                                            'WN',
-                                                          ),
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .titleLarge
-                                                              .override(
-                                                                fontFamily: FlutterFlowTheme.of(
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .titleLarge
+                                                          .override(
+                                                            fontFamily:
+                                                                FlutterFlowTheme.of(
                                                                         context)
                                                                     .titleLargeFamily,
-                                                                fontSize: 16.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                lineHeight: 1.0,
-                                                                useGoogleFonts:
-                                                                    !FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .titleLargeIsCustom,
-                                                              ),
-                                                        ),
-                                                      ),
-                                                    );
-                                                  }
-                                                },
-                                              ),
-                                            ),
+                                                            fontSize: 16.0,
+                                                            letterSpacing: 0.0,
+                                                            lineHeight: 1.0,
+                                                            useGoogleFonts:
+                                                                !FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleLargeIsCustom,
+                                                          ),
+                                                    ),
+                                                  ),
+                                                );
+                                              }
+                                            },
                                           ),
                                         ),
                                       ),

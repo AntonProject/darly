@@ -3,12 +3,14 @@ import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'index.dart'; // Imports other custom widgets
+import '/custom_code/widgets/index.dart'; // Imports other custom widgets
 import '/custom_code/actions/index.dart'; // Imports custom actions
 import '/flutter_flow/custom_functions.dart'; // Imports custom functions
 import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
+
+import 'index.dart'; // Imports other custom widgets
 
 import '/custom_code/widgets/index.dart';
 import '/custom_code/actions/index.dart';
@@ -19,6 +21,10 @@ import 'package:intl/intl.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'dart:ui';
 
+const String _kWheelNewsFallbackImageUrl =
+    'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/woman-103qa6/assets/v7p18mqzpgt4/logo34.webp';
+
+/// Cylindrical news list widget for the home screen.
 class WheelListHome extends StatefulWidget {
   const WheelListHome({
     Key? key,
@@ -123,8 +129,6 @@ class _WheelListHomeState extends State<WheelListHome> {
   }
 
   void _onItemTap(NewsRecord item, int index) {
-    if (!_isImagesLoaded) return;
-
     if (index == _currentIndex) {
       HapticFeedback.mediumImpact();
       if (widget.onTapCentralItem != null) {
@@ -172,10 +176,8 @@ class _WheelListHomeState extends State<WheelListHome> {
       child: Stack(
         fit: StackFit.expand,
         children: [
-          // Background
           Container(color: widget.backgroundColor),
 
-          // Cards scroll area
           Positioned(
             left: 0,
             right: 0,
@@ -191,7 +193,6 @@ class _WheelListHomeState extends State<WheelListHome> {
                     item: item,
                     index: index,
                     isCentral: isCentral,
-                    showBorder: _isImagesLoaded,
                     containerWidth: widget.containerWidth!,
                     containerHeight: widget.containerHeight!,
                     imageRadius: widget.imageRadius!,
@@ -213,7 +214,7 @@ class _WheelListHomeState extends State<WheelListHome> {
                 setState(() {
                   _currentIndex = index;
                 });
-                if (widget.onScrollSelected != null && _isImagesLoaded) {
+                if (widget.onScrollSelected != null) {
                   widget.onScrollSelected!(widget.newsList![index]);
                 }
               },
@@ -223,15 +224,19 @@ class _WheelListHomeState extends State<WheelListHome> {
             ),
           ),
 
-          // Title text
-          if (_isImagesLoaded)
-            Positioned(
-              left: 0,
-              right: 0,
-              top: widget.containerHeight! * 1.25,
-              bottom: 8,
+          // Текст — плавно появляется после загрузки первой картинки
+          Positioned(
+            left: 0,
+            right: 0,
+            top: widget.containerHeight! * 1.25,
+            bottom: 8,
+            child: AnimatedOpacity(
+              opacity: _isImagesLoaded ? 1.0 : 0.0,
+              duration: const Duration(milliseconds: 800),
+              curve: Curves.easeOut,
               child: _buildTextSection(),
             ),
+          ),
         ],
       ),
     );
@@ -281,7 +286,6 @@ class ItemCard extends StatelessWidget {
   final NewsRecord item;
   final int index;
   final bool isCentral;
-  final bool showBorder;
   final double containerWidth;
   final double containerHeight;
   final double imageRadius;
@@ -296,7 +300,6 @@ class ItemCard extends StatelessWidget {
     required this.item,
     required this.index,
     required this.isCentral,
-    required this.showBorder,
     required this.containerWidth,
     required this.containerHeight,
     required this.imageRadius,
@@ -307,30 +310,49 @@ class ItemCard extends StatelessWidget {
     required this.onImageLoaded,
   }) : super(key: key);
 
+  void _notifyImageHandled() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      onImageLoaded();
+    });
+  }
+
+  Widget _buildResolvedImage(ImageProvider imageProvider) {
+    _notifyImageHandled();
+    return Image(
+      image: imageProvider,
+      fit: BoxFit.cover,
+    );
+  }
+
+  Widget _buildEmptyImage() {
+    _notifyImageHandled();
+    return const SizedBox.shrink();
+  }
+
   @override
   Widget build(BuildContext context) {
+    // Паддинг и радиус ВСЕГДА одинаковые — layout не прыгает
     final effectivePadding =
-        (showBorder && isCentral) ? const EdgeInsets.all(2.0) : EdgeInsets.zero;
-    final effectiveRadius =
-        (showBorder && isCentral) ? imageRadius : borderRadius - borderSize;
+        isCentral ? const EdgeInsets.all(2.0) : EdgeInsets.zero;
+    final effectiveRadius = isCentral ? imageRadius : borderRadius - borderSize;
 
     final bool hasImage = item.image != null && item.image!.isNotEmpty;
 
     return GestureDetector(
       onTap: () => onTap(item, index),
-      child: Container(
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeOut,
         width: containerWidth,
         height: containerHeight,
         decoration: BoxDecoration(
-          color: hasImage ? const Color(0xFF252221) : Colors.transparent,
+          color: Colors.transparent,
           borderRadius: BorderRadius.circular(borderRadius),
           border: Border.all(
-            color: (showBorder && isCentral)
-                ? borderColor
-                : const Color(0x33FFD6AA),
+            color: isCentral ? borderColor : const Color(0x33FFD6AA),
             width: borderSize,
           ),
-          boxShadow: (showBorder && isCentral)
+          boxShadow: isCentral
               ? [
                   BoxShadow(
                     color: borderColor.withOpacity(0.7),
@@ -349,54 +371,27 @@ class ItemCard extends StatelessWidget {
                   fit: BoxFit.cover,
                   memCacheHeight: (containerHeight * 1.5).toInt(),
                   memCacheWidth: (containerWidth * 1.5).toInt(),
-                  placeholder: (context, url) => CachedNetworkImage(
-                    imageUrl:
-                        'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/woman-103qa6/assets/v7p18mqzpgt4/logo34.webp',
-                    fit: BoxFit.cover,
-                    placeholder: (context, url) => const SizedBox.shrink(),
-                    errorWidget: (context, url, error) =>
-                        const SizedBox.shrink(),
-                  ),
-                  errorWidget: (context, url, error) => CachedNetworkImage(
-                    imageUrl:
-                        'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/woman-103qa6/assets/v7p18mqzpgt4/logo34.webp',
-                    fit: BoxFit.cover,
-                    placeholder: (context, url) => const SizedBox.shrink(),
-                    errorWidget: (context, url, error) =>
-                        const SizedBox.shrink(),
-                  ),
-                  fadeInDuration: const Duration(milliseconds: 150),
+                  placeholder: (context, url) => const SizedBox.shrink(),
+                  errorWidget: (context, url, error) => _buildEmptyImage(),
+                  fadeInDuration: const Duration(milliseconds: 800),
                   fadeInCurve: Curves.easeOut,
-                  imageBuilder: (context, imageProvider) {
-                    WidgetsBinding.instance.addPostFrameCallback((_) {
-                      onImageLoaded();
-                    });
-                    return Image(
-                      image: imageProvider,
-                      fit: BoxFit.cover,
-                    );
-                  },
+                  imageBuilder: (context, imageProvider) =>
+                      _buildResolvedImage(imageProvider),
                 ),
               )
             : ClipRRect(
                 borderRadius: BorderRadius.circular(effectiveRadius),
                 child: CachedNetworkImage(
-                  imageUrl:
-                      'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/woman-103qa6/assets/v7p18mqzpgt4/logo34.webp',
+                  imageUrl: _kWheelNewsFallbackImageUrl,
                   fit: BoxFit.cover,
                   width: containerWidth,
                   height: containerHeight,
                   placeholder: (context, url) => const SizedBox.shrink(),
                   errorWidget: (context, url, error) => const SizedBox.shrink(),
-                  imageBuilder: (context, imageProvider) {
-                    WidgetsBinding.instance.addPostFrameCallback((_) {
-                      onImageLoaded();
-                    });
-                    return Image(
-                      image: imageProvider,
-                      fit: BoxFit.cover,
-                    );
-                  },
+                  fadeInDuration: const Duration(milliseconds: 800),
+                  fadeInCurve: Curves.easeOut,
+                  imageBuilder: (context, imageProvider) =>
+                      _buildResolvedImage(imageProvider),
                 ),
               ),
       ),
@@ -537,7 +532,6 @@ class _CylindricalScrollViewState extends State<CylindricalScrollView> {
             deltaFromCurrent = (widget.initialPage.toDouble() - index);
           }
 
-          // Guard against NaN/Infinity from page controller during init
           if (deltaFromCurrent.isNaN || deltaFromCurrent.isInfinite) {
             deltaFromCurrent = 0.0;
           }
@@ -555,11 +549,9 @@ class _CylindricalScrollViewState extends State<CylindricalScrollView> {
 
           final double horizontalMargin = widget.itemSpacing / 2;
 
-          // Blur amount — gentle, only light soft blur on side cards
           double blurSigma = (absDistance - 0.5).clamp(0.0, 1.0) * 1.2;
           if (blurSigma.isNaN || blurSigma.isInfinite) blurSigma = 0.0;
 
-          // Opacity — side cards stay mostly visible
           double opacity = (1.0 - (absDistance - 0.5).clamp(0.0, 2.0) * 0.15)
               .clamp(0.5, 1.0);
           if (opacity.isNaN || opacity.isInfinite) opacity = 1.0;
@@ -570,8 +562,6 @@ class _CylindricalScrollViewState extends State<CylindricalScrollView> {
             child: child,
           );
 
-          // Apply blur only when sigma is meaningful (>= 0.5)
-          // Below that, ImageFilter can produce invalid rects
           if (blurSigma >= 0.5) {
             cardContent = ImageFiltered(
               imageFilter: ImageFilter.blur(

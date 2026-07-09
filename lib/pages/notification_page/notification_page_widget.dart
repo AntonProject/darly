@@ -186,7 +186,12 @@ class _NotificationPageWidgetState extends State<NotificationPageWidget> {
                                         (e.userId == currentUserUid) ||
                                         (e.userId == null || e.userId == ''))
                                     .toList()
-                                    .unique((e) => e.createdAt!)
+                                    .unique((e) => dateTimeFormat(
+                                          "d/M/y",
+                                          e.createdAt!,
+                                          locale: FFLocalizations.of(context)
+                                              .languageCode,
+                                        ))
                                     .toList();
 
                                 return ListView.separated(

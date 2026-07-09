@@ -3,7 +3,7 @@ import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'index.dart'; // Imports other custom widgets
+import '/custom_code/widgets/index.dart'; // Imports other custom widgets
 import '/custom_code/actions/index.dart'; // Imports custom actions
 import '/flutter_flow/custom_functions.dart'; // Imports custom functions
 import 'package:flutter/material.dart';
@@ -83,81 +83,82 @@ class _CustomMarkdownState extends State<CustomMarkdown> {
     final textAlign =
         (widget.role ?? 'user') == 'user' ? TextAlign.right : TextAlign.left;
 
-    return Markdown(
-      data: widget.text,
-      styleSheet: MarkdownStyleSheet(
-        textAlign: WrapAlignment.start,
-        p: TextStyle(
-          fontSize: widget.textSize,
-          fontWeight: normalFontWeight,
-          fontFamily: FlutterFlowTheme.of(context).bodySmall.fontFamily,
-          color: textColor,
-          height: 1.25,
-          letterSpacing: 0.0,
+    return SelectionArea(
+      child: MarkdownBody(
+        data: widget.text,
+        styleSheet: MarkdownStyleSheet(
+          textAlign: WrapAlignment.start,
+          p: TextStyle(
+            fontSize: widget.textSize,
+            fontWeight: normalFontWeight,
+            fontFamily: FlutterFlowTheme.of(context).bodySmall.fontFamily,
+            color: textColor,
+            height: 1.25,
+            letterSpacing: 0.0,
+          ),
+          strong: TextStyle(
+            fontSize: widget.boldTextSize,
+            fontWeight: boldFontWeight,
+            fontFamily: FlutterFlowTheme.of(context).titleSmall.fontFamily,
+            color: textColor,
+            height: 1.25,
+            letterSpacing: 0.0,
+          ),
+          em: TextStyle(
+            fontSize: widget.textSize,
+            fontStyle: FontStyle.italic,
+            fontWeight: normalFontWeight,
+            fontFamily: FlutterFlowTheme.of(context).bodySmall.fontFamily,
+            color: textColor,
+            height: 1.25,
+            letterSpacing: 0.0,
+          ),
+          h1: TextStyle(
+            fontSize: (widget.textSize ?? 16.0) + 8,
+            fontWeight: boldFontWeight,
+            fontFamily: FlutterFlowTheme.of(context).bodySmall.fontFamily,
+            color: textColor,
+            height: 1.25,
+            letterSpacing: 0.0,
+          ),
+          h2: TextStyle(
+            fontSize: (widget.textSize ?? 16.0) + 6,
+            fontWeight: boldFontWeight,
+            fontFamily: FlutterFlowTheme.of(context).bodySmall.fontFamily,
+            color: textColor,
+            height: 1.25,
+            letterSpacing: 0.0,
+          ),
+          h3: TextStyle(
+            fontSize: (widget.textSize ?? 16.0) + 4,
+            fontWeight: boldFontWeight,
+            fontFamily: FlutterFlowTheme.of(context).bodySmall.fontFamily,
+            color: textColor,
+            height: 1.25,
+            letterSpacing: 0.0,
+          ),
+          blockSpacing: 8.0,
+          listBullet: TextStyle(
+            fontSize: widget.textSize,
+            fontFamily: FlutterFlowTheme.of(context).bodySmall.fontFamily,
+            color: textColor,
+            height: 1.25,
+            letterSpacing: 0.0,
+          ),
+          listIndent: 20.0,
+          textScaleFactor: 1.0,
         ),
-        strong: TextStyle(
-          fontSize: widget.boldTextSize,
-          fontWeight: boldFontWeight,
-          fontFamily: FlutterFlowTheme.of(context).titleSmall.fontFamily,
-          color: textColor,
-          height: 1.25,
-          letterSpacing: 0.0,
+        shrinkWrap: true,
+        fitContent: true,
+        extensionSet: md.ExtensionSet(
+          md.ExtensionSet.commonMark.blockSyntaxes,
+          [
+            md.EmojiSyntax(),
+            ...md.ExtensionSet.commonMark.inlineSyntaxes,
+          ],
         ),
-        em: TextStyle(
-          fontSize: widget.textSize,
-          fontStyle: FontStyle.italic,
-          fontWeight: normalFontWeight,
-          fontFamily: FlutterFlowTheme.of(context).bodySmall.fontFamily,
-          color: textColor,
-          height: 1.25,
-          letterSpacing: 0.0,
-        ),
-        h1: TextStyle(
-          fontSize: (widget.textSize ?? 16.0) + 8,
-          fontWeight: boldFontWeight,
-          fontFamily: FlutterFlowTheme.of(context).bodySmall.fontFamily,
-          color: textColor,
-          height: 1.25,
-          letterSpacing: 0.0,
-        ),
-        h2: TextStyle(
-          fontSize: (widget.textSize ?? 16.0) + 6,
-          fontWeight: boldFontWeight,
-          fontFamily: FlutterFlowTheme.of(context).bodySmall.fontFamily,
-          color: textColor,
-          height: 1.25,
-          letterSpacing: 0.0,
-        ),
-        h3: TextStyle(
-          fontSize: (widget.textSize ?? 16.0) + 4,
-          fontWeight: boldFontWeight,
-          fontFamily: FlutterFlowTheme.of(context).bodySmall.fontFamily,
-          color: textColor,
-          height: 1.25,
-          letterSpacing: 0.0,
-        ),
-        blockSpacing: 8.0,
-        listBullet: TextStyle(
-          fontSize: widget.textSize,
-          fontFamily: FlutterFlowTheme.of(context).bodySmall.fontFamily,
-          color: textColor,
-          height: 1.25,
-          letterSpacing: 0.0,
-        ),
-        listIndent: 20.0,
-        textScaleFactor: 1.0,
+        selectable: false,
       ),
-      shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
-      padding: EdgeInsets.zero,
-      extensionSet: md.ExtensionSet(
-        md.ExtensionSet.commonMark.blockSyntaxes,
-        [
-          md.EmojiSyntax(),
-          ...md.ExtensionSet.commonMark.inlineSyntaxes,
-        ],
-      ),
-      selectable: false,
     );
   }
 }

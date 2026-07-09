@@ -5,8 +5,8 @@ import '/components/calendar_day_comp/calendar_day_comp_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/pages/add_start_date_dialog/add_start_date_dialog_widget.dart';
 import '/pages/calendar/add_end_date_dialog/add_end_date_dialog_widget.dart';
-import '/pages/calendar/add_start_date_dialog/add_start_date_dialog_widget.dart';
 import '/pages/calendar/edit_cycle_length/edit_cycle_length_widget.dart';
 import 'dart:async';
 import 'dart:ui';
@@ -500,7 +500,7 @@ class _CalendarPageWidgetState extends State<CalendarPageWidget> {
                                                           .toList(),
                                                       _model.selectedDate),
                                                   '-',
-                                                )}${functions.ovulationDayInDays(_model.selectedDate!, containerCalendarRecord.monthCycles.toList()) ? ' • ${valueOrDefault<String>(
+                                                )}${false ? (functions.ovulationDayInDays(_model.selectedDate!, containerCalendarRecord.monthCycles.toList()) ? ' • ${valueOrDefault<String>(
                                                     functions
                                                         .ovulationDayInDaysNumber(
                                                             _model
@@ -510,7 +510,7 @@ class _CalendarPageWidgetState extends State<CalendarPageWidget> {
                                                                 .toList())
                                                         .toString(),
                                                     '0',
-                                                  )} день' : ''}',
+                                                  )} день' : '') : ''}',
                                                 maxLines: 1,
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -668,7 +668,8 @@ class _CalendarPageWidgetState extends State<CalendarPageWidget> {
                                                                         containerCalendarRecord
                                                                             .monthCycles
                                                                             .toList(),
-                                                                        getCurrentTimestamp),
+                                                                        _model
+                                                                            .selectedDate!),
                                                                     locale: FFLocalizations.of(
                                                                             context)
                                                                         .languageCode,
@@ -737,7 +738,9 @@ class _CalendarPageWidgetState extends State<CalendarPageWidget> {
                                                                   functions.mensDayText(
                                                                       containerCalendarRecord
                                                                           .monthCycles
-                                                                          .toList()),
+                                                                          .toList(),
+                                                                      _model
+                                                                          .selectedDate!),
                                                                   '-',
                                                                 ),
                                                                 maxLines: 1,
@@ -802,7 +805,9 @@ class _CalendarPageWidgetState extends State<CalendarPageWidget> {
                                                                   functions.ovulationDayText(
                                                                       containerCalendarRecord
                                                                           .monthCycles
-                                                                          .toList()),
+                                                                          .toList(),
+                                                                      _model
+                                                                          .selectedDate!),
                                                                   '-',
                                                                 ),
                                                                 maxLines: 1,
@@ -858,6 +863,8 @@ class _CalendarPageWidgetState extends State<CalendarPageWidget> {
                                                                 .selectedDate),
                                                         '-',
                                                       ),
+                                                      selectedDate:
+                                                          _model.selectedDate,
                                                     ),
                                                   ),
                                                   Padding(
@@ -1041,109 +1048,100 @@ class _CalendarPageWidgetState extends State<CalendarPageWidget> {
                               decoration: BoxDecoration(),
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    20.0, 0.0, 20.0, 48.0),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(56.0),
-                                  child: BackdropFilter(
-                                    filter: ImageFilter.blur(
-                                      sigmaX: 12.0,
-                                      sigmaY: 12.0,
-                                    ),
-                                    child: Builder(
-                                      builder: (context) {
-                                        if (!functions.mensDayInDays(
-                                            containerCalendarRecord.monthCycles
-                                                .toList(),
-                                            getCurrentTimestamp)) {
-                                          return Builder(
-                                            builder: (context) =>
-                                                FFButtonWidget(
-                                              onPressed: () async {
-                                                logFirebaseEvent(
-                                                    'CALENDAR_PAGE_PAGE___BTN_ON_TAP');
-                                                logFirebaseEvent(
-                                                    'Button_alert_dialog');
-                                                await showDialog(
-                                                  context: context,
-                                                  builder: (dialogContext) {
-                                                    return Dialog(
-                                                      elevation: 0,
-                                                      insetPadding:
-                                                          EdgeInsets.zero,
-                                                      backgroundColor:
-                                                          Colors.transparent,
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                                  0.0, 0.0)
-                                                              .resolve(
-                                                                  Directionality.of(
-                                                                      context)),
-                                                      child: WebViewAware(
-                                                        child: GestureDetector(
-                                                          onTap: () {
-                                                            FocusScope.of(
-                                                                    dialogContext)
-                                                                .unfocus();
-                                                            FocusManager
-                                                                .instance
-                                                                .primaryFocus
-                                                                ?.unfocus();
-                                                          },
-                                                          child:
-                                                              AddStartDateDialogWidget(
-                                                            cyclyList:
-                                                                containerCalendarRecord
-                                                                    .monthCycles,
-                                                            day:
-                                                                getCurrentTimestamp,
-                                                            updateDate:
-                                                                () async {
-                                                              logFirebaseEvent(
-                                                                  '_backend_call');
-                                                              unawaited(
-                                                                () async {
-                                                                  await widget!
-                                                                      .calendarUser!
-                                                                      .update({
-                                                                    ...mapToFirestore(
-                                                                      {
-                                                                        'monthCycles':
-                                                                            getMonthCycleListFirestoreData(
-                                                                          functions.addStartDayToMensCycle(
-                                                                              containerCalendarRecord.monthCycles.toList(),
-                                                                              getCurrentTimestamp,
-                                                                              containerCalendarRecord.lengthCycle,
-                                                                              containerCalendarRecord.duration),
-                                                                        ),
-                                                                      },
+                                    20.0, 12.0, 20.0, 48.0),
+                                child: Builder(
+                                  builder: (context) {
+                                    if (!functions.mensDayInDays(
+                                        containerCalendarRecord.monthCycles
+                                            .toList(),
+                                        getCurrentTimestamp)) {
+                                      return Builder(
+                                        builder: (context) => FFButtonWidget(
+                                          onPressed: () async {
+                                            logFirebaseEvent(
+                                                'CALENDAR_PAGE_PAGE___BTN_ON_TAP');
+                                            logFirebaseEvent(
+                                                'Button_alert_dialog');
+                                            await showDialog(
+                                              context: context,
+                                              builder: (dialogContext) {
+                                                return Dialog(
+                                                  elevation: 0,
+                                                  insetPadding: EdgeInsets.zero,
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                              0.0, 0.0)
+                                                          .resolve(
+                                                              Directionality.of(
+                                                                  context)),
+                                                  child: WebViewAware(
+                                                    child: GestureDetector(
+                                                      onTap: () {
+                                                        FocusScope.of(
+                                                                dialogContext)
+                                                            .unfocus();
+                                                        FocusManager.instance
+                                                            .primaryFocus
+                                                            ?.unfocus();
+                                                      },
+                                                      child:
+                                                          AddStartDateDialogWidget(
+                                                        cyclyList:
+                                                            containerCalendarRecord
+                                                                .monthCycles,
+                                                        day:
+                                                            getCurrentTimestamp,
+                                                        updateDate: () async {
+                                                          logFirebaseEvent(
+                                                              '_backend_call');
+                                                          unawaited(
+                                                            () async {
+                                                              await widget!
+                                                                  .calendarUser!
+                                                                  .update({
+                                                                ...mapToFirestore(
+                                                                  {
+                                                                    'monthCycles':
+                                                                        getMonthCycleListFirestoreData(
+                                                                      functions.addStartDayToMensCycle(
+                                                                          containerCalendarRecord
+                                                                              .monthCycles
+                                                                              .toList(),
+                                                                          getCurrentTimestamp,
+                                                                          containerCalendarRecord
+                                                                              .lengthCycle,
+                                                                          containerCalendarRecord
+                                                                              .duration),
                                                                     ),
-                                                                  });
-                                                                }(),
-                                                              );
-                                                            },
-                                                          ),
-                                                        ),
+                                                                  },
+                                                                ),
+                                                              });
+                                                            }(),
+                                                          );
+                                                        },
                                                       ),
-                                                    );
-                                                  },
+                                                    ),
+                                                  ),
                                                 );
                                               },
-                                              text: 'НАЧАЛО ЦИКЛА',
-                                              options: FFButtonOptions(
-                                                width: double.infinity,
-                                                height: 56.0,
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        16.0, 0.0, 16.0, 0.0),
-                                                iconPadding:
-                                                    EdgeInsetsDirectional
-                                                        .fromSTEB(
-                                                            0.0, 0.0, 0.0, 0.0),
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                textStyle: FlutterFlowTheme.of(
-                                                        context)
+                                            );
+                                          },
+                                          text: 'НАЧАЛО ЦИКЛА',
+                                          options: FFButtonOptions(
+                                            width: double.infinity,
+                                            height: 56.0,
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    16.0, 0.0, 16.0, 0.0),
+                                            iconPadding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 0.0),
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            textStyle:
+                                                FlutterFlowTheme.of(context)
                                                     .titleSmall
                                                     .override(
                                                       fontFamily:
@@ -1161,103 +1159,99 @@ class _CalendarPageWidgetState extends State<CalendarPageWidget> {
                                                                   context)
                                                               .titleSmallIsCustom,
                                                     ),
-                                                elevation: 0.0,
-                                                borderSide: BorderSide(
-                                                  color: Colors.transparent,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(56.0),
-                                              ),
+                                            elevation: 0.0,
+                                            borderSide: BorderSide(
+                                              color: Colors.transparent,
                                             ),
-                                          );
-                                        } else {
-                                          return Builder(
-                                            builder: (context) =>
-                                                FFButtonWidget(
-                                              onPressed: () async {
-                                                logFirebaseEvent(
-                                                    'CALENDAR_PAGE_PAGE___BTN_ON_TAP');
-                                                logFirebaseEvent(
-                                                    'Button_alert_dialog');
-                                                await showDialog(
-                                                  context: context,
-                                                  builder: (dialogContext) {
-                                                    return Dialog(
-                                                      elevation: 0,
-                                                      insetPadding:
-                                                          EdgeInsets.zero,
-                                                      backgroundColor:
-                                                          Colors.transparent,
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                                  0.0, 0.0)
-                                                              .resolve(
-                                                                  Directionality.of(
-                                                                      context)),
-                                                      child: WebViewAware(
-                                                        child: GestureDetector(
-                                                          onTap: () {
-                                                            FocusScope.of(
-                                                                    dialogContext)
-                                                                .unfocus();
-                                                            FocusManager
-                                                                .instance
-                                                                .primaryFocus
-                                                                ?.unfocus();
-                                                          },
-                                                          child:
-                                                              AddEndDateDialogWidget(
-                                                            cyclyList:
-                                                                containerCalendarRecord
-                                                                    .monthCycles,
-                                                            day:
-                                                                getCurrentTimestamp,
-                                                            updateDate:
-                                                                () async {
-                                                              logFirebaseEvent(
-                                                                  '_backend_call');
-                                                              unawaited(
-                                                                () async {
-                                                                  await widget!
-                                                                      .calendarUser!
-                                                                      .update({
-                                                                    ...mapToFirestore(
-                                                                      {
-                                                                        'monthCycles':
-                                                                            getMonthCycleListFirestoreData(
-                                                                          functions.addEndDayToMensCycle(
-                                                                              containerCalendarRecord.monthCycles.toList(),
-                                                                              getCurrentTimestamp),
-                                                                        ),
-                                                                      },
+                                            borderRadius:
+                                                BorderRadius.circular(56.0),
+                                          ),
+                                        ),
+                                      );
+                                    } else {
+                                      return Builder(
+                                        builder: (context) => FFButtonWidget(
+                                          onPressed: () async {
+                                            logFirebaseEvent(
+                                                'CALENDAR_PAGE_PAGE___BTN_ON_TAP');
+                                            logFirebaseEvent(
+                                                'Button_alert_dialog');
+                                            await showDialog(
+                                              context: context,
+                                              builder: (dialogContext) {
+                                                return Dialog(
+                                                  elevation: 0,
+                                                  insetPadding: EdgeInsets.zero,
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                              0.0, 0.0)
+                                                          .resolve(
+                                                              Directionality.of(
+                                                                  context)),
+                                                  child: WebViewAware(
+                                                    child: GestureDetector(
+                                                      onTap: () {
+                                                        FocusScope.of(
+                                                                dialogContext)
+                                                            .unfocus();
+                                                        FocusManager.instance
+                                                            .primaryFocus
+                                                            ?.unfocus();
+                                                      },
+                                                      child:
+                                                          AddEndDateDialogWidget(
+                                                        cyclyList:
+                                                            containerCalendarRecord
+                                                                .monthCycles,
+                                                        day:
+                                                            getCurrentTimestamp,
+                                                        updateDate: () async {
+                                                          logFirebaseEvent(
+                                                              '_backend_call');
+                                                          unawaited(
+                                                            () async {
+                                                              await widget!
+                                                                  .calendarUser!
+                                                                  .update({
+                                                                ...mapToFirestore(
+                                                                  {
+                                                                    'monthCycles':
+                                                                        getMonthCycleListFirestoreData(
+                                                                      functions.addEndDayToMensCycle(
+                                                                          containerCalendarRecord
+                                                                              .monthCycles
+                                                                              .toList(),
+                                                                          getCurrentTimestamp),
                                                                     ),
-                                                                  });
-                                                                }(),
-                                                              );
-                                                            },
-                                                          ),
-                                                        ),
+                                                                  },
+                                                                ),
+                                                              });
+                                                            }(),
+                                                          );
+                                                        },
                                                       ),
-                                                    );
-                                                  },
+                                                    ),
+                                                  ),
                                                 );
                                               },
-                                              text: 'ЗАВЕРШИТЬ ЦИКЛ',
-                                              options: FFButtonOptions(
-                                                width: double.infinity,
-                                                height: 56.0,
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        16.0, 0.0, 16.0, 0.0),
-                                                iconPadding:
-                                                    EdgeInsetsDirectional
-                                                        .fromSTEB(
-                                                            0.0, 0.0, 0.0, 0.0),
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .white24,
-                                                textStyle: FlutterFlowTheme.of(
-                                                        context)
+                                            );
+                                          },
+                                          text: 'ЗАВЕРШИТЬ ЦИКЛ',
+                                          options: FFButtonOptions(
+                                            width: double.infinity,
+                                            height: 56.0,
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    16.0, 0.0, 16.0, 0.0),
+                                            iconPadding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 0.0),
+                                            color: FlutterFlowTheme.of(context)
+                                                .white24,
+                                            textStyle:
+                                                FlutterFlowTheme.of(context)
                                                     .titleSmall
                                                     .override(
                                                       fontFamily:
@@ -1275,21 +1269,19 @@ class _CalendarPageWidgetState extends State<CalendarPageWidget> {
                                                                   context)
                                                               .titleSmallIsCustom,
                                                     ),
-                                                borderSide: BorderSide(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
+                                            borderSide: BorderSide(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
                                                       .white12,
-                                                  width: 1.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(56.0),
-                                              ),
+                                              width: 1.0,
                                             ),
-                                          );
-                                        }
-                                      },
-                                    ),
-                                  ),
+                                            borderRadius:
+                                                BorderRadius.circular(56.0),
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                  },
                                 ),
                               ),
                             ),

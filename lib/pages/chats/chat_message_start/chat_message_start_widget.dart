@@ -100,75 +100,62 @@ class _ChatMessageStartWidgetState extends State<ChatMessageStartWidget> {
                     ),
               ),
             ),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(56.0),
-              child: BackdropFilter(
-                filter: ImageFilter.blur(
-                  sigmaX: 12.0,
-                  sigmaY: 12.0,
-                ),
-                child: InkWell(
-                  splashColor: Colors.transparent,
-                  focusColor: Colors.transparent,
-                  hoverColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
-                  onTap: () async {
-                    logFirebaseEvent(
-                        'CHAT_MESSAGE_START_Container_3jxaptw9_ON');
-                    logFirebaseEvent('Container_bottom_sheet');
-                    showModalBottomSheet(
-                      isScrollControlled: true,
-                      backgroundColor: Colors.transparent,
-                      context: context,
-                      builder: (context) {
-                        return WebViewAware(
-                          child: Padding(
-                            padding: MediaQuery.viewInsetsOf(context),
-                            child: ChatDialogWidget(),
-                          ),
-                        );
-                      },
-                    ).then((value) => safeSetState(() {}));
+            InkWell(
+              splashColor: Colors.transparent,
+              focusColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              onTap: () async {
+                logFirebaseEvent('CHAT_MESSAGE_START_Container_3jxaptw9_ON');
+                logFirebaseEvent('Container_bottom_sheet');
+                showModalBottomSheet(
+                  isScrollControlled: true,
+                  backgroundColor: Colors.transparent,
+                  context: context,
+                  builder: (context) {
+                    return WebViewAware(
+                      child: Padding(
+                        padding: MediaQuery.viewInsetsOf(context),
+                        child: ChatDialogWidget(),
+                      ),
+                    );
                   },
-                  child: Container(
-                    constraints: BoxConstraints(
-                      minHeight: 40.0,
-                    ),
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).white24,
-                      borderRadius: BorderRadius.circular(56.0),
-                      border: Border.all(
-                        color: FlutterFlowTheme.of(context).white12,
+                ).then((value) => safeSetState(() {}));
+              },
+              child: Container(
+                constraints: BoxConstraints(
+                  minHeight: 40.0,
+                ),
+                decoration: BoxDecoration(
+                  color: FlutterFlowTheme.of(context).white24,
+                  borderRadius: BorderRadius.circular(56.0),
+                  border: Border.all(
+                    color: FlutterFlowTheme.of(context).white12,
+                  ),
+                ),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        FFIcons.kinfo,
+                        color: FlutterFlowTheme.of(context).primaryText,
+                        size: 24.0,
                       ),
-                    ),
-                    child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(
-                            FFIcons.kinfo,
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            size: 24.0,
-                          ),
-                          Text(
-                            'ЧТО Я УМЕЮ',
-                            style: FlutterFlowTheme.of(context)
-                                .titleLarge
-                                .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .titleLargeFamily,
-                                  fontSize: 17.0,
-                                  letterSpacing: 0.0,
-                                  lineHeight: 1.25,
-                                  useGoogleFonts: !FlutterFlowTheme.of(context)
-                                      .titleLargeIsCustom,
-                                ),
-                          ),
-                        ].divide(SizedBox(width: 4.0)),
+                      Text(
+                        'ЧТО Я УМЕЮ',
+                        style: FlutterFlowTheme.of(context).titleLarge.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).titleLargeFamily,
+                              fontSize: 17.0,
+                              letterSpacing: 0.0,
+                              lineHeight: 1.25,
+                              useGoogleFonts: !FlutterFlowTheme.of(context)
+                                  .titleLargeIsCustom,
+                            ),
                       ),
-                    ),
+                    ].divide(SizedBox(width: 4.0)),
                   ),
                 ),
               ),

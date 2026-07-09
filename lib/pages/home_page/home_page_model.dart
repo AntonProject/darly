@@ -30,8 +30,6 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
 
   // Model for audioDayHome component.
   late AudioDayHomeModel audioDayHomeModel;
-  // Stores action output result for [Custom Action - messageLetterQuery] action in CustomSlider widget.
-  MessageLetterRecord? messageDoc;
   // Model for premium component.
   late PremiumModel premiumModel;
   // Stores action output result for [Backend Call - Create Document] action in Button widget.

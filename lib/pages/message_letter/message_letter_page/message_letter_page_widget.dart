@@ -7,14 +7,13 @@ import 'dart:async';
 import 'dart:math';
 import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
-import '/custom_code/widgets/index.dart' as custom_widgets;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:share_plus/share_plus.dart';
 import 'message_letter_page_model.dart';
 export 'message_letter_page_model.dart';
 
@@ -69,16 +68,27 @@ class _MessageLetterPageWidgetState extends State<MessageLetterPageWidget>
     });
 
     animationsMap.addAll({
-      'containerOnPageLoadAnimation': AnimationInfo(
-        loop: true,
+      'textOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
-          ShimmerEffect(
+          FadeEffect(
             curve: Curves.easeInOut,
-            delay: 2000.0.ms,
-            duration: 1000.0.ms,
-            color: Color(0x80FFFFFF),
-            angle: 0.524,
+            delay: 1500.0.ms,
+            duration: 800.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+        ],
+      ),
+      'rowOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          FadeEffect(
+            curve: Curves.easeInOut,
+            delay: 1000.0.ms,
+            duration: 300.0.ms,
+            begin: 0.0,
+            end: 1.0,
           ),
         ],
       ),
@@ -150,11 +160,11 @@ class _MessageLetterPageWidgetState extends State<MessageLetterPageWidget>
                                   .headlineMediumIsCustom,
                             ),
                         overflow: TextOverflow.fade,
-                      ),
+                      ).animateOnPageLoad(
+                          animationsMap['textOnPageLoadAnimation']!),
                     ),
                   ),
-                ).animateOnPageLoad(
-                    animationsMap['containerOnPageLoadAnimation']!),
+                ),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 54.0, 0.0, 4.0),
                   child: Row(
@@ -172,7 +182,7 @@ class _MessageLetterPageWidgetState extends State<MessageLetterPageWidget>
                           ),
                           action: () async {
                             logFirebaseEvent(
-                                'MESSAGE_LETTER_Container_s86k8vvv_CALLBA');
+                                'MESSAGE_LETTER_Container_arajcv2d_CALLBA');
                             logFirebaseEvent('backButton_navigate_back');
                             context.safePop();
                           },
@@ -192,61 +202,90 @@ class _MessageLetterPageWidgetState extends State<MessageLetterPageWidget>
                                       .titleMediumIsCustom,
                                 ),
                       ),
-                      Builder(
-                        builder: (context) => Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 12.0, 0.0),
-                          child: wrapWithModel(
-                            model: _model.backButtonModel2,
-                            updateCallback: () => safeSetState(() {}),
-                            child: BackButtonWidget(
-                              icon: Icon(
-                                FFIcons.kshare2,
-                                color: FlutterFlowTheme.of(context).info,
-                                size: 24.0,
-                              ),
-                              action: () async {
-                                logFirebaseEvent(
-                                    'MESSAGE_LETTER_Container_t0379i2k_CALLBA');
-                                logFirebaseEvent('backButton_share');
-                                unawaited(
-                                  () async {
-                                    await Share.share(
-                                      'woman://com.appfyl.woman${GoRouterState.of(context).uri.toString()}',
-                                      sharePositionOrigin:
-                                          getWidgetBoundingBox(context),
-                                    );
-                                  }(),
-                                );
-                              },
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
+                        child: wrapWithModel(
+                          model: _model.backButtonModel2,
+                          updateCallback: () => safeSetState(() {}),
+                          child: BackButtonWidget(
+                            icon: Icon(
+                              FFIcons.kshare2,
+                              color: FlutterFlowTheme.of(context).info,
+                              size: 24.0,
                             ),
+                            action: () async {
+                              logFirebaseEvent(
+                                  'MESSAGE_LETTER_Container_c9pwq2nu_CALLBA');
+                              logFirebaseEvent('backButton_custom_action');
+                              _model.image = await actions.savePhoto(
+                                context,
+                                functions
+                                    .imagePathToString(widget!.messageImg)!,
+                                widget!.message!,
+                              );
+                              if (_model.image!) {
+                                logFirebaseEvent('backButton_show_snack_bar');
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'Сохранено в галерею',
+                                      style: FlutterFlowTheme.of(context)
+                                          .titleMedium
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleMediumFamily,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            letterSpacing: 0.0,
+                                            useGoogleFonts:
+                                                !FlutterFlowTheme.of(context)
+                                                    .titleMediumIsCustom,
+                                          ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    duration: Duration(milliseconds: 4000),
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context).secondary,
+                                  ),
+                                );
+                              } else {
+                                logFirebaseEvent('backButton_show_snack_bar');
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'Не удалось сохранить в галерею',
+                                      style: FlutterFlowTheme.of(context)
+                                          .titleMedium
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleMediumFamily,
+                                            color: FlutterFlowTheme.of(context)
+                                                .error12,
+                                            letterSpacing: 0.0,
+                                            useGoogleFonts:
+                                                !FlutterFlowTheme.of(context)
+                                                    .titleMediumIsCustom,
+                                          ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    duration: Duration(milliseconds: 4000),
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context).secondary,
+                                  ),
+                                );
+                              }
+
+                              safeSetState(() {});
+                            },
                           ),
                         ),
                       ),
                     ],
-                  ),
+                  ).animateOnPageLoad(animationsMap['rowOnPageLoadAnimation']!),
                 ),
-                if (_model.video)
-                  Container(
-                    width: double.infinity,
-                    height: double.infinity,
-                    child: custom_widgets.FullScreenVideo(
-                      width: double.infinity,
-                      height: double.infinity,
-                      videoUrl:
-                          'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/woman-103qa6/assets/vlft9wj8hzkc/2506ef4c89aa2a25bc33f24ad3bf2f5c_82d9a274_27bc_4472_af10_9a02aca4c5c2-ezgif.com-crop-video.mp4',
-                      looping: false,
-                      autoPlay: true,
-                      radius: 0.0,
-                      onVideoEnd: () async {
-                        logFirebaseEvent(
-                            'MESSAGE_LETTER_Container_rmg107px_CALLBA');
-                        logFirebaseEvent('FullScreenVideo_update_page_state');
-                        _model.video = false;
-                        safeSetState(() {});
-                      },
-                    ),
-                  ),
               ],
             ),
           ),

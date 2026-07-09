@@ -643,7 +643,7 @@ class _CalendarStartWidgetState extends State<CalendarStartWidget> {
                                                         },
                                                         child:
                                                             DaysDropdownDialogWidget(
-                                                          max: 30,
+                                                          max: 45,
                                                           select: (days) async {
                                                             logFirebaseEvent(
                                                                 '_update_page_state');
@@ -662,6 +662,7 @@ class _CalendarStartWidgetState extends State<CalendarStartWidget> {
                                               width: double.infinity,
                                               constraints: BoxConstraints(
                                                 minHeight: 56.0,
+                                                maxHeight: 72.0,
                                               ),
                                               decoration: BoxDecoration(
                                                 color:
@@ -685,13 +686,15 @@ class _CalendarStartWidgetState extends State<CalendarStartWidget> {
                                                       child: Column(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceEvenly,
                                                         crossAxisAlignment:
                                                             CrossAxisAlignment
                                                                 .start,
                                                         children: [
                                                           Text(
-                                                            'Сколько дней между месячными',
-                                                            maxLines: 1,
+                                                            'Сколько дней от начала месячных до начала следующих',
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .labelMedium

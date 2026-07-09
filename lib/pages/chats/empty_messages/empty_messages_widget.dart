@@ -25,7 +25,7 @@ class EmptyMessagesWidget extends StatefulWidget {
         this.messageCount = messageCount ?? 0;
 
   final bool emptyField;
-  final Future Function()? setPresset;
+  final Future Function(String title)? setPresset;
   final int messageCount;
 
   @override
@@ -109,7 +109,9 @@ class _EmptyMessagesWidgetState extends State<EmptyMessagesWidget> {
                         logFirebaseEvent('DoubleRowList_haptic_feedback');
                         HapticFeedback.mediumImpact();
                         logFirebaseEvent('DoubleRowList_execute_callback');
-                        await widget.setPresset?.call();
+                        await widget.setPresset?.call(
+                          title!,
+                        );
                       },
                     ),
                   ),

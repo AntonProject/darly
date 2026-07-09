@@ -115,51 +115,37 @@ class _VideoPreviewWidgetState extends State<VideoPreviewWidget> {
                         '-',
                       ) !=
                       '')
-                Align(
-                  alignment: AlignmentDirectional(1.0, 1.0),
-                  child: Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: ClipRRect(
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Container(
+                    constraints: BoxConstraints(
+                      minHeight: 20.0,
+                    ),
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).white24,
                       borderRadius: BorderRadius.circular(56.0),
-                      child: BackdropFilter(
-                        filter: ImageFilter.blur(
-                          sigmaX: 12.0,
-                          sigmaY: 12.0,
+                      border: Border.all(
+                        color: FlutterFlowTheme.of(context).white12,
+                        width: 1.0,
+                      ),
+                    ),
+                    child: Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                      child: Text(
+                        valueOrDefault<String>(
+                          widget!.videoDT?.duration,
+                          '-',
                         ),
-                        child: Container(
-                          constraints: BoxConstraints(
-                            minHeight: 20.0,
-                          ),
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context).white12,
-                            borderRadius: BorderRadius.circular(56.0),
-                            border: Border.all(
-                              color: FlutterFlowTheme.of(context).white12,
-                              width: 1.0,
-                            ),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                8.0, 0.0, 8.0, 0.0),
-                            child: Text(
-                              valueOrDefault<String>(
-                                widget!.videoDT?.duration,
-                                '-',
-                              ),
-                              style: FlutterFlowTheme.of(context)
-                                  .titleMedium
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .titleMediumFamily,
-                                    letterSpacing: 0.0,
-                                    lineHeight: 1.25,
-                                    useGoogleFonts:
-                                        !FlutterFlowTheme.of(context)
-                                            .titleMediumIsCustom,
-                                  ),
-                            ),
-                          ),
-                        ),
+                        style:
+                            FlutterFlowTheme.of(context).titleMedium.override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .titleMediumFamily,
+                                  letterSpacing: 0.0,
+                                  lineHeight: 1.25,
+                                  useGoogleFonts: !FlutterFlowTheme.of(context)
+                                      .titleMediumIsCustom,
+                                ),
                       ),
                     ),
                   ),

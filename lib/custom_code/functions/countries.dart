@@ -1,0 +1,325 @@
+import 'dart:convert';
+import 'dart:math' as math;
+
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+import 'package:timeago/timeago.dart' as timeago;
+import '/flutter_flow/custom_functions.dart';
+import '/flutter_flow/lat_lng.dart';
+import '/flutter_flow/place.dart';
+import '/flutter_flow/uploaded_file.dart';
+import '/backend/backend.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import '/backend/schema/structs/index.dart';
+import '/auth/firebase_auth/auth_util.dart';
+
+List<dynamic> countries() {
+  return [
+    {"flag": "🇦🇺", "name": "Австралия", "dial_code": "+61", "code": "AU"},
+    {"flag": "🇦🇹", "name": "Австрия", "dial_code": "+43", "code": "AT"},
+    {"flag": "🇦🇿", "name": "Азербайджан", "dial_code": "+994", "code": "AZ"},
+    {"flag": "🇦🇱", "name": "Албания", "dial_code": "+355", "code": "AL"},
+    {"flag": "🇩🇿", "name": "Алжир", "dial_code": "+213", "code": "DZ"},
+    {"flag": "🇦🇴", "name": "Ангола", "dial_code": "+244", "code": "AO"},
+    {"flag": "🇦🇩", "name": "Андорра", "dial_code": "+376", "code": "AD"},
+    {
+      "flag": "🇦🇬",
+      "name": "Антигуа и Барбуда",
+      "dial_code": "+1268",
+      "code": "AG"
+    },
+    {"flag": "🇦🇷", "name": "Аргентина", "dial_code": "+54", "code": "AR"},
+    {"flag": "🇦🇲", "name": "Армения", "dial_code": "+374", "code": "AM"},
+    {"flag": "🇦🇫", "name": "Афганистан", "dial_code": "+93", "code": "AF"},
+    {
+      "flag": "🇧🇸",
+      "name": "Багамские Острова",
+      "dial_code": "+1242",
+      "code": "BS"
+    },
+    {"flag": "🇧🇩", "name": "Бангладеш", "dial_code": "+880", "code": "BD"},
+    {"flag": "🇧🇧", "name": "Барбадос", "dial_code": "+1246", "code": "BB"},
+    {"flag": "🇧🇭", "name": "Бахрейн", "dial_code": "+973", "code": "BH"},
+    {"flag": "🇧🇾", "name": "Беларусь", "dial_code": "+375", "code": "BY"},
+    {"flag": "🇧🇿", "name": "Белиз", "dial_code": "+501", "code": "BZ"},
+    {"flag": "🇧🇪", "name": "Бельгия", "dial_code": "+32", "code": "BE"},
+    {"flag": "🇧🇯", "name": "Бенин", "dial_code": "+229", "code": "BJ"},
+    {"flag": "🇧🇬", "name": "Болгария", "dial_code": "+359", "code": "BG"},
+    {"flag": "🇧🇴", "name": "Боливия", "dial_code": "+591", "code": "BO"},
+    {
+      "flag": "🇧🇦",
+      "name": "Босния и Герцеговина",
+      "dial_code": "+387",
+      "code": "BA"
+    },
+    {"flag": "🇧🇼", "name": "Ботсвана", "dial_code": "+267", "code": "BW"},
+    {"flag": "🇧🇷", "name": "Бразилия", "dial_code": "+55", "code": "BR"},
+    {"flag": "🇧🇳", "name": "Бруней", "dial_code": "+673", "code": "BN"},
+    {"flag": "🇧🇫", "name": "Буркина-Фасо", "dial_code": "+226", "code": "BF"},
+    {"flag": "🇧🇮", "name": "Бурунди", "dial_code": "+257", "code": "BI"},
+    {"flag": "🇧🇹", "name": "Бутан", "dial_code": "+975", "code": "BT"},
+    {"flag": "🇻🇺", "name": "Вануату", "dial_code": "+678", "code": "VU"},
+    {"flag": "🇻🇦", "name": "Ватикан", "dial_code": "+379", "code": "VA"},
+    {
+      "flag": "🇬🇧",
+      "name": "Великобритания",
+      "dial_code": "+44",
+      "code": "GB"
+    },
+    {"flag": "🇭🇺", "name": "Венгрия", "dial_code": "+36", "code": "HU"},
+    {"flag": "🇻🇪", "name": "Венесуэла", "dial_code": "+58", "code": "VE"},
+    {"flag": "🇻🇳", "name": "Вьетнам", "dial_code": "+84", "code": "VN"},
+    {"flag": "🇬🇦", "name": "Габон", "dial_code": "+241", "code": "GA"},
+    {"flag": "🇭🇹", "name": "Гаити", "dial_code": "+509", "code": "HT"},
+    {"flag": "🇬🇾", "name": "Гайана", "dial_code": "+592", "code": "GY"},
+    {"flag": "🇬🇲", "name": "Гамбия", "dial_code": "+220", "code": "GM"},
+    {"flag": "🇬🇭", "name": "Гана", "dial_code": "+233", "code": "GH"},
+    {"flag": "🇬🇹", "name": "Гватемала", "dial_code": "+502", "code": "GT"},
+    {"flag": "🇬🇳", "name": "Гвинея", "dial_code": "+224", "code": "GN"},
+    {"flag": "🇬🇼", "name": "Гвинея-Бисау", "dial_code": "+245", "code": "GW"},
+    {"flag": "🇩🇪", "name": "Германия", "dial_code": "+49", "code": "DE"},
+    {"flag": "🇭🇳", "name": "Гондурас", "dial_code": "+504", "code": "HN"},
+    {"flag": "🇭🇰", "name": "Гонконг", "dial_code": "+852", "code": "HK"},
+    {"flag": "🇬🇩", "name": "Гренада", "dial_code": "+1473", "code": "GD"},
+    {"flag": "🇬🇷", "name": "Греция", "dial_code": "+30", "code": "GR"},
+    {"flag": "🇬🇪", "name": "Грузия", "dial_code": "+995", "code": "GE"},
+    {"flag": "🇩🇰", "name": "Дания", "dial_code": "+45", "code": "DK"},
+    {
+      "flag": "🇨🇩",
+      "name": "Демократическая Республика Конго",
+      "dial_code": "+243",
+      "code": "CD"
+    },
+    {"flag": "🇩🇯", "name": "Джибути", "dial_code": "+253", "code": "DJ"},
+    {"flag": "🇩🇲", "name": "Доминика", "dial_code": "+1767", "code": "DM"},
+    {
+      "flag": "🇩🇴",
+      "name": "Доминиканская Республика",
+      "dial_code": "+1849",
+      "code": "DO"
+    },
+    {"flag": "🇪🇬", "name": "Египет", "dial_code": "+20", "code": "EG"},
+    {"flag": "🇿🇲", "name": "Замбия", "dial_code": "+260", "code": "ZM"},
+    {"flag": "🇿🇼", "name": "Зимбабве", "dial_code": "+263", "code": "ZW"},
+    {"flag": "🇮🇱", "name": "Израиль", "dial_code": "+972", "code": "IL"},
+    {"flag": "🇮🇳", "name": "Индия", "dial_code": "+91", "code": "IN"},
+    {"flag": "🇮🇩", "name": "Индонезия", "dial_code": "+62", "code": "ID"},
+    {"flag": "🇯🇴", "name": "Иордания", "dial_code": "+962", "code": "JO"},
+    {"flag": "🇮🇶", "name": "Ирак", "dial_code": "+964", "code": "IQ"},
+    {"flag": "🇮🇷", "name": "Иран", "dial_code": "+98", "code": "IR"},
+    {"flag": "🇮🇪", "name": "Ирландия", "dial_code": "+353", "code": "IE"},
+    {"flag": "🇮🇸", "name": "Исландия", "dial_code": "+354", "code": "IS"},
+    {"flag": "🇪🇸", "name": "Испания", "dial_code": "+34", "code": "ES"},
+    {"flag": "🇮🇹", "name": "Италия", "dial_code": "+39", "code": "IT"},
+    {"flag": "🇾🇪", "name": "Йемен", "dial_code": "+967", "code": "YE"},
+    {"flag": "🇨🇻", "name": "Кабо-Верде", "dial_code": "+238", "code": "CV"},
+    {"flag": "🇰🇿", "name": "Казахстан", "dial_code": "+7", "code": "KZ"},
+    {"flag": "🇰🇭", "name": "Камбоджа", "dial_code": "+855", "code": "KH"},
+    {"flag": "🇨🇲", "name": "Камерун", "dial_code": "+237", "code": "CM"},
+    {"flag": "🇨🇦", "name": "Канада", "dial_code": "+1", "code": "CA"},
+    {"flag": "🇶🇦", "name": "Катар", "dial_code": "+974", "code": "QA"},
+    {"flag": "🇰🇪", "name": "Кения", "dial_code": "+254", "code": "KE"},
+    {"flag": "🇨🇾", "name": "Кипр", "dial_code": "+357", "code": "CY"},
+    {"flag": "🇰🇬", "name": "Киргизия", "dial_code": "+996", "code": "KG"},
+    {"flag": "🇰🇮", "name": "Кирибати", "dial_code": "+686", "code": "KI"},
+    {"flag": "🇨🇳", "name": "Китай", "dial_code": "+86", "code": "CN"},
+    {"flag": "🇨🇴", "name": "Колумбия", "dial_code": "+57", "code": "CO"},
+    {"flag": "🇰🇲", "name": "Коморы", "dial_code": "+269", "code": "KM"},
+    {"flag": "🇨🇬", "name": "Конго", "dial_code": "+242", "code": "CG"},
+    {"flag": "🇰🇵", "name": "КНДР", "dial_code": "+850", "code": "KP"},
+    {
+      "flag": "🇰🇷",
+      "name": "Республика Корея",
+      "dial_code": "+82",
+      "code": "KR"
+    },
+    {"flag": "🇨🇷", "name": "Коста-Рика", "dial_code": "+506", "code": "CR"},
+    {"flag": "🇨🇮", "name": "Кот-д'Ивуар", "dial_code": "+225", "code": "CI"},
+    {"flag": "🇨🇺", "name": "Куба", "dial_code": "+53", "code": "CU"},
+    {"flag": "🇰🇼", "name": "Кувейт", "dial_code": "+965", "code": "KW"},
+    {"flag": "🇱🇦", "name": "Лаос", "dial_code": "+856", "code": "LA"},
+    {"flag": "🇱🇻", "name": "Латвия", "dial_code": "+371", "code": "LV"},
+    {"flag": "🇱🇸", "name": "Лесото", "dial_code": "+266", "code": "LS"},
+    {"flag": "🇱🇷", "name": "Либерия", "dial_code": "+231", "code": "LR"},
+    {"flag": "🇱🇧", "name": "Ливан", "dial_code": "+961", "code": "LB"},
+    {"flag": "🇱🇾", "name": "Ливия", "dial_code": "+218", "code": "LY"},
+    {"flag": "🇱🇹", "name": "Литва", "dial_code": "+370", "code": "LT"},
+    {"flag": "🇱🇮", "name": "Лихтенштейн", "dial_code": "+423", "code": "LI"},
+    {"flag": "🇱🇺", "name": "Люксембург", "dial_code": "+352", "code": "LU"},
+    {"flag": "🇲🇺", "name": "Маврикий", "dial_code": "+230", "code": "MU"},
+    {"flag": "🇲🇷", "name": "Мавритания", "dial_code": "+222", "code": "MR"},
+    {"flag": "🇲🇬", "name": "Мадагаскар", "dial_code": "+261", "code": "MG"},
+    {"flag": "🇲🇼", "name": "Малави", "dial_code": "+265", "code": "MW"},
+    {"flag": "🇲🇾", "name": "Малайзия", "dial_code": "+60", "code": "MY"},
+    {"flag": "🇲🇱", "name": "Мали", "dial_code": "+223", "code": "ML"},
+    {"flag": "🇲🇻", "name": "Мальдивы", "dial_code": "+960", "code": "MV"},
+    {"flag": "🇲🇹", "name": "Мальта", "dial_code": "+356", "code": "MT"},
+    {"flag": "🇲🇦", "name": "Марокко", "dial_code": "+212", "code": "MA"},
+    {
+      "flag": "🇲🇭",
+      "name": "Маршалловы Острова",
+      "dial_code": "+692",
+      "code": "MH"
+    },
+    {"flag": "🇲🇽", "name": "Мексика", "dial_code": "+52", "code": "MX"},
+    {"flag": "🇫🇲", "name": "Микронезия", "dial_code": "+691", "code": "FM"},
+    {"flag": "🇲🇿", "name": "Мозамбик", "dial_code": "+258", "code": "MZ"},
+    {"flag": "🇲🇩", "name": "Молдова", "dial_code": "+373", "code": "MD"},
+    {"flag": "🇲🇨", "name": "Монако", "dial_code": "+377", "code": "MC"},
+    {"flag": "🇲🇳", "name": "Монголия", "dial_code": "+976", "code": "MN"},
+    {"flag": "🇲🇲", "name": "Мьянма", "dial_code": "+95", "code": "MM"},
+    {"flag": "🇳🇦", "name": "Намибия", "dial_code": "+264", "code": "NA"},
+    {"flag": "🇳🇷", "name": "Науру", "dial_code": "+674", "code": "NR"},
+    {"flag": "🇳🇵", "name": "Непал", "dial_code": "+977", "code": "NP"},
+    {"flag": "🇳🇪", "name": "Нигер", "dial_code": "+227", "code": "NE"},
+    {"flag": "🇳🇬", "name": "Нигерия", "dial_code": "+234", "code": "NG"},
+    {"flag": "🇳🇱", "name": "Нидерланды", "dial_code": "+31", "code": "NL"},
+    {"flag": "🇳🇮", "name": "Никарагуа", "dial_code": "+505", "code": "NI"},
+    {
+      "flag": "🇳🇿",
+      "name": "Новая Зеландия",
+      "dial_code": "+64",
+      "code": "NZ"
+    },
+    {"flag": "🇳🇴", "name": "Норвегия", "dial_code": "+47", "code": "NO"},
+    {
+      "flag": "🇦🇪",
+      "name": "Объединенные Арабские Эмираты",
+      "dial_code": "+971",
+      "code": "AE"
+    },
+    {"flag": "🇴🇲", "name": "Оман", "dial_code": "+968", "code": "OM"},
+    {"flag": "🇵🇰", "name": "Пакистан", "dial_code": "+92", "code": "PK"},
+    {"flag": "🇵🇼", "name": "Палау", "dial_code": "+680", "code": "PW"},
+    {"flag": "🇵🇦", "name": "Панама", "dial_code": "+507", "code": "PA"},
+    {
+      "flag": "🇵🇬",
+      "name": "Папуа - Новая Гвинея",
+      "dial_code": "+675",
+      "code": "PG"
+    },
+    {"flag": "🇵🇾", "name": "Парагвай", "dial_code": "+595", "code": "PY"},
+    {"flag": "🇵🇪", "name": "Перу", "dial_code": "+51", "code": "PE"},
+    {"flag": "🇵🇱", "name": "Польша", "dial_code": "+48", "code": "PL"},
+    {"flag": "🇵🇹", "name": "Португалия", "dial_code": "+351", "code": "PT"},
+    {"flag": "🇷🇺", "name": "Россия", "dial_code": "+7", "code": "RU"},
+    {"flag": "🇷🇼", "name": "Руанда", "dial_code": "+250", "code": "RW"},
+    {"flag": "🇷🇴", "name": "Румыния", "dial_code": "+40", "code": "RO"},
+    {"flag": "🇸🇻", "name": "Сальвадор", "dial_code": "+503", "code": "SV"},
+    {"flag": "🇼🇸", "name": "Самоа", "dial_code": "+685", "code": "WS"},
+    {"flag": "🇸🇲", "name": "Сан-Марино", "dial_code": "+378", "code": "SM"},
+    {
+      "flag": "🇸🇹",
+      "name": "Сан-Томе и Принсипи",
+      "dial_code": "+239",
+      "code": "ST"
+    },
+    {
+      "flag": "🇸🇦",
+      "name": "Саудовская Аравия",
+      "dial_code": "+966",
+      "code": "SA"
+    },
+    {
+      "flag": "🇲🇰",
+      "name": "Северная Македония",
+      "dial_code": "+389",
+      "code": "MK"
+    },
+    {
+      "flag": "🇸🇨",
+      "name": "Сейшельские Острова",
+      "dial_code": "+248",
+      "code": "SC"
+    },
+    {"flag": "🇸🇳", "name": "Сенегал", "dial_code": "+221", "code": "SN"},
+    {
+      "flag": "🇻🇨",
+      "name": "Сент-Винсент и Гренадины",
+      "dial_code": "+1784",
+      "code": "VC"
+    },
+    {
+      "flag": "🇰🇳",
+      "name": "Сент-Китс и Невис",
+      "dial_code": "+1869",
+      "code": "KN"
+    },
+    {"flag": "🇱🇨", "name": "Сент-Люсия", "dial_code": "+1758", "code": "LC"},
+    {"flag": "🇷🇸", "name": "Сербия", "dial_code": "+381", "code": "RS"},
+    {"flag": "🇸🇬", "name": "Сингапур", "dial_code": "+65", "code": "SG"},
+    {"flag": "🇸🇾", "name": "Сирия", "dial_code": "+963", "code": "SY"},
+    {"flag": "🇸🇰", "name": "Словакия", "dial_code": "+421", "code": "SK"},
+    {"flag": "🇸🇮", "name": "Словения", "dial_code": "+386", "code": "SI"},
+    {
+      "flag": "🇺🇸",
+      "name": "Соединенные Штаты Америки",
+      "dial_code": "+1",
+      "code": "US"
+    },
+    {
+      "flag": "🇸🇧",
+      "name": "Соломоновы Острова",
+      "dial_code": "+677",
+      "code": "SB"
+    },
+    {"flag": "🇸🇴", "name": "Сомали", "dial_code": "+252", "code": "SO"},
+    {"flag": "🇸🇩", "name": "Судан", "dial_code": "+249", "code": "SD"},
+    {"flag": "🇸🇷", "name": "Суринам", "dial_code": "+597", "code": "SR"},
+    {"flag": "🇸🇱", "name": "Сьерра-Леоне", "dial_code": "+232", "code": "SL"},
+    {"flag": "🇹🇯", "name": "Таджикистан", "dial_code": "+992", "code": "TJ"},
+    {"flag": "🇹🇭", "name": "Таиланд", "dial_code": "+66", "code": "TH"},
+    {"flag": "🇹🇼", "name": "Тайвань", "dial_code": "+886", "code": "TW"},
+    {"flag": "🇹🇿", "name": "Танзания", "dial_code": "+255", "code": "TZ"},
+    {"flag": "🇹🇬", "name": "Того", "dial_code": "+228", "code": "TG"},
+    {"flag": "🇹🇴", "name": "Тонга", "dial_code": "+676", "code": "TO"},
+    {
+      "flag": "🇹🇹",
+      "name": "Тринидад и Тобаго",
+      "dial_code": "+1868",
+      "code": "TT"
+    },
+    {"flag": "🇹🇻", "name": "Тувалу", "dial_code": "+688", "code": "TV"},
+    {"flag": "🇹🇳", "name": "Тунис", "dial_code": "+216", "code": "TN"},
+    {"flag": "🇹🇲", "name": "Туркменистан", "dial_code": "+993", "code": "TM"},
+    {"flag": "🇹🇷", "name": "Турция", "dial_code": "+90", "code": "TR"},
+    {"flag": "🇺🇬", "name": "Уганда", "dial_code": "+256", "code": "UG"},
+    {"flag": "🇺🇿", "name": "Узбекистан", "dial_code": "+998", "code": "UZ"},
+    {"flag": "🇺🇦", "name": "Украина", "dial_code": "+380", "code": "UA"},
+    {"flag": "🇺🇾", "name": "Уругвай", "dial_code": "+598", "code": "UY"},
+    {"flag": "🇫🇯", "name": "Фиджи", "dial_code": "+679", "code": "FJ"},
+    {"flag": "🇵🇭", "name": "Филиппины", "dial_code": "+63", "code": "PH"},
+    {"flag": "🇫🇮", "name": "Финляндия", "dial_code": "+358", "code": "FI"},
+    {"flag": "🇫🇷", "name": "Франция", "dial_code": "+33", "code": "FR"},
+    {"flag": "🇭🇷", "name": "Хорватия", "dial_code": "+385", "code": "HR"},
+    {
+      "flag": "🇨🇫",
+      "name": "Центральноафриканская Республика",
+      "dial_code": "+236",
+      "code": "CF"
+    },
+    {"flag": "🇹🇩", "name": "Чад", "dial_code": "+235", "code": "TD"},
+    {"flag": "🇲🇪", "name": "Черногория", "dial_code": "+382", "code": "ME"},
+    {"flag": "🇨🇿", "name": "Чехия", "dial_code": "+420", "code": "CZ"},
+    {"flag": "🇨🇱", "name": "Чили", "dial_code": "+56", "code": "CL"},
+    {"flag": "🇨🇭", "name": "Швейцария", "dial_code": "+41", "code": "CH"},
+    {"flag": "🇸🇪", "name": "Швеция", "dial_code": "+46", "code": "SE"},
+    {"flag": "🇱🇰", "name": "Шри-Ланка", "dial_code": "+94", "code": "LK"},
+    {"flag": "🇪🇨", "name": "Эквадор", "dial_code": "+593", "code": "EC"},
+    {
+      "flag": "🇬🇶",
+      "name": "Экваториальная Гвинея",
+      "dial_code": "+240",
+      "code": "GQ"
+    },
+    {"flag": "🇪🇷", "name": "Эритрея", "dial_code": "+291", "code": "ER"},
+    {"flag": "🇸🇿", "name": "Эсватини", "dial_code": "+268", "code": "SZ"},
+    {"flag": "🇪🇪", "name": "Эстония", "dial_code": "+372", "code": "EE"},
+    {"flag": "🇪🇹", "name": "Эфиопия", "dial_code": "+251", "code": "ET"},
+    {"flag": "🇿🇦", "name": "ЮАР", "dial_code": "+27", "code": "ZA"},
+    {"flag": "🇸🇸", "name": "Южный Судан", "dial_code": "+211", "code": "SS"},
+    {"flag": "🇯🇲", "name": "Ямайка", "dial_code": "+1876", "code": "JM"},
+    {"flag": "🇯🇵", "name": "Япония", "dial_code": "+81", "code": "JP"},
+  ];
+}

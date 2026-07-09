@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:async';
 import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -345,12 +346,30 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                               BorderRadius.circular(16.0),
                                           border: Border.all(
                                             color: valueOrDefault<Color>(
-                                              (_model.passwordFocusNode
-                                                          ?.hasFocus ??
-                                                      false)
-                                                  ? FlutterFlowTheme.of(context)
-                                                      .border
-                                                  : Colors.transparent,
+                                              () {
+                                                if ((_model.passwordFocusNode
+                                                        ?.hasFocus ??
+                                                    false)) {
+                                                  return FlutterFlowTheme.of(
+                                                          context)
+                                                      .border;
+                                                } else if ((_model
+                                                                .passwordTextController
+                                                                .text !=
+                                                            null &&
+                                                        _model.passwordTextController
+                                                                .text !=
+                                                            '') &&
+                                                    !functions.passwordCheck(_model
+                                                        .passwordTextController
+                                                        .text)) {
+                                                  return FlutterFlowTheme.of(
+                                                          context)
+                                                      .error;
+                                                } else {
+                                                  return Colors.transparent;
+                                                }
+                                              }(),
                                               Colors.transparent,
                                             ),
                                           ),
@@ -509,6 +528,37 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                         ),
                                       ),
                                     ),
+                                    if ((_model.passwordTextController.text !=
+                                                null &&
+                                            _model.passwordTextController
+                                                    .text !=
+                                                '') &&
+                                        !functions.passwordCheck(
+                                            _model.passwordTextController.text))
+                                      Align(
+                                        alignment:
+                                            AlignmentDirectional(-1.0, 0.0),
+                                        child: Text(
+                                          'Пароль должен состоять как минимум из 6 символов и содержать 1 букву и 1 цифру',
+                                          style: FlutterFlowTheme.of(context)
+                                              .labelSmall
+                                              .override(
+                                                fontFamily:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelSmallFamily,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                fontSize: 13.0,
+                                                letterSpacing: 0.0,
+                                                lineHeight: 1.4,
+                                                useGoogleFonts:
+                                                    !FlutterFlowTheme.of(
+                                                            context)
+                                                        .labelSmallIsCustom,
+                                              ),
+                                        ),
+                                      ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 12.0, 0.0, 12.0),
@@ -524,7 +574,16 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                         null ||
                                                     _model.passwordTextController
                                                             .text ==
-                                                        ''))
+                                                        '') ||
+                                                ((_model.passwordTextController
+                                                                .text !=
+                                                            null &&
+                                                        _model.passwordTextController
+                                                                .text !=
+                                                            '') &&
+                                                    !functions.passwordCheck(_model
+                                                        .passwordTextController
+                                                        .text)))
                                             ? null
                                             : () async {
                                                 logFirebaseEvent(
@@ -608,36 +667,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                   logFirebaseEvent(
                                                       'Button_backend_call');
                                                   unawaited(
-                                                    () async {
-                                                      var notificationsRecordReference =
-                                                          NotificationsRecord
-                                                              .collection
-                                                              .doc();
-                                                      await notificationsRecordReference
-                                                          .set(
-                                                              createNotificationsRecordData(
-                                                        title:
-                                                            'Добро пожаловать в пространство DARLI 💎',
-                                                        text:
-                                                            'Рада видеть тебя в первой версии приложения!Твой путь — следовать сердцу.Счастливого пути по DARLI ❤️‍🔥',
-                                                        createdAt:
-                                                            getCurrentTimestamp,
-                                                        userId: currentUserUid,
-                                                      ));
-                                                      _model.newNotif = NotificationsRecord
-                                                          .getDocumentFromData(
-                                                              createNotificationsRecordData(
-                                                                title:
-                                                                    'Добро пожаловать в пространство DARLI 💎',
-                                                                text:
-                                                                    'Рада видеть тебя в первой версии приложения!Твой путь — следовать сердцу.Счастливого пути по DARLI ❤️‍🔥',
-                                                                createdAt:
-                                                                    getCurrentTimestamp,
-                                                                userId:
-                                                                    currentUserUid,
-                                                              ),
-                                                              notificationsRecordReference);
-                                                    }(),
+                                                    () async {}(),
                                                   );
                                                 }
                                                 logFirebaseEvent(
@@ -656,8 +686,6 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                         ));
                                                   }(),
                                                 );
-
-                                                safeSetState(() {});
                                               },
                                         text: 'ЗАРЕГИСТРИРОВАТЬСЯ',
                                         options: FFButtonOptions(

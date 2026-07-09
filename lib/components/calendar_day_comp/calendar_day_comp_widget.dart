@@ -77,7 +77,7 @@ class _CalendarDayCompWidgetState extends State<CalendarDayCompWidget> {
                     ) ==
                     dateTimeFormat(
                       "d/M/y",
-                      getCurrentTimestamp,
+                      widget!.selectedDay,
                       locale: FFLocalizations.of(context).languageCode,
                     )) {
                   return Container(
@@ -238,7 +238,7 @@ class _CalendarDayCompWidgetState extends State<CalendarDayCompWidget> {
                         ) ==
                         dateTimeFormat(
                           "d/M/y",
-                          getCurrentTimestamp,
+                          widget!.selectedDay,
                           locale: FFLocalizations.of(context).languageCode,
                         ))) {
                   return Container(
@@ -292,7 +292,7 @@ class _CalendarDayCompWidgetState extends State<CalendarDayCompWidget> {
                         ) !=
                         dateTimeFormat(
                           "d/M/y",
-                          getCurrentTimestamp,
+                          widget!.selectedDay,
                           locale: FFLocalizations.of(context).languageCode,
                         ))) {
                   return Container(
@@ -344,7 +344,7 @@ class _CalendarDayCompWidgetState extends State<CalendarDayCompWidget> {
                         ) ==
                         dateTimeFormat(
                           "d/M/y",
-                          getCurrentTimestamp,
+                          widget!.selectedDay,
                           locale: FFLocalizations.of(context).languageCode,
                         )) &&
                     !functions.ovulationCentralDayInDays(

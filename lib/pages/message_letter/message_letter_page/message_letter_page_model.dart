@@ -7,7 +7,7 @@ import 'dart:async';
 import 'dart:math';
 import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
-import '/custom_code/widgets/index.dart' as custom_widgets;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'message_letter_page_widget.dart' show MessageLetterPageWidget;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -15,19 +15,16 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:share_plus/share_plus.dart';
 
 class MessageLetterPageModel extends FlutterFlowModel<MessageLetterPageWidget> {
-  ///  Local state fields for this page.
-
-  bool video = true;
-
   ///  State fields for stateful widgets in this page.
 
   // Model for backButton component.
   late BackButtonModel backButtonModel1;
   // Model for backButton component.
   late BackButtonModel backButtonModel2;
+  // Stores action output result for [Custom Action - savePhoto] action in backButton widget.
+  bool? image;
 
   @override
   void initState(BuildContext context) {

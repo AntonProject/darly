@@ -40,6 +40,7 @@ void main() async {
 
   // Start final custom actions code
   await actions.setStatusBarColor();
+  await actions.justAudioBackground();
   // End final custom actions code
 
   runApp(ChangeNotifierProvider(
@@ -62,6 +63,7 @@ class MyAppScrollBehavior extends MaterialScrollBehavior {
   Set<PointerDeviceKind> get dragDevices => {
         PointerDeviceKind.touch,
         PointerDeviceKind.mouse,
+        PointerDeviceKind.trackpad,
       };
 }
 
@@ -103,7 +105,7 @@ class _MyAppState extends State<MyApp> {
       });
     jwtTokenStream.listen((_) {});
     Future.delayed(
-      Duration(milliseconds: 1000),
+      Duration(milliseconds: isWeb ? 0 : 1000),
       () => _appStateNotifier.stopShowingSplashImage(),
     );
   }

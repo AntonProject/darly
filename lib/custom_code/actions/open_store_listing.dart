@@ -3,7 +3,7 @@ import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'index.dart'; // Imports other custom actions
+import '/custom_code/actions/index.dart'; // Imports other custom actions
 import '/flutter_flow/custom_functions.dart'; // Imports custom functions
 import 'package:flutter/material.dart';
 // Begin custom action code
@@ -18,7 +18,7 @@ Future<void> openStoreListing() async {
     // Проверьте, доступен ли InAppReview
     if (await inAppReview.isAvailable()) {
       // Откройте страницу приложения в магазине
-      await inAppReview.openStoreListing(appStoreId: 'storeID');
+      await inAppReview.openStoreListing(appStoreId: '6754849512');
     } else {
       print('In-app review is not available');
     }

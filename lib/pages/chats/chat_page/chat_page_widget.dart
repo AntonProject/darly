@@ -30,6 +30,7 @@ import 'package:collection/collection.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -377,7 +378,8 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                                                 '',
                                                         messageCount: _model
                                                             .messagesCount!,
-                                                        setPresset: () async {
+                                                        setPresset:
+                                                            (title) async {
                                                           logFirebaseEvent(
                                                               'CHAT_ListView_vwlp1iw6_CALLBACK');
                                                           logFirebaseEvent(
@@ -491,141 +493,129 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                                                     MainAxisSize
                                                                         .max,
                                                                 children: [
-                                                                  Align(
-                                                                    alignment:
-                                                                        AlignmentDirectional(
-                                                                            1.0,
-                                                                            0.0),
-                                                                    child:
-                                                                        ClipRRect(
-                                                                      borderRadius:
-                                                                          BorderRadius
-                                                                              .only(
-                                                                        topLeft:
-                                                                            Radius.circular(12.0),
-                                                                        topRight:
-                                                                            Radius.circular(12.0),
-                                                                        bottomLeft:
-                                                                            Radius.circular(12.0),
-                                                                      ),
+                                                                  if (messagesItem
+                                                                          .role ==
+                                                                      'user')
+                                                                    Align(
+                                                                      alignment:
+                                                                          AlignmentDirectional(
+                                                                              1.0,
+                                                                              0.0),
                                                                       child:
-                                                                          BackdropFilter(
-                                                                        filter:
-                                                                            ImageFilter.blur(
-                                                                          sigmaX:
-                                                                              12.0,
-                                                                          sigmaY:
-                                                                              12.0,
+                                                                          Container(
+                                                                        constraints:
+                                                                            BoxConstraints(
+                                                                          minWidth:
+                                                                              MediaQuery.sizeOf(context).width * 0.2,
+                                                                          maxWidth:
+                                                                              MediaQuery.sizeOf(context).width * 0.7,
+                                                                        ),
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).white12,
+                                                                          borderRadius:
+                                                                              BorderRadius.only(
+                                                                            topLeft:
+                                                                                Radius.circular(12.0),
+                                                                            topRight:
+                                                                                Radius.circular(12.0),
+                                                                            bottomLeft:
+                                                                                Radius.circular(12.0),
+                                                                          ),
+                                                                          border:
+                                                                              Border.all(
+                                                                            color:
+                                                                                Colors.transparent,
+                                                                          ),
                                                                         ),
                                                                         child:
-                                                                            Visibility(
-                                                                          visible:
-                                                                              messagesItem.role == 'user',
+                                                                            Padding(
+                                                                          padding:
+                                                                              EdgeInsets.all(8.0),
                                                                           child:
-                                                                              Container(
-                                                                            constraints:
-                                                                                BoxConstraints(
-                                                                              minWidth: MediaQuery.sizeOf(context).width * 0.2,
-                                                                              maxWidth: MediaQuery.sizeOf(context).width * 0.7,
-                                                                            ),
-                                                                            decoration:
-                                                                                BoxDecoration(
-                                                                              color: FlutterFlowTheme.of(context).white12,
-                                                                              borderRadius: BorderRadius.only(
-                                                                                topLeft: Radius.circular(12.0),
-                                                                                topRight: Radius.circular(12.0),
-                                                                                bottomLeft: Radius.circular(12.0),
-                                                                              ),
-                                                                              border: Border.all(
-                                                                                color: Colors.transparent,
-                                                                              ),
-                                                                            ),
-                                                                            child:
+                                                                              Column(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.min,
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment.end,
+                                                                            children: [
+                                                                              if (messagesItem.text != null && messagesItem.text != '')
                                                                                 Padding(
-                                                                              padding: EdgeInsets.all(8.0),
-                                                                              child: Column(
-                                                                                mainAxisSize: MainAxisSize.min,
-                                                                                crossAxisAlignment: CrossAxisAlignment.end,
-                                                                                children: [
-                                                                                  if (messagesItem.text != null && messagesItem.text != '')
-                                                                                    Padding(
-                                                                                      padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 4.0, 0.0),
-                                                                                      child: Container(
-                                                                                        width: null,
-                                                                                        height: null,
-                                                                                        child: custom_widgets.CustomMarkdown(
-                                                                                          width: null,
-                                                                                          height: null,
-                                                                                          textSize: 16.0,
-                                                                                          textWeight: 400.0,
-                                                                                          boldTextSize: 16.0,
-                                                                                          boldTextWeight: 400.0,
-                                                                                          textColor: FlutterFlowTheme.of(context).primaryText,
-                                                                                          text: messagesItem.text,
-                                                                                          role: messagesItem.role,
-                                                                                        ),
-                                                                                      ),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 4.0, 0.0),
+                                                                                  child: Container(
+                                                                                    width: null,
+                                                                                    height: null,
+                                                                                    child: custom_widgets.CustomMarkdown(
+                                                                                      width: null,
+                                                                                      height: null,
+                                                                                      textSize: 16.0,
+                                                                                      textWeight: 400.0,
+                                                                                      boldTextSize: 16.0,
+                                                                                      boldTextWeight: 400.0,
+                                                                                      textColor: FlutterFlowTheme.of(context).primaryText,
+                                                                                      text: messagesItem.text,
+                                                                                      role: messagesItem.role,
                                                                                     ),
-                                                                                  if (messagesItem.file.path != null && messagesItem.file.path != '')
-                                                                                    FileCompWidget(
-                                                                                      key: Key('Key0so_${messagesIndex}_of_${messages.length}'),
-                                                                                      fileURL: messagesItem.file.path,
-                                                                                    ),
-                                                                                  if (messagesItem.image != null && messagesItem.image != '')
-                                                                                    InkWell(
-                                                                                      splashColor: Colors.transparent,
-                                                                                      focusColor: Colors.transparent,
-                                                                                      hoverColor: Colors.transparent,
-                                                                                      highlightColor: Colors.transparent,
-                                                                                      onTap: () async {
-                                                                                        logFirebaseEvent('CHAT_PAGE_PAGE_Image_h2u0gzhp_ON_TAP');
-                                                                                        logFirebaseEvent('Image_bottom_sheet');
-                                                                                        showModalBottomSheet(
-                                                                                          isScrollControlled: true,
-                                                                                          backgroundColor: Colors.transparent,
-                                                                                          isDismissible: false,
-                                                                                          enableDrag: false,
-                                                                                          context: context,
-                                                                                          builder: (context) {
-                                                                                            return WebViewAware(
-                                                                                              child: GestureDetector(
-                                                                                                onTap: () {
-                                                                                                  FocusScope.of(context).unfocus();
-                                                                                                  FocusManager.instance.primaryFocus?.unfocus();
-                                                                                                },
-                                                                                                child: Padding(
-                                                                                                  padding: MediaQuery.viewInsetsOf(context),
-                                                                                                  child: ImageExpandWidget(
-                                                                                                    image: messagesItem.image,
-                                                                                                  ),
-                                                                                                ),
+                                                                                  ),
+                                                                                ),
+                                                                              if (messagesItem.file.path != null && messagesItem.file.path != '')
+                                                                                FileCompWidget(
+                                                                                  key: Key('Key0so_${messagesIndex}_of_${messages.length}'),
+                                                                                  fileURL: messagesItem.file.path,
+                                                                                ),
+                                                                              if (messagesItem.image != null && messagesItem.image != '')
+                                                                                InkWell(
+                                                                                  splashColor: Colors.transparent,
+                                                                                  focusColor: Colors.transparent,
+                                                                                  hoverColor: Colors.transparent,
+                                                                                  highlightColor: Colors.transparent,
+                                                                                  onTap: () async {
+                                                                                    logFirebaseEvent('CHAT_PAGE_PAGE_Image_h2u0gzhp_ON_TAP');
+                                                                                    logFirebaseEvent('Image_bottom_sheet');
+                                                                                    showModalBottomSheet(
+                                                                                      isScrollControlled: true,
+                                                                                      backgroundColor: Colors.transparent,
+                                                                                      isDismissible: false,
+                                                                                      enableDrag: false,
+                                                                                      context: context,
+                                                                                      builder: (context) {
+                                                                                        return WebViewAware(
+                                                                                          child: GestureDetector(
+                                                                                            onTap: () {
+                                                                                              FocusScope.of(context).unfocus();
+                                                                                              FocusManager.instance.primaryFocus?.unfocus();
+                                                                                            },
+                                                                                            child: Padding(
+                                                                                              padding: MediaQuery.viewInsetsOf(context),
+                                                                                              child: ImageExpandWidget(
+                                                                                                image: messagesItem.image,
                                                                                               ),
-                                                                                            );
-                                                                                          },
-                                                                                        ).then((value) => safeSetState(() {}));
-                                                                                      },
-                                                                                      child: ClipRRect(
-                                                                                        borderRadius: BorderRadius.circular(16.0),
-                                                                                        child: CachedNetworkImage(
-                                                                                          fadeInDuration: Duration(milliseconds: 500),
-                                                                                          fadeOutDuration: Duration(milliseconds: 500),
-                                                                                          imageUrl: getCORSProxyUrl(
-                                                                                            messagesItem.image,
+                                                                                            ),
                                                                                           ),
-                                                                                          width: 160.0,
-                                                                                          height: 160.0,
-                                                                                          fit: BoxFit.cover,
-                                                                                        ),
+                                                                                        );
+                                                                                      },
+                                                                                    ).then((value) => safeSetState(() {}));
+                                                                                  },
+                                                                                  child: ClipRRect(
+                                                                                    borderRadius: BorderRadius.circular(16.0),
+                                                                                    child: CachedNetworkImage(
+                                                                                      fadeInDuration: Duration(milliseconds: 500),
+                                                                                      fadeOutDuration: Duration(milliseconds: 500),
+                                                                                      imageUrl: getCORSProxyUrl(
+                                                                                        messagesItem.image,
                                                                                       ),
+                                                                                      width: 160.0,
+                                                                                      height: 160.0,
+                                                                                      fit: BoxFit.cover,
                                                                                     ),
-                                                                                ],
-                                                                              ),
-                                                                            ),
+                                                                                  ),
+                                                                                ),
+                                                                            ],
                                                                           ),
                                                                         ),
                                                                       ),
                                                                     ),
-                                                                  ),
                                                                   if (messagesItem
                                                                           .role !=
                                                                       'user')
@@ -643,19 +633,46 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                                                         children: [
                                                                           if (messagesItem.text != null &&
                                                                               messagesItem.text != '')
-                                                                            Container(
-                                                                              width: null,
-                                                                              height: null,
-                                                                              child: custom_widgets.CustomMarkdown(
+                                                                            InkWell(
+                                                                              splashColor: Colors.transparent,
+                                                                              focusColor: Colors.transparent,
+                                                                              hoverColor: Colors.transparent,
+                                                                              highlightColor: Colors.transparent,
+                                                                              onLongPress: () async {
+                                                                                logFirebaseEvent('CHAT_Container_lysgs9q3_ON_LONG_PRESS');
+                                                                                logFirebaseEvent('CustomMarkdown_copy_to_clipboard');
+                                                                                await Clipboard.setData(ClipboardData(text: messagesItem.text));
+                                                                                logFirebaseEvent('CustomMarkdown_show_snack_bar');
+                                                                                ScaffoldMessenger.of(context).showSnackBar(
+                                                                                  SnackBar(
+                                                                                    content: Text(
+                                                                                      'Скопировано в буфер обмена',
+                                                                                      style: TextStyle(
+                                                                                        color: FlutterFlowTheme.of(context).primaryText,
+                                                                                        fontWeight: FontWeight.w500,
+                                                                                        fontSize: 15.0,
+                                                                                      ),
+                                                                                      textAlign: TextAlign.center,
+                                                                                    ),
+                                                                                    duration: Duration(milliseconds: 2000),
+                                                                                    backgroundColor: FlutterFlowTheme.of(context).secondary,
+                                                                                  ),
+                                                                                );
+                                                                              },
+                                                                              child: Container(
                                                                                 width: null,
                                                                                 height: null,
-                                                                                textSize: 16.0,
-                                                                                textWeight: 400.0,
-                                                                                boldTextSize: 16.0,
-                                                                                boldTextWeight: 400.0,
-                                                                                textColor: FlutterFlowTheme.of(context).primaryText,
-                                                                                text: messagesItem.text,
-                                                                                role: messagesItem.role,
+                                                                                child: custom_widgets.CustomMarkdown(
+                                                                                  width: null,
+                                                                                  height: null,
+                                                                                  textSize: 16.0,
+                                                                                  textWeight: 400.0,
+                                                                                  boldTextSize: 16.0,
+                                                                                  boldTextWeight: 400.0,
+                                                                                  textColor: FlutterFlowTheme.of(context).primaryText,
+                                                                                  text: messagesItem.text,
+                                                                                  role: messagesItem.role,
+                                                                                ),
                                                                               ),
                                                                             ),
                                                                           if (messagesItem.image != null &&
@@ -706,6 +723,46 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                                                                 ),
                                                                               ),
                                                                             ),
+                                                                          Align(
+                                                                            alignment:
+                                                                                AlignmentDirectional(1.0, 0.0),
+                                                                            child:
+                                                                                Padding(
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                                                                              child: InkWell(
+                                                                                splashColor: Colors.transparent,
+                                                                                focusColor: Colors.transparent,
+                                                                                hoverColor: Colors.transparent,
+                                                                                highlightColor: Colors.transparent,
+                                                                                onTap: () async {
+                                                                                  logFirebaseEvent('CHAT_PAGE_PAGE_Icon_jxucdfco_ON_TAP');
+                                                                                  logFirebaseEvent('Icon_copy_to_clipboard');
+                                                                                  await Clipboard.setData(ClipboardData(text: messagesItem.text));
+                                                                                  logFirebaseEvent('Icon_show_snack_bar');
+                                                                                  ScaffoldMessenger.of(context).showSnackBar(
+                                                                                    SnackBar(
+                                                                                      content: Text(
+                                                                                        'Скопировано в буфер обмена',
+                                                                                        style: FlutterFlowTheme.of(context).bodySmall.override(
+                                                                                              fontFamily: FlutterFlowTheme.of(context).bodySmallFamily,
+                                                                                              color: FlutterFlowTheme.of(context).primaryText,
+                                                                                              letterSpacing: 0.0,
+                                                                                              useGoogleFonts: !FlutterFlowTheme.of(context).bodySmallIsCustom,
+                                                                                            ),
+                                                                                      ),
+                                                                                      duration: Duration(milliseconds: 3000),
+                                                                                      backgroundColor: FlutterFlowTheme.of(context).secondary,
+                                                                                    ),
+                                                                                  );
+                                                                                },
+                                                                                child: Icon(
+                                                                                  Icons.content_copy_rounded,
+                                                                                  color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                  size: 16.0,
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                          ),
                                                                         ],
                                                                       ),
                                                                     ),
@@ -798,7 +855,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                                         .text ==
                                                     '',
                                             messageCount: _model.messagesCount!,
-                                            setPresset: () async {
+                                            setPresset: (title) async {
                                               logFirebaseEvent(
                                                   'CHAT_Container_vwhcw5fe_CALLBACK');
                                               logFirebaseEvent(
@@ -920,176 +977,167 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                                         }(),
                                                         24.0,
                                                       )),
-                                              child: ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(24.0),
-                                                child: BackdropFilter(
-                                                  filter: ImageFilter.blur(
-                                                    sigmaX: 2.0,
-                                                    sigmaY: 2.0,
-                                                  ),
-                                                  child: Container(
-                                                    width: double.infinity,
-                                                    constraints: BoxConstraints(
-                                                      maxWidth: 800.0,
-                                                    ),
-                                                    decoration: BoxDecoration(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .white12,
-                                                      boxShadow: [
-                                                        BoxShadow(
-                                                          blurRadius: 24.0,
-                                                          color:
-                                                              Color(0x1F2A2929),
-                                                          offset: Offset(
-                                                            0.0,
-                                                            4.0,
-                                                          ),
-                                                          spreadRadius: 0.0,
-                                                        )
-                                                      ],
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              24.0),
-                                                      border: Border.all(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .white12,
-                                                        width: 1.0,
+                                              child: Container(
+                                                width: double.infinity,
+                                                constraints: BoxConstraints(
+                                                  maxWidth: 800.0,
+                                                ),
+                                                decoration: BoxDecoration(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .white12,
+                                                  boxShadow: [
+                                                    BoxShadow(
+                                                      blurRadius: 24.0,
+                                                      color: Color(0x1F2A2929),
+                                                      offset: Offset(
+                                                        0.0,
+                                                        4.0,
                                                       ),
-                                                    ),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .end,
-                                                      children: [
-                                                        Expanded(
-                                                          child: Container(
-                                                            width:
-                                                                double.infinity,
-                                                            child:
-                                                                TextFormField(
-                                                              controller: _model
-                                                                  .messageFieldTextController,
-                                                              focusNode: _model
-                                                                  .messageFieldFocusNode,
-                                                              onChanged: (_) =>
-                                                                  EasyDebounce
-                                                                      .debounce(
-                                                                '_model.messageFieldTextController',
-                                                                Duration(
-                                                                    milliseconds:
-                                                                        50),
-                                                                () =>
-                                                                    safeSetState(
-                                                                        () {}),
-                                                              ),
-                                                              onFieldSubmitted:
-                                                                  (_) async {
-                                                                logFirebaseEvent(
-                                                                    'CHAT_messageField_ON_TEXTFIELD_SUBMIT');
-                                                                var _shouldSetState =
-                                                                    false;
-                                                                if (_model.messageFieldTextController
-                                                                            .text !=
-                                                                        null &&
-                                                                    _model.messageFieldTextController
-                                                                            .text !=
-                                                                        '') {
-                                                                  logFirebaseEvent(
-                                                                      'messageField_update_app_state');
-                                                                  FFAppState()
-                                                                      .pressetChat = '';
-                                                                  safeSetState(
-                                                                      () {});
-                                                                  logFirebaseEvent(
-                                                                      'messageField_update_page_state');
-                                                                  _model.message =
-                                                                      _model
-                                                                          .messageFieldTextController
-                                                                          .text;
-                                                                  safeSetState(
-                                                                      () {});
-                                                                  logFirebaseEvent(
-                                                                      'messageField_custom_action');
-                                                                  unawaited(
-                                                                    () async {
-                                                                      await actions
-                                                                          .closeKeyboard(
-                                                                        context,
-                                                                      );
-                                                                    }(),
+                                                      spreadRadius: 0.0,
+                                                    )
+                                                  ],
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          24.0),
+                                                  border: Border.all(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .white12,
+                                                    width: 1.0,
+                                                  ),
+                                                ),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.end,
+                                                  children: [
+                                                    Expanded(
+                                                      child: Container(
+                                                        width: double.infinity,
+                                                        child: TextFormField(
+                                                          controller: _model
+                                                              .messageFieldTextController,
+                                                          focusNode: _model
+                                                              .messageFieldFocusNode,
+                                                          onChanged: (_) =>
+                                                              EasyDebounce
+                                                                  .debounce(
+                                                            '_model.messageFieldTextController',
+                                                            Duration(
+                                                                milliseconds:
+                                                                    50),
+                                                            () => safeSetState(
+                                                                () {}),
+                                                          ),
+                                                          onFieldSubmitted:
+                                                              (_) async {
+                                                            logFirebaseEvent(
+                                                                'CHAT_messageField_ON_TEXTFIELD_SUBMIT');
+                                                            var _shouldSetState =
+                                                                false;
+                                                            if (_model.messageFieldTextController
+                                                                        .text !=
+                                                                    null &&
+                                                                _model.messageFieldTextController
+                                                                        .text !=
+                                                                    '') {
+                                                              logFirebaseEvent(
+                                                                  'messageField_update_app_state');
+                                                              FFAppState()
+                                                                  .pressetChat = '';
+                                                              safeSetState(
+                                                                  () {});
+                                                              logFirebaseEvent(
+                                                                  'messageField_update_page_state');
+                                                              _model.message =
+                                                                  _model
+                                                                      .messageFieldTextController
+                                                                      .text;
+                                                              safeSetState(
+                                                                  () {});
+                                                              logFirebaseEvent(
+                                                                  'messageField_custom_action');
+                                                              unawaited(
+                                                                () async {
+                                                                  await actions
+                                                                      .closeKeyboard(
+                                                                    context,
                                                                   );
+                                                                }(),
+                                                              );
+                                                              logFirebaseEvent(
+                                                                  'messageField_clear_text_fields_pin_codes');
+                                                              safeSetState(() {
+                                                                _model
+                                                                    .messageFieldTextController
+                                                                    ?.clear();
+                                                                _model
+                                                                    .messageFieldNewChatTextController
+                                                                    ?.clear();
+                                                              });
+                                                              if ((FFAppState()
+                                                                          .chatRef ==
+                                                                      null) ||
+                                                                  (FFAppState()
+                                                                              .chatId ==
+                                                                          null ||
+                                                                      FFAppState()
+                                                                              .chatId ==
+                                                                          '')) {
+                                                                logFirebaseEvent(
+                                                                    'messageField_backend_call');
+                                                                _model.newChatAPI =
+                                                                    await ChatAssistantGroup
+                                                                        .chatIdCall
+                                                                        .call(
+                                                                  userId:
+                                                                      currentUserUid,
+                                                                );
+
+                                                                _shouldSetState =
+                                                                    true;
+                                                                if ((_model
+                                                                        .newChatAPI
+                                                                        ?.succeeded ??
+                                                                    true)) {
                                                                   logFirebaseEvent(
-                                                                      'messageField_clear_text_fields_pin_codes');
-                                                                  safeSetState(
-                                                                      () {
-                                                                    _model
-                                                                        .messageFieldTextController
-                                                                        ?.clear();
-                                                                    _model
-                                                                        .messageFieldNewChatTextController
-                                                                        ?.clear();
-                                                                  });
-                                                                  if ((FFAppState()
-                                                                              .chatRef ==
-                                                                          null) ||
-                                                                      (FFAppState().chatId ==
-                                                                              null ||
-                                                                          FFAppState().chatId ==
-                                                                              '')) {
-                                                                    logFirebaseEvent(
-                                                                        'messageField_backend_call');
-                                                                    _model.newChatAPI =
-                                                                        await ChatAssistantGroup
-                                                                            .chatIdCall
-                                                                            .call(
-                                                                      userId:
-                                                                          currentUserUid,
-                                                                    );
+                                                                      'messageField_backend_call');
 
-                                                                    _shouldSetState =
-                                                                        true;
-                                                                    if ((_model
-                                                                            .newChatAPI
-                                                                            ?.succeeded ??
-                                                                        true)) {
-                                                                      logFirebaseEvent(
-                                                                          'messageField_backend_call');
-
-                                                                      var chatsRecordReference = ChatsRecord
+                                                                  var chatsRecordReference =
+                                                                      ChatsRecord
                                                                           .collection
                                                                           .doc();
-                                                                      await chatsRecordReference
-                                                                          .set(
-                                                                              createChatsRecordData(
-                                                                        createdBy:
-                                                                            currentUserUid,
-                                                                        createdAt:
-                                                                            getCurrentTimestamp,
-                                                                        title: (String
-                                                                            text) {
-                                                                          return text.isEmpty
-                                                                              ? ' '
-                                                                              : text[0].toUpperCase() + text.substring(1);
-                                                                        }(_model
-                                                                            .message!),
-                                                                        chatId: ChatAssistantGroup
-                                                                            .chatIdCall
-                                                                            .chatId(
-                                                                          (_model.newChatAPI?.jsonBody ??
-                                                                              ''),
-                                                                        ),
-                                                                      ));
-                                                                      _model.newChatField1 = ChatsRecord.getDocumentFromData(
+                                                                  await chatsRecordReference
+                                                                      .set(
+                                                                          createChatsRecordData(
+                                                                    createdBy:
+                                                                        currentUserUid,
+                                                                    createdAt:
+                                                                        getCurrentTimestamp,
+                                                                    title: (String
+                                                                        text) {
+                                                                      return text
+                                                                              .isEmpty
+                                                                          ? ' '
+                                                                          : text[0].toUpperCase() +
+                                                                              text.substring(1);
+                                                                    }(_model
+                                                                        .message!),
+                                                                    chatId: ChatAssistantGroup
+                                                                        .chatIdCall
+                                                                        .chatId(
+                                                                      (_model.newChatAPI
+                                                                              ?.jsonBody ??
+                                                                          ''),
+                                                                    ),
+                                                                  ));
+                                                                  _model.newChatField1 =
+                                                                      ChatsRecord.getDocumentFromData(
                                                                           createChatsRecordData(
                                                                             createdBy:
                                                                                 currentUserUid,
@@ -1105,85 +1153,88 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                                                             ),
                                                                           ),
                                                                           chatsRecordReference);
-                                                                      _shouldSetState =
-                                                                          true;
-                                                                      logFirebaseEvent(
-                                                                          'messageField_update_app_state');
-                                                                      FFAppState()
-                                                                              .chatRef =
-                                                                          _model
-                                                                              .newChatField1
-                                                                              ?.reference;
-                                                                      FFAppState()
-                                                                              .chatId =
-                                                                          ChatAssistantGroup
-                                                                              .chatIdCall
-                                                                              .chatId(
-                                                                        (_model.newChatAPI?.jsonBody ??
+                                                                  _shouldSetState =
+                                                                      true;
+                                                                  logFirebaseEvent(
+                                                                      'messageField_update_app_state');
+                                                                  FFAppState()
+                                                                          .chatRef =
+                                                                      _model
+                                                                          .newChatField1
+                                                                          ?.reference;
+                                                                  FFAppState()
+                                                                          .chatId =
+                                                                      ChatAssistantGroup
+                                                                          .chatIdCall
+                                                                          .chatId(
+                                                                    (_model.newChatAPI
+                                                                            ?.jsonBody ??
+                                                                        ''),
+                                                                  )!;
+                                                                  safeSetState(
+                                                                      () {});
+                                                                  logFirebaseEvent(
+                                                                      'messageField_update_page_state');
+                                                                  _model.chatsUserCount =
+                                                                      _model.chatsUserCount +
+                                                                          1;
+                                                                  safeSetState(
+                                                                      () {});
+                                                                } else {
+                                                                  logFirebaseEvent(
+                                                                      'messageField_show_snack_bar');
+                                                                  ScaffoldMessenger.of(
+                                                                          context)
+                                                                      .showSnackBar(
+                                                                    SnackBar(
+                                                                      content:
+                                                                          Text(
+                                                                        (_model.newChatAPI?.bodyText ??
                                                                             ''),
-                                                                      )!;
-                                                                      safeSetState(
-                                                                          () {});
-                                                                      logFirebaseEvent(
-                                                                          'messageField_update_page_state');
-                                                                      _model.chatsUserCount =
-                                                                          _model.chatsUserCount +
-                                                                              1;
-                                                                      safeSetState(
-                                                                          () {});
-                                                                    } else {
-                                                                      logFirebaseEvent(
-                                                                          'messageField_show_snack_bar');
-                                                                      ScaffoldMessenger.of(
-                                                                              context)
-                                                                          .showSnackBar(
-                                                                        SnackBar(
-                                                                          content:
-                                                                              Text(
-                                                                            (_model.newChatAPI?.bodyText ??
-                                                                                ''),
-                                                                            style:
-                                                                                TextStyle(
-                                                                              color: FlutterFlowTheme.of(context).primaryText,
-                                                                            ),
-                                                                          ),
-                                                                          duration:
-                                                                              Duration(milliseconds: 4000),
-                                                                          backgroundColor:
-                                                                              FlutterFlowTheme.of(context).secondary,
+                                                                        style:
+                                                                            TextStyle(
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).primaryText,
                                                                         ),
-                                                                      );
-                                                                      if (_shouldSetState)
-                                                                        safeSetState(
-                                                                            () {});
-                                                                      return;
-                                                                    }
-                                                                  }
-                                                                  await Future
-                                                                      .wait([
-                                                                    Future(
-                                                                        () async {
-                                                                      logFirebaseEvent(
-                                                                          'messageField_backend_call');
+                                                                      ),
+                                                                      duration: Duration(
+                                                                          milliseconds:
+                                                                              4000),
+                                                                      backgroundColor:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .secondary,
+                                                                    ),
+                                                                  );
+                                                                  if (_shouldSetState)
+                                                                    safeSetState(
+                                                                        () {});
+                                                                  return;
+                                                                }
+                                                              }
+                                                              logFirebaseEvent(
+                                                                  'messageField_backend_call');
 
-                                                                      var chatMessagesRecordReference = ChatMessagesRecord
-                                                                          .collection
-                                                                          .doc();
-                                                                      await chatMessagesRecordReference
-                                                                          .set(
-                                                                              createChatMessagesRecordData(
-                                                                        createdBy:
-                                                                            currentUserUid,
-                                                                        createdAt:
-                                                                            getCurrentTimestamp,
-                                                                        text: _model
-                                                                            .message,
-                                                                        chatRef:
-                                                                            FFAppState().chatRef,
-                                                                        role:
-                                                                            'user',
-                                                                      ));
-                                                                      _model.createMessageField = ChatMessagesRecord.getDocumentFromData(
+                                                              var chatMessagesRecordReference =
+                                                                  ChatMessagesRecord
+                                                                      .collection
+                                                                      .doc();
+                                                              await chatMessagesRecordReference
+                                                                  .set(
+                                                                      createChatMessagesRecordData(
+                                                                createdBy:
+                                                                    currentUserUid,
+                                                                createdAt:
+                                                                    getCurrentTimestamp,
+                                                                text: _model
+                                                                    .message,
+                                                                chatRef:
+                                                                    FFAppState()
+                                                                        .chatRef,
+                                                                role: 'user',
+                                                              ));
+                                                              _model.createMessageField =
+                                                                  ChatMessagesRecord
+                                                                      .getDocumentFromData(
                                                                           createChatMessagesRecordData(
                                                                             createdBy:
                                                                                 currentUserUid,
@@ -1197,94 +1248,103 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                                                                 'user',
                                                                           ),
                                                                           chatMessagesRecordReference);
-                                                                      _shouldSetState =
-                                                                          true;
-                                                                      logFirebaseEvent(
-                                                                          'messageField_update_page_state');
-                                                                      _model.isTyping =
-                                                                          true;
-                                                                      _model.messagesCount =
-                                                                          _model.messagesCount! +
-                                                                              1;
-                                                                      safeSetState(
-                                                                          () {});
-                                                                      logFirebaseEvent(
-                                                                          'messageField_wait__delay');
-                                                                      await Future
-                                                                          .delayed(
-                                                                        Duration(
-                                                                          milliseconds:
-                                                                              5000,
-                                                                        ),
-                                                                      );
-                                                                    }),
-                                                                    Future(
-                                                                        () async {
-                                                                      logFirebaseEvent(
-                                                                          'messageField_cloud_function');
-                                                                      try {
-                                                                        final result = await FirebaseFunctions
-                                                                            .instance
-                                                                            .httpsCallable('chatMessageStream')
-                                                                            .call({
-                                                                          "chatId":
-                                                                              FFAppState().chatId,
-                                                                          "message":
-                                                                              _model.message!,
-                                                                          "chatRefId": FFAppState()
-                                                                              .chatRef!
-                                                                              .id,
-                                                                          "userId":
-                                                                              currentUserUid,
-                                                                        });
-                                                                        _model.chatMessField =
-                                                                            ChatMessageStreamCloudFunctionCallResponse(
-                                                                          succeeded:
-                                                                              true,
-                                                                        );
-                                                                      } on FirebaseFunctionsException catch (error) {
-                                                                        _model.chatMessField =
-                                                                            ChatMessageStreamCloudFunctionCallResponse(
-                                                                          errorCode:
-                                                                              error.code,
-                                                                          succeeded:
-                                                                              false,
-                                                                        );
-                                                                      }
-
-                                                                      _shouldSetState =
-                                                                          true;
-                                                                    }),
-                                                                  ]);
+                                                              _shouldSetState =
+                                                                  true;
+                                                              await Future
+                                                                  .wait([
+                                                                Future(
+                                                                    () async {
                                                                   logFirebaseEvent(
                                                                       'messageField_update_page_state');
-                                                                  _model.message =
-                                                                      null;
                                                                   _model.isTyping =
-                                                                      false;
+                                                                      true;
+                                                                  _model.messagesCount =
+                                                                      _model.messagesCount! +
+                                                                          1;
                                                                   safeSetState(
                                                                       () {});
-                                                                } else {
-                                                                  if (_shouldSetState)
-                                                                    safeSetState(
-                                                                        () {});
-                                                                  return;
-                                                                }
+                                                                  logFirebaseEvent(
+                                                                      'messageField_wait__delay');
+                                                                  await Future
+                                                                      .delayed(
+                                                                    Duration(
+                                                                      milliseconds:
+                                                                          5000,
+                                                                    ),
+                                                                  );
+                                                                }),
+                                                                Future(
+                                                                    () async {
+                                                                  logFirebaseEvent(
+                                                                      'messageField_cloud_function');
+                                                                  try {
+                                                                    final result = await FirebaseFunctions
+                                                                        .instance
+                                                                        .httpsCallable(
+                                                                            'chatMessageStream')
+                                                                        .call({
+                                                                      "chatId":
+                                                                          FFAppState()
+                                                                              .chatId,
+                                                                      "message":
+                                                                          _model
+                                                                              .message!,
+                                                                      "chatRefId":
+                                                                          FFAppState()
+                                                                              .chatRef!
+                                                                              .id,
+                                                                      "userId":
+                                                                          currentUserUid,
+                                                                    });
+                                                                    _model.chatMessField =
+                                                                        ChatMessageStreamCloudFunctionCallResponse(
+                                                                      succeeded:
+                                                                          true,
+                                                                    );
+                                                                  } on FirebaseFunctionsException catch (error) {
+                                                                    _model.chatMessField =
+                                                                        ChatMessageStreamCloudFunctionCallResponse(
+                                                                      errorCode:
+                                                                          error
+                                                                              .code,
+                                                                      succeeded:
+                                                                          false,
+                                                                    );
+                                                                  }
 
-                                                                if (_shouldSetState)
-                                                                  safeSetState(
-                                                                      () {});
-                                                              },
-                                                              autofocus: false,
-                                                              textInputAction:
-                                                                  TextInputAction
-                                                                      .send,
-                                                              obscureText:
-                                                                  false,
-                                                              decoration:
-                                                                  InputDecoration(
-                                                                isDense: false,
-                                                                labelStyle: FlutterFlowTheme.of(
+                                                                  _shouldSetState =
+                                                                      true;
+                                                                }),
+                                                              ]);
+                                                              logFirebaseEvent(
+                                                                  'messageField_update_page_state');
+                                                              _model.message =
+                                                                  null;
+                                                              _model.isTyping =
+                                                                  false;
+                                                              safeSetState(
+                                                                  () {});
+                                                            } else {
+                                                              if (_shouldSetState)
+                                                                safeSetState(
+                                                                    () {});
+                                                              return;
+                                                            }
+
+                                                            if (_shouldSetState)
+                                                              safeSetState(
+                                                                  () {});
+                                                          },
+                                                          autofocus: false,
+                                                          textInputAction:
+                                                              TextInputAction
+                                                                  .send,
+                                                          obscureText: false,
+                                                          decoration:
+                                                              InputDecoration(
+                                                            isDense: false,
+                                                            labelStyle:
+                                                                FlutterFlowTheme.of(
                                                                         context)
                                                                     .labelMedium
                                                                     .override(
@@ -1297,9 +1357,10 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                                                           !FlutterFlowTheme.of(context)
                                                                               .labelMediumIsCustom,
                                                                     ),
-                                                                hintText:
-                                                                    'Спроси что-нибудь...',
-                                                                hintStyle: FlutterFlowTheme.of(
+                                                            hintText:
+                                                                'Спроси что-нибудь...',
+                                                            hintStyle:
+                                                                FlutterFlowTheme.of(
                                                                         context)
                                                                     .labelMedium
                                                                     .override(
@@ -1327,302 +1388,399 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                                                       lineHeight:
                                                                           1.25,
                                                                     ),
-                                                                enabledBorder:
-                                                                    InputBorder
-                                                                        .none,
-                                                                focusedBorder:
-                                                                    InputBorder
-                                                                        .none,
-                                                                errorBorder:
-                                                                    InputBorder
-                                                                        .none,
-                                                                focusedErrorBorder:
-                                                                    InputBorder
-                                                                        .none,
-                                                                contentPadding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            16.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                              ),
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyMediumFamily,
-                                                                    fontSize:
+                                                            enabledBorder:
+                                                                InputBorder
+                                                                    .none,
+                                                            focusedBorder:
+                                                                InputBorder
+                                                                    .none,
+                                                            errorBorder:
+                                                                InputBorder
+                                                                    .none,
+                                                            focusedErrorBorder:
+                                                                InputBorder
+                                                                    .none,
+                                                            contentPadding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
                                                                         16.0,
-                                                                    letterSpacing:
                                                                         0.0,
-                                                                    lineHeight:
-                                                                        1.25,
-                                                                    useGoogleFonts:
-                                                                        !FlutterFlowTheme.of(context)
-                                                                            .bodyMediumIsCustom,
-                                                                  ),
-                                                              maxLines: 10,
-                                                              minLines: 1,
-                                                              cursorColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryText,
-                                                              enableInteractiveSelection:
-                                                                  true,
-                                                              validator: _model
-                                                                  .messageFieldTextControllerValidator
-                                                                  .asValidator(
-                                                                      context),
-                                                            ),
+                                                                        0.0,
+                                                                        0.0),
                                                           ),
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      2.0,
-                                                                      4.0,
-                                                                      4.0),
-                                                          child: ClipOval(
-                                                            child:
-                                                                BackdropFilter(
-                                                              filter:
-                                                                  ImageFilter
-                                                                      .blur(
-                                                                sigmaX: 12.0,
-                                                                sigmaY: 12.0,
-                                                              ),
-                                                              child:
-                                                                  FlutterFlowIconButton(
-                                                                borderColor: Colors
-                                                                    .transparent,
-                                                                borderRadius:
-                                                                    99.0,
-                                                                buttonSize:
-                                                                    40.0,
-                                                                fillColor:
-                                                                    valueOrDefault<
-                                                                        Color>(
-                                                                  _model.messageFieldTextController.text ==
-                                                                              null ||
-                                                                          _model.messageFieldTextController.text ==
-                                                                              ''
-                                                                      ? FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .white24
-                                                                      : FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primary,
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .white24,
-                                                                ),
-                                                                disabledColor:
-                                                                    FlutterFlowTheme.of(
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily,
+                                                                fontSize: 16.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                lineHeight:
+                                                                    1.25,
+                                                                useGoogleFonts:
+                                                                    !FlutterFlowTheme.of(
                                                                             context)
-                                                                        .white24,
-                                                                icon: Icon(
-                                                                  FFIcons
-                                                                      .karrowUp,
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryText,
-                                                                  size: 24.0,
-                                                                ),
-                                                                onPressed: (_model.messageFieldTextController.text ==
-                                                                            null ||
-                                                                        _model.messageFieldTextController.text ==
-                                                                            '')
-                                                                    ? null
-                                                                    : () async {
-                                                                        logFirebaseEvent(
-                                                                            'CHAT_PAGE_PAGE_IconButtonSend_ON_TAP');
-                                                                        var _shouldSetState =
-                                                                            false;
-                                                                        if (_model.messageFieldTextController.text !=
-                                                                                null &&
-                                                                            _model.messageFieldTextController.text !=
-                                                                                '') {
-                                                                          logFirebaseEvent(
-                                                                              'IconButtonSend_update_app_state');
-                                                                          FFAppState().pressetChat =
-                                                                              '';
-                                                                          safeSetState(
-                                                                              () {});
-                                                                          logFirebaseEvent(
-                                                                              'IconButtonSend_update_page_state');
-                                                                          _model.message = _model
-                                                                              .messageFieldTextController
-                                                                              .text;
-                                                                          safeSetState(
-                                                                              () {});
-                                                                          logFirebaseEvent(
-                                                                              'IconButtonSend_custom_action');
-                                                                          unawaited(
-                                                                            () async {
-                                                                              await actions.closeKeyboard(
-                                                                                context,
-                                                                              );
-                                                                            }(),
-                                                                          );
-                                                                          logFirebaseEvent(
-                                                                              'IconButtonSend_clear_text_fields_pin_cod');
-                                                                          safeSetState(
-                                                                              () {
-                                                                            _model.messageFieldTextController?.clear();
-                                                                            _model.messageFieldNewChatTextController?.clear();
-                                                                          });
-                                                                          if ((FFAppState().chatRef == null) ||
-                                                                              (FFAppState().chatId == null || FFAppState().chatId == '')) {
-                                                                            logFirebaseEvent('IconButtonSend_backend_call');
-                                                                            _model.newChatAPIbutton =
-                                                                                await ChatAssistantGroup.chatIdCall.call(
-                                                                              userId: currentUserUid,
-                                                                            );
-
-                                                                            _shouldSetState =
-                                                                                true;
-                                                                            if ((_model.newChatAPIbutton?.succeeded ??
-                                                                                true)) {
-                                                                              logFirebaseEvent('IconButtonSend_backend_call');
-
-                                                                              var chatsRecordReference = ChatsRecord.collection.doc();
-                                                                              await chatsRecordReference.set(createChatsRecordData(
-                                                                                createdBy: currentUserUid,
-                                                                                createdAt: getCurrentTimestamp,
-                                                                                title: (String text) {
-                                                                                  return text.isEmpty ? ' ' : text[0].toUpperCase() + text.substring(1);
-                                                                                }(_model.message!),
-                                                                                chatId: ChatAssistantGroup.chatIdCall.chatId(
-                                                                                  (_model.newChatAPIbutton?.jsonBody ?? ''),
-                                                                                ),
-                                                                              ));
-                                                                              _model.newChatButton1 = ChatsRecord.getDocumentFromData(
-                                                                                  createChatsRecordData(
-                                                                                    createdBy: currentUserUid,
-                                                                                    createdAt: getCurrentTimestamp,
-                                                                                    title: (String text) {
-                                                                                      return text.isEmpty ? ' ' : text[0].toUpperCase() + text.substring(1);
-                                                                                    }(_model.message!),
-                                                                                    chatId: ChatAssistantGroup.chatIdCall.chatId(
-                                                                                      (_model.newChatAPIbutton?.jsonBody ?? ''),
-                                                                                    ),
-                                                                                  ),
-                                                                                  chatsRecordReference);
-                                                                              _shouldSetState = true;
-                                                                              logFirebaseEvent('IconButtonSend_update_app_state');
-                                                                              FFAppState().chatRef = _model.newChatButton1?.reference;
-                                                                              FFAppState().chatId = ChatAssistantGroup.chatIdCall.chatId(
-                                                                                (_model.newChatAPIbutton?.jsonBody ?? ''),
-                                                                              )!;
-                                                                              safeSetState(() {});
-                                                                              logFirebaseEvent('IconButtonSend_update_page_state');
-                                                                              _model.chatsUserCount = _model.chatsUserCount + 1;
-                                                                              safeSetState(() {});
-                                                                            } else {
-                                                                              logFirebaseEvent('IconButtonSend_show_snack_bar');
-                                                                              ScaffoldMessenger.of(context).showSnackBar(
-                                                                                SnackBar(
-                                                                                  content: Text(
-                                                                                    (_model.newChatAPIbutton?.bodyText ?? ''),
-                                                                                    style: TextStyle(
-                                                                                      color: FlutterFlowTheme.of(context).primaryText,
-                                                                                    ),
-                                                                                  ),
-                                                                                  duration: Duration(milliseconds: 4000),
-                                                                                  backgroundColor: FlutterFlowTheme.of(context).secondary,
-                                                                                ),
-                                                                              );
-                                                                              if (_shouldSetState)
-                                                                                safeSetState(() {});
-                                                                              return;
-                                                                            }
-                                                                          }
-                                                                          await Future
-                                                                              .wait([
-                                                                            Future(() async {
-                                                                              logFirebaseEvent('IconButtonSend_backend_call');
-
-                                                                              var chatMessagesRecordReference = ChatMessagesRecord.collection.doc();
-                                                                              await chatMessagesRecordReference.set(createChatMessagesRecordData(
-                                                                                createdBy: currentUserUid,
-                                                                                createdAt: getCurrentTimestamp,
-                                                                                text: _model.message,
-                                                                                chatRef: FFAppState().chatRef,
-                                                                                role: 'user',
-                                                                              ));
-                                                                              _model.createMessageButton = ChatMessagesRecord.getDocumentFromData(
-                                                                                  createChatMessagesRecordData(
-                                                                                    createdBy: currentUserUid,
-                                                                                    createdAt: getCurrentTimestamp,
-                                                                                    text: _model.message,
-                                                                                    chatRef: FFAppState().chatRef,
-                                                                                    role: 'user',
-                                                                                  ),
-                                                                                  chatMessagesRecordReference);
-                                                                              _shouldSetState = true;
-                                                                              logFirebaseEvent('IconButtonSend_update_page_state');
-                                                                              _model.isTyping = true;
-                                                                              _model.messagesCount = _model.messagesCount! + 1;
-                                                                              safeSetState(() {});
-                                                                              logFirebaseEvent('IconButtonSend_wait__delay');
-                                                                              await Future.delayed(
-                                                                                Duration(
-                                                                                  milliseconds: 5000,
-                                                                                ),
-                                                                              );
-                                                                            }),
-                                                                            Future(() async {
-                                                                              logFirebaseEvent('IconButtonSend_cloud_function');
-                                                                              try {
-                                                                                final result = await FirebaseFunctions.instance.httpsCallable('chatMessageStream').call({
-                                                                                  "chatId": FFAppState().chatId,
-                                                                                  "message": _model.message!,
-                                                                                  "chatRefId": FFAppState().chatRef!.id,
-                                                                                  "userId": currentUserUid,
-                                                                                });
-                                                                                _model.chatMessButton = ChatMessageStreamCloudFunctionCallResponse(
-                                                                                  succeeded: true,
-                                                                                );
-                                                                              } on FirebaseFunctionsException catch (error) {
-                                                                                _model.chatMessButton = ChatMessageStreamCloudFunctionCallResponse(
-                                                                                  errorCode: error.code,
-                                                                                  succeeded: false,
-                                                                                );
-                                                                              }
-
-                                                                              _shouldSetState = true;
-                                                                            }),
-                                                                          ]);
-                                                                          logFirebaseEvent(
-                                                                              'IconButtonSend_update_page_state');
-                                                                          _model.message =
-                                                                              null;
-                                                                          _model.isTyping =
-                                                                              false;
-                                                                          safeSetState(
-                                                                              () {});
-                                                                        } else {
-                                                                          if (_shouldSetState)
-                                                                            safeSetState(() {});
-                                                                          return;
-                                                                        }
-
-                                                                        if (_shouldSetState)
-                                                                          safeSetState(
-                                                                              () {});
-                                                                      },
+                                                                        .bodyMediumIsCustom,
                                                               ),
-                                                            ),
-                                                          ),
+                                                          maxLines: 10,
+                                                          minLines: 1,
+                                                          cursorColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .primaryText,
+                                                          enableInteractiveSelection:
+                                                              true,
+                                                          validator: _model
+                                                              .messageFieldTextControllerValidator
+                                                              .asValidator(
+                                                                  context),
                                                         ),
-                                                      ],
+                                                      ),
                                                     ),
-                                                  ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  2.0,
+                                                                  4.0,
+                                                                  4.0),
+                                                      child:
+                                                          FlutterFlowIconButton(
+                                                        borderColor:
+                                                            Colors.transparent,
+                                                        borderRadius: 99.0,
+                                                        buttonSize: 40.0,
+                                                        fillColor:
+                                                            valueOrDefault<
+                                                                Color>(
+                                                          _model.messageFieldTextController
+                                                                          .text ==
+                                                                      null ||
+                                                                  _model.messageFieldTextController
+                                                                          .text ==
+                                                                      ''
+                                                              ? FlutterFlowTheme
+                                                                      .of(
+                                                                          context)
+                                                                  .white24
+                                                              : FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primary,
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .white24,
+                                                        ),
+                                                        disabledColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .white24,
+                                                        icon: Icon(
+                                                          FFIcons.karrowUp,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                          size: 24.0,
+                                                        ),
+                                                        onPressed: (_model
+                                                                        .messageFieldTextController
+                                                                        .text ==
+                                                                    null ||
+                                                                _model.messageFieldTextController
+                                                                        .text ==
+                                                                    '')
+                                                            ? null
+                                                            : () async {
+                                                                logFirebaseEvent(
+                                                                    'CHAT_PAGE_PAGE_IconButtonSend_ON_TAP');
+                                                                var _shouldSetState =
+                                                                    false;
+                                                                if (_model.messageFieldTextController
+                                                                            .text !=
+                                                                        null &&
+                                                                    _model.messageFieldTextController
+                                                                            .text !=
+                                                                        '') {
+                                                                  logFirebaseEvent(
+                                                                      'IconButtonSend_update_app_state');
+                                                                  FFAppState()
+                                                                      .pressetChat = '';
+                                                                  safeSetState(
+                                                                      () {});
+                                                                  logFirebaseEvent(
+                                                                      'IconButtonSend_update_page_state');
+                                                                  _model.message =
+                                                                      _model
+                                                                          .messageFieldTextController
+                                                                          .text;
+                                                                  safeSetState(
+                                                                      () {});
+                                                                  logFirebaseEvent(
+                                                                      'IconButtonSend_custom_action');
+                                                                  unawaited(
+                                                                    () async {
+                                                                      await actions
+                                                                          .closeKeyboard(
+                                                                        context,
+                                                                      );
+                                                                    }(),
+                                                                  );
+                                                                  logFirebaseEvent(
+                                                                      'IconButtonSend_clear_text_fields_pin_cod');
+                                                                  safeSetState(
+                                                                      () {
+                                                                    _model
+                                                                        .messageFieldTextController
+                                                                        ?.clear();
+                                                                    _model
+                                                                        .messageFieldNewChatTextController
+                                                                        ?.clear();
+                                                                  });
+                                                                  if ((FFAppState()
+                                                                              .chatRef ==
+                                                                          null) ||
+                                                                      (FFAppState().chatId ==
+                                                                              null ||
+                                                                          FFAppState().chatId ==
+                                                                              '')) {
+                                                                    logFirebaseEvent(
+                                                                        'IconButtonSend_backend_call');
+                                                                    _model.newChatAPIbutton =
+                                                                        await ChatAssistantGroup
+                                                                            .chatIdCall
+                                                                            .call(
+                                                                      userId:
+                                                                          currentUserUid,
+                                                                    );
+
+                                                                    _shouldSetState =
+                                                                        true;
+                                                                    if ((_model
+                                                                            .newChatAPIbutton
+                                                                            ?.succeeded ??
+                                                                        true)) {
+                                                                      logFirebaseEvent(
+                                                                          'IconButtonSend_backend_call');
+
+                                                                      var chatsRecordReference = ChatsRecord
+                                                                          .collection
+                                                                          .doc();
+                                                                      await chatsRecordReference
+                                                                          .set(
+                                                                              createChatsRecordData(
+                                                                        createdBy:
+                                                                            currentUserUid,
+                                                                        createdAt:
+                                                                            getCurrentTimestamp,
+                                                                        title: (String
+                                                                            text) {
+                                                                          return text.isEmpty
+                                                                              ? ' '
+                                                                              : text[0].toUpperCase() + text.substring(1);
+                                                                        }(_model
+                                                                            .message!),
+                                                                        chatId: ChatAssistantGroup
+                                                                            .chatIdCall
+                                                                            .chatId(
+                                                                          (_model.newChatAPIbutton?.jsonBody ??
+                                                                              ''),
+                                                                        ),
+                                                                      ));
+                                                                      _model.newChatButton1 = ChatsRecord.getDocumentFromData(
+                                                                          createChatsRecordData(
+                                                                            createdBy:
+                                                                                currentUserUid,
+                                                                            createdAt:
+                                                                                getCurrentTimestamp,
+                                                                            title:
+                                                                                (String text) {
+                                                                              return text.isEmpty ? ' ' : text[0].toUpperCase() + text.substring(1);
+                                                                            }(_model.message!),
+                                                                            chatId:
+                                                                                ChatAssistantGroup.chatIdCall.chatId(
+                                                                              (_model.newChatAPIbutton?.jsonBody ?? ''),
+                                                                            ),
+                                                                          ),
+                                                                          chatsRecordReference);
+                                                                      _shouldSetState =
+                                                                          true;
+                                                                      logFirebaseEvent(
+                                                                          'IconButtonSend_update_app_state');
+                                                                      FFAppState()
+                                                                              .chatRef =
+                                                                          _model
+                                                                              .newChatButton1
+                                                                              ?.reference;
+                                                                      FFAppState()
+                                                                              .chatId =
+                                                                          ChatAssistantGroup
+                                                                              .chatIdCall
+                                                                              .chatId(
+                                                                        (_model.newChatAPIbutton?.jsonBody ??
+                                                                            ''),
+                                                                      )!;
+                                                                      safeSetState(
+                                                                          () {});
+                                                                      logFirebaseEvent(
+                                                                          'IconButtonSend_update_page_state');
+                                                                      _model.chatsUserCount =
+                                                                          _model.chatsUserCount +
+                                                                              1;
+                                                                      safeSetState(
+                                                                          () {});
+                                                                    } else {
+                                                                      logFirebaseEvent(
+                                                                          'IconButtonSend_show_snack_bar');
+                                                                      ScaffoldMessenger.of(
+                                                                              context)
+                                                                          .showSnackBar(
+                                                                        SnackBar(
+                                                                          content:
+                                                                              Text(
+                                                                            (_model.newChatAPIbutton?.bodyText ??
+                                                                                ''),
+                                                                            style:
+                                                                                TextStyle(
+                                                                              color: FlutterFlowTheme.of(context).primaryText,
+                                                                            ),
+                                                                          ),
+                                                                          duration:
+                                                                              Duration(milliseconds: 4000),
+                                                                          backgroundColor:
+                                                                              FlutterFlowTheme.of(context).secondary,
+                                                                        ),
+                                                                      );
+                                                                      if (_shouldSetState)
+                                                                        safeSetState(
+                                                                            () {});
+                                                                      return;
+                                                                    }
+                                                                  }
+                                                                  logFirebaseEvent(
+                                                                      'IconButtonSend_backend_call');
+
+                                                                  var chatMessagesRecordReference =
+                                                                      ChatMessagesRecord
+                                                                          .collection
+                                                                          .doc();
+                                                                  await chatMessagesRecordReference
+                                                                      .set(
+                                                                          createChatMessagesRecordData(
+                                                                    createdBy:
+                                                                        currentUserUid,
+                                                                    createdAt:
+                                                                        getCurrentTimestamp,
+                                                                    text: _model
+                                                                        .message,
+                                                                    chatRef:
+                                                                        FFAppState()
+                                                                            .chatRef,
+                                                                    role:
+                                                                        'user',
+                                                                  ));
+                                                                  _model.createMessageButton =
+                                                                      ChatMessagesRecord.getDocumentFromData(
+                                                                          createChatMessagesRecordData(
+                                                                            createdBy:
+                                                                                currentUserUid,
+                                                                            createdAt:
+                                                                                getCurrentTimestamp,
+                                                                            text:
+                                                                                _model.message,
+                                                                            chatRef:
+                                                                                FFAppState().chatRef,
+                                                                            role:
+                                                                                'user',
+                                                                          ),
+                                                                          chatMessagesRecordReference);
+                                                                  _shouldSetState =
+                                                                      true;
+                                                                  await Future
+                                                                      .wait([
+                                                                    Future(
+                                                                        () async {
+                                                                      logFirebaseEvent(
+                                                                          'IconButtonSend_update_page_state');
+                                                                      _model.isTyping =
+                                                                          true;
+                                                                      _model.messagesCount =
+                                                                          _model.messagesCount! +
+                                                                              1;
+                                                                      safeSetState(
+                                                                          () {});
+                                                                      logFirebaseEvent(
+                                                                          'IconButtonSend_wait__delay');
+                                                                      await Future
+                                                                          .delayed(
+                                                                        Duration(
+                                                                          milliseconds:
+                                                                              5000,
+                                                                        ),
+                                                                      );
+                                                                    }),
+                                                                    Future(
+                                                                        () async {
+                                                                      logFirebaseEvent(
+                                                                          'IconButtonSend_cloud_function');
+                                                                      try {
+                                                                        final result = await FirebaseFunctions
+                                                                            .instance
+                                                                            .httpsCallable('chatMessageStream')
+                                                                            .call({
+                                                                          "chatId":
+                                                                              FFAppState().chatId,
+                                                                          "message":
+                                                                              _model.message!,
+                                                                          "chatRefId": FFAppState()
+                                                                              .chatRef!
+                                                                              .id,
+                                                                          "userId":
+                                                                              currentUserUid,
+                                                                        });
+                                                                        _model.chatMessButton =
+                                                                            ChatMessageStreamCloudFunctionCallResponse(
+                                                                          succeeded:
+                                                                              true,
+                                                                        );
+                                                                      } on FirebaseFunctionsException catch (error) {
+                                                                        _model.chatMessButton =
+                                                                            ChatMessageStreamCloudFunctionCallResponse(
+                                                                          errorCode:
+                                                                              error.code,
+                                                                          succeeded:
+                                                                              false,
+                                                                        );
+                                                                      }
+
+                                                                      _shouldSetState =
+                                                                          true;
+                                                                    }),
+                                                                  ]);
+                                                                  logFirebaseEvent(
+                                                                      'IconButtonSend_update_page_state');
+                                                                  _model.message =
+                                                                      null;
+                                                                  _model.isTyping =
+                                                                      false;
+                                                                  safeSetState(
+                                                                      () {});
+                                                                } else {
+                                                                  if (_shouldSetState)
+                                                                    safeSetState(
+                                                                        () {});
+                                                                  return;
+                                                                }
+
+                                                                if (_shouldSetState)
+                                                                  safeSetState(
+                                                                      () {});
+                                                              },
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
                                               ),
                                             ),
@@ -1674,7 +1832,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                                         safeSetState(() {}),
                                                     child: BackButtonWidget(
                                                       icon: Icon(
-                                                        FFIcons.klist,
+                                                        FFIcons.khistory24,
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -1709,62 +1867,42 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                                   ),
                                                 ),
                                               ),
-                                              Expanded(
-                                                child: ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          0.0),
-                                                  child: BackdropFilter(
-                                                    filter: ImageFilter.blur(
-                                                      sigmaX: 1.0,
-                                                      sigmaY: 3.0,
+                                              if (FFAppState().chatRef != null)
+                                                Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  children: [
+                                                    ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              0.0),
+                                                      child: Image.asset(
+                                                        'assets/images/logo34.webp',
+                                                        height: 90.0,
+                                                        fit: BoxFit.cover,
+                                                      ),
                                                     ),
-                                                    child: Visibility(
-                                                      visible: FFAppState()
-                                                              .chatRef !=
-                                                          null,
-                                                      child: Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.min,
-                                                        children: [
-                                                          ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        0.0),
-                                                            child: Image.asset(
-                                                              'assets/images/logo34.webp',
-                                                              height: 90.0,
-                                                              fit: BoxFit.cover,
-                                                            ),
+                                                    Text(
+                                                      'ДАРЛИ',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .titleMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleMediumFamily,
+                                                            letterSpacing: 0.0,
+                                                            lineHeight: 1.4,
+                                                            useGoogleFonts:
+                                                                !FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleMediumIsCustom,
                                                           ),
-                                                          Text(
-                                                            'ДАРЛИ',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .titleMedium
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleMediumFamily,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  lineHeight:
-                                                                      1.4,
-                                                                  useGoogleFonts:
-                                                                      !FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .titleMediumIsCustom,
-                                                                ),
-                                                          ),
-                                                        ],
-                                                      ).animateOnPageLoad(
-                                                          animationsMap[
-                                                              'columnOnPageLoadAnimation2']!),
                                                     ),
-                                                  ),
-                                                ),
-                                              ),
+                                                  ],
+                                                ).animateOnPageLoad(animationsMap[
+                                                    'columnOnPageLoadAnimation2']!),
                                               Padding(
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(
@@ -2363,212 +2501,611 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                             }(),
                                             24.0,
                                           )),
-                                      child: ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(24.0),
-                                        child: BackdropFilter(
-                                          filter: ImageFilter.blur(
-                                            sigmaX: 12.0,
-                                            sigmaY: 12.0,
-                                          ),
-                                          child: Container(
-                                            width: double.infinity,
-                                            constraints: BoxConstraints(
-                                              minHeight: 48.0,
-                                              maxWidth: 800.0,
-                                            ),
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .white12,
-                                              boxShadow: [
-                                                BoxShadow(
-                                                  blurRadius: 24.0,
-                                                  color: Color(0x1F2A2929),
-                                                  offset: Offset(
-                                                    0.0,
-                                                    4.0,
-                                                  ),
-                                                  spreadRadius: 0.0,
-                                                )
-                                              ],
-                                              borderRadius:
-                                                  BorderRadius.circular(24.0),
-                                              border: Border.all(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .white12,
-                                                width: 1.0,
+                                      child: Container(
+                                        width: double.infinity,
+                                        constraints: BoxConstraints(
+                                          minHeight: 48.0,
+                                          maxWidth: 800.0,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .white12,
+                                          boxShadow: [
+                                            BoxShadow(
+                                              blurRadius: 24.0,
+                                              color: Color(0x1F2A2929),
+                                              offset: Offset(
+                                                0.0,
+                                                4.0,
                                               ),
-                                            ),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.end,
-                                              children: [
-                                                Expanded(
-                                                  child: Container(
-                                                    width: double.infinity,
-                                                    child: TextFormField(
-                                                      controller: _model
-                                                          .messageFieldNewChatTextController,
-                                                      focusNode: _model
-                                                          .messageFieldNewChatFocusNode,
-                                                      onChanged: (_) =>
-                                                          EasyDebounce.debounce(
-                                                        '_model.messageFieldNewChatTextController',
-                                                        Duration(
-                                                            milliseconds: 1000),
-                                                        () =>
-                                                            safeSetState(() {}),
-                                                      ),
-                                                      onFieldSubmitted:
-                                                          (_) async {
+                                              spreadRadius: 0.0,
+                                            )
+                                          ],
+                                          borderRadius:
+                                              BorderRadius.circular(24.0),
+                                          border: Border.all(
+                                            color: FlutterFlowTheme.of(context)
+                                                .white12,
+                                            width: 1.0,
+                                          ),
+                                        ),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.end,
+                                          children: [
+                                            Expanded(
+                                              child: Container(
+                                                width: double.infinity,
+                                                child: TextFormField(
+                                                  controller: _model
+                                                      .messageFieldNewChatTextController,
+                                                  focusNode: _model
+                                                      .messageFieldNewChatFocusNode,
+                                                  onChanged: (_) =>
+                                                      EasyDebounce.debounce(
+                                                    '_model.messageFieldNewChatTextController',
+                                                    Duration(
+                                                        milliseconds: 1000),
+                                                    () => safeSetState(() {}),
+                                                  ),
+                                                  onFieldSubmitted: (_) async {
+                                                    logFirebaseEvent(
+                                                        'CHAT_messageFieldNewChat_ON_TEXTFIELD_SU');
+                                                    var _shouldSetState = false;
+                                                    if (_model.messageFieldNewChatTextController
+                                                                .text !=
+                                                            null &&
+                                                        _model.messageFieldNewChatTextController
+                                                                .text !=
+                                                            '') {
+                                                      logFirebaseEvent(
+                                                          'messageFieldNewChat_update_app_state');
+                                                      FFAppState().pressetChat =
+                                                          '';
+                                                      FFAppState().chatRef =
+                                                          null;
+                                                      safeSetState(() {});
+                                                      logFirebaseEvent(
+                                                          'messageFieldNewChat_update_page_state');
+                                                      _model.message = _model
+                                                          .messageFieldNewChatTextController
+                                                          .text;
+                                                      safeSetState(() {});
+                                                      logFirebaseEvent(
+                                                          'messageFieldNewChat_clear_text_fields_pi');
+                                                      safeSetState(() {
+                                                        _model
+                                                            .messageFieldNewChatTextController
+                                                            ?.clear();
+                                                        _model
+                                                            .messageFieldTextController
+                                                            ?.clear();
+                                                      });
+                                                      logFirebaseEvent(
+                                                          'messageFieldNewChat_custom_action');
+                                                      unawaited(
+                                                        () async {
+                                                          await actions
+                                                              .closeKeyboard(
+                                                            context,
+                                                          );
+                                                        }(),
+                                                      );
+                                                      logFirebaseEvent(
+                                                          'messageFieldNewChat_backend_call');
+                                                      _model.chatIdFieldApi =
+                                                          await ChatAssistantGroup
+                                                              .chatIdCall
+                                                              .call(
+                                                        userId: currentUserUid,
+                                                      );
+
+                                                      _shouldSetState = true;
+                                                      if ((_model.chatIdFieldApi
+                                                              ?.succeeded ??
+                                                          true)) {
                                                         logFirebaseEvent(
-                                                            'CHAT_messageFieldNewChat_ON_TEXTFIELD_SU');
-                                                        var _shouldSetState =
-                                                            false;
-                                                        if (_model.messageFieldNewChatTextController
-                                                                    .text !=
-                                                                null &&
-                                                            _model.messageFieldNewChatTextController
-                                                                    .text !=
-                                                                '') {
-                                                          logFirebaseEvent(
-                                                              'messageFieldNewChat_update_app_state');
-                                                          FFAppState()
-                                                              .pressetChat = '';
-                                                          FFAppState().chatRef =
-                                                              null;
-                                                          safeSetState(() {});
-                                                          logFirebaseEvent(
-                                                              'messageFieldNewChat_update_page_state');
-                                                          _model.message = _model
-                                                              .messageFieldNewChatTextController
-                                                              .text;
-                                                          safeSetState(() {});
-                                                          logFirebaseEvent(
-                                                              'messageFieldNewChat_clear_text_fields_pi');
-                                                          safeSetState(() {
-                                                            _model
-                                                                .messageFieldNewChatTextController
-                                                                ?.clear();
-                                                            _model
-                                                                .messageFieldTextController
-                                                                ?.clear();
-                                                          });
-                                                          logFirebaseEvent(
-                                                              'messageFieldNewChat_custom_action');
-                                                          unawaited(
-                                                            () async {
-                                                              await actions
-                                                                  .closeKeyboard(
-                                                                context,
-                                                              );
-                                                            }(),
-                                                          );
-                                                          logFirebaseEvent(
-                                                              'messageFieldNewChat_backend_call');
-                                                          _model.chatIdFieldApi =
-                                                              await ChatAssistantGroup
+                                                            'messageFieldNewChat_backend_call');
+
+                                                        var chatsRecordReference =
+                                                            ChatsRecord
+                                                                .collection
+                                                                .doc();
+                                                        await chatsRecordReference
+                                                            .set(
+                                                                createChatsRecordData(
+                                                          createdBy:
+                                                              currentUserUid,
+                                                          createdAt:
+                                                              getCurrentTimestamp,
+                                                          title: (String text) {
+                                                            return text.isEmpty
+                                                                ? ' '
+                                                                : text[0]
+                                                                        .toUpperCase() +
+                                                                    text.substring(
+                                                                        1);
+                                                          }(_model.message!),
+                                                          chatId:
+                                                              ChatAssistantGroup
                                                                   .chatIdCall
-                                                                  .call(
-                                                            userId:
-                                                                currentUserUid,
-                                                          );
-
-                                                          _shouldSetState =
-                                                              true;
-                                                          if ((_model
-                                                                  .chatIdFieldApi
-                                                                  ?.succeeded ??
-                                                              true)) {
-                                                            logFirebaseEvent(
-                                                                'messageFieldNewChat_backend_call');
-
-                                                            var chatsRecordReference =
-                                                                ChatsRecord
-                                                                    .collection
-                                                                    .doc();
-                                                            await chatsRecordReference
-                                                                .set(
-                                                                    createChatsRecordData(
-                                                              createdBy:
-                                                                  currentUserUid,
-                                                              createdAt:
-                                                                  getCurrentTimestamp,
-                                                              title: (String
-                                                                  text) {
-                                                                return text
-                                                                        .isEmpty
-                                                                    ? ' '
-                                                                    : text[0]
-                                                                            .toUpperCase() +
-                                                                        text.substring(
-                                                                            1);
-                                                              }(_model
-                                                                  .message!),
-                                                              chatId:
-                                                                  ChatAssistantGroup
+                                                                  .chatId(
+                                                            (_model.chatIdFieldApi
+                                                                    ?.jsonBody ??
+                                                                ''),
+                                                          ),
+                                                        ));
+                                                        _model.newChatField = ChatsRecord
+                                                            .getDocumentFromData(
+                                                                createChatsRecordData(
+                                                                  createdBy:
+                                                                      currentUserUid,
+                                                                  createdAt:
+                                                                      getCurrentTimestamp,
+                                                                  title: (String
+                                                                      text) {
+                                                                    return text
+                                                                            .isEmpty
+                                                                        ? ' '
+                                                                        : text[0].toUpperCase() +
+                                                                            text.substring(1);
+                                                                  }(_model
+                                                                      .message!),
+                                                                  chatId: ChatAssistantGroup
                                                                       .chatIdCall
                                                                       .chatId(
-                                                                (_model.chatIdFieldApi
-                                                                        ?.jsonBody ??
-                                                                    ''),
-                                                              ),
-                                                            ));
-                                                            _model.newChatField =
-                                                                ChatsRecord.getDocumentFromData(
-                                                                    createChatsRecordData(
+                                                                    (_model.chatIdFieldApi
+                                                                            ?.jsonBody ??
+                                                                        ''),
+                                                                  ),
+                                                                ),
+                                                                chatsRecordReference);
+                                                        _shouldSetState = true;
+                                                        logFirebaseEvent(
+                                                            'messageFieldNewChat_update_app_state');
+                                                        FFAppState().chatRef =
+                                                            _model.newChatField
+                                                                ?.reference;
+                                                        FFAppState().chatId =
+                                                            FFAppState().chatId;
+                                                        safeSetState(() {});
+                                                        logFirebaseEvent(
+                                                            'messageFieldNewChat_update_page_state');
+                                                        _model.chatListShow =
+                                                            false;
+                                                        _model.chatsUserCount =
+                                                            _model.chatsUserCount +
+                                                                1;
+                                                        safeSetState(() {});
+                                                        logFirebaseEvent(
+                                                            'messageFieldNewChat_backend_call');
+
+                                                        var chatMessagesRecordReference =
+                                                            ChatMessagesRecord
+                                                                .collection
+                                                                .doc();
+                                                        await chatMessagesRecordReference
+                                                            .set(
+                                                                createChatMessagesRecordData(
+                                                          createdBy:
+                                                              currentUserUid,
+                                                          createdAt:
+                                                              getCurrentTimestamp,
+                                                          text: _model.message,
+                                                          chatRef: FFAppState()
+                                                              .chatRef,
+                                                          role: 'user',
+                                                        ));
+                                                        _model.createMessageFieldNewChat =
+                                                            ChatMessagesRecord
+                                                                .getDocumentFromData(
+                                                                    createChatMessagesRecordData(
                                                                       createdBy:
                                                                           currentUserUid,
                                                                       createdAt:
                                                                           getCurrentTimestamp,
-                                                                      title: (String
-                                                                          text) {
-                                                                        return text.isEmpty
-                                                                            ? ' '
-                                                                            : text[0].toUpperCase() +
-                                                                                text.substring(1);
-                                                                      }(_model
-                                                                          .message!),
-                                                                      chatId: ChatAssistantGroup
-                                                                          .chatIdCall
-                                                                          .chatId(
-                                                                        (_model.chatIdFieldApi?.jsonBody ??
-                                                                            ''),
-                                                                      ),
+                                                                      text: _model
+                                                                          .message,
+                                                                      chatRef:
+                                                                          FFAppState()
+                                                                              .chatRef,
+                                                                      role:
+                                                                          'user',
                                                                     ),
-                                                                    chatsRecordReference);
-                                                            _shouldSetState =
-                                                                true;
-                                                            logFirebaseEvent(
-                                                                'messageFieldNewChat_update_app_state');
-                                                            FFAppState()
-                                                                    .chatRef =
-                                                                _model
-                                                                    .newChatField
-                                                                    ?.reference;
-                                                            FFAppState()
-                                                                    .chatId =
-                                                                FFAppState()
-                                                                    .chatId;
-                                                            safeSetState(() {});
+                                                                    chatMessagesRecordReference);
+                                                        _shouldSetState = true;
+                                                        await Future.wait([
+                                                          Future(() async {
                                                             logFirebaseEvent(
                                                                 'messageFieldNewChat_update_page_state');
-                                                            _model.chatListShow =
-                                                                false;
-                                                            _model.chatsUserCount =
-                                                                _model.chatsUserCount +
+                                                            _model.isTyping =
+                                                                true;
+                                                            _model.messagesCount =
+                                                                _model.messagesCount! +
                                                                     1;
                                                             safeSetState(() {});
-                                                            await Future.wait([
-                                                              Future(() async {
+                                                            logFirebaseEvent(
+                                                                'messageFieldNewChat_wait__delay');
+                                                            await Future
+                                                                .delayed(
+                                                              Duration(
+                                                                milliseconds:
+                                                                    5000,
+                                                              ),
+                                                            );
+                                                          }),
+                                                          Future(() async {
+                                                            logFirebaseEvent(
+                                                                'messageFieldNewChat_cloud_function');
+                                                            try {
+                                                              final result =
+                                                                  await FirebaseFunctions
+                                                                      .instance
+                                                                      .httpsCallable(
+                                                                          'chatMessageStream')
+                                                                      .call({
+                                                                "chatId":
+                                                                    FFAppState()
+                                                                        .chatId,
+                                                                "message": _model
+                                                                    .message!,
+                                                                "chatRefId":
+                                                                    FFAppState()
+                                                                        .chatRef!
+                                                                        .id,
+                                                                "userId":
+                                                                    currentUserUid,
+                                                              });
+                                                              _model.chatMessFieldNew =
+                                                                  ChatMessageStreamCloudFunctionCallResponse(
+                                                                succeeded: true,
+                                                              );
+                                                            } on FirebaseFunctionsException catch (error) {
+                                                              _model.chatMessFieldNew =
+                                                                  ChatMessageStreamCloudFunctionCallResponse(
+                                                                errorCode:
+                                                                    error.code,
+                                                                succeeded:
+                                                                    false,
+                                                              );
+                                                            }
+
+                                                            _shouldSetState =
+                                                                true;
+                                                          }),
+                                                        ]);
+                                                        logFirebaseEvent(
+                                                            'messageFieldNewChat_update_page_state');
+                                                        _model.message = null;
+                                                        _model.isTyping = false;
+                                                        safeSetState(() {});
+                                                      } else {
+                                                        logFirebaseEvent(
+                                                            'messageFieldNewChat_show_snack_bar');
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .showSnackBar(
+                                                          SnackBar(
+                                                            content: Text(
+                                                              (_model.chatIdFieldApi
+                                                                      ?.bodyText ??
+                                                                  ''),
+                                                              style: TextStyle(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryText,
+                                                              ),
+                                                            ),
+                                                            duration: Duration(
+                                                                milliseconds:
+                                                                    4000),
+                                                            backgroundColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .white12,
+                                                          ),
+                                                        );
+                                                        if (_shouldSetState)
+                                                          safeSetState(() {});
+                                                        return;
+                                                      }
+                                                    } else {
+                                                      if (_shouldSetState)
+                                                        safeSetState(() {});
+                                                      return;
+                                                    }
+
+                                                    if (_shouldSetState)
+                                                      safeSetState(() {});
+                                                  },
+                                                  autofocus: false,
+                                                  textInputAction:
+                                                      TextInputAction.send,
+                                                  obscureText: false,
+                                                  decoration: InputDecoration(
+                                                    isDense: false,
+                                                    labelStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .labelMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMediumFamily,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              useGoogleFonts:
+                                                                  !FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMediumIsCustom,
+                                                            ),
+                                                    hintText:
+                                                        'Начать новый чат',
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          font:
+                                                              GoogleFonts.inter(
+                                                            fontWeight:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMedium
+                                                                    .fontWeight,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMedium
+                                                                    .fontStyle,
+                                                          ),
+                                                          fontSize: 16.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMedium
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMedium
+                                                                  .fontStyle,
+                                                          lineHeight: 1.25,
+                                                        ),
+                                                    enabledBorder:
+                                                        InputBorder.none,
+                                                    focusedBorder:
+                                                        InputBorder.none,
+                                                    errorBorder:
+                                                        InputBorder.none,
+                                                    focusedErrorBorder:
+                                                        InputBorder.none,
+                                                    contentPadding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(16.0, 0.0,
+                                                                0.0, 0.0),
+                                                  ),
+                                                  style:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily,
+                                                            fontSize: 16.0,
+                                                            letterSpacing: 0.0,
+                                                            lineHeight: 1.25,
+                                                            useGoogleFonts:
+                                                                !FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumIsCustom,
+                                                          ),
+                                                  maxLines: 10,
+                                                  minLines: 1,
+                                                  cursorColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primaryText,
+                                                  enableInteractiveSelection:
+                                                      true,
+                                                  validator: _model
+                                                      .messageFieldNewChatTextControllerValidator
+                                                      .asValidator(context),
+                                                ),
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 2.0, 4.0, 4.0),
+                                              child: FlutterFlowIconButton(
+                                                borderColor: Colors.transparent,
+                                                borderRadius: 99.0,
+                                                buttonSize: 40.0,
+                                                fillColor:
+                                                    valueOrDefault<Color>(
+                                                  _model.messageFieldNewChatTextController
+                                                                  .text ==
+                                                              null ||
+                                                          _model
+                                                                  .messageFieldNewChatTextController
+                                                                  .text ==
+                                                              ''
+                                                      ? FlutterFlowTheme.of(
+                                                              context)
+                                                          .white24
+                                                      : FlutterFlowTheme.of(
+                                                              context)
+                                                          .primary,
+                                                  FlutterFlowTheme.of(context)
+                                                      .white24,
+                                                ),
+                                                disabledColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .white24,
+                                                icon: Icon(
+                                                  FFIcons.karrowUp,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                  size: 24.0,
+                                                ),
+                                                onPressed:
+                                                    (_model.messageFieldNewChatTextController
+                                                                    .text ==
+                                                                null ||
+                                                            _model.messageFieldNewChatTextController
+                                                                    .text ==
+                                                                '')
+                                                        ? null
+                                                        : () async {
+                                                            logFirebaseEvent(
+                                                                'CHAT_PAGE_PAGE_IconButtonSendN_ON_TAP');
+                                                            var _shouldSetState =
+                                                                false;
+                                                            if (_model.messageFieldNewChatTextController
+                                                                        .text !=
+                                                                    null &&
+                                                                _model.messageFieldNewChatTextController
+                                                                        .text !=
+                                                                    '') {
+                                                              logFirebaseEvent(
+                                                                  'IconButtonSendN_update_app_state');
+                                                              FFAppState()
+                                                                  .pressetChat = '';
+                                                              FFAppState()
+                                                                      .chatRef =
+                                                                  null;
+                                                              safeSetState(
+                                                                  () {});
+                                                              logFirebaseEvent(
+                                                                  'IconButtonSendN_update_page_state');
+                                                              _model.message =
+                                                                  _model
+                                                                      .messageFieldNewChatTextController
+                                                                      .text;
+                                                              safeSetState(
+                                                                  () {});
+                                                              logFirebaseEvent(
+                                                                  'IconButtonSendN_clear_text_fields_pin_co');
+                                                              safeSetState(() {
+                                                                _model
+                                                                    .messageFieldNewChatTextController
+                                                                    ?.clear();
+                                                                _model
+                                                                    .messageFieldTextController
+                                                                    ?.clear();
+                                                              });
+                                                              logFirebaseEvent(
+                                                                  'IconButtonSendN_custom_action');
+                                                              unawaited(
+                                                                () async {
+                                                                  await actions
+                                                                      .closeKeyboard(
+                                                                    context,
+                                                                  );
+                                                                }(),
+                                                              );
+                                                              logFirebaseEvent(
+                                                                  'IconButtonSendN_backend_call');
+                                                              _model.chatIdButtonApi =
+                                                                  await ChatAssistantGroup
+                                                                      .chatIdCall
+                                                                      .call(
+                                                                userId:
+                                                                    currentUserUid,
+                                                              );
+
+                                                              _shouldSetState =
+                                                                  true;
+                                                              if ((_model
+                                                                      .chatIdButtonApi
+                                                                      ?.succeeded ??
+                                                                  true)) {
                                                                 logFirebaseEvent(
-                                                                    'messageFieldNewChat_backend_call');
+                                                                    'IconButtonSendN_backend_call');
+
+                                                                var chatsRecordReference =
+                                                                    ChatsRecord
+                                                                        .collection
+                                                                        .doc();
+                                                                await chatsRecordReference
+                                                                    .set(
+                                                                        createChatsRecordData(
+                                                                  createdBy:
+                                                                      currentUserUid,
+                                                                  createdAt:
+                                                                      getCurrentTimestamp,
+                                                                  title: (String
+                                                                      text) {
+                                                                    return text
+                                                                            .isEmpty
+                                                                        ? ' '
+                                                                        : text[0].toUpperCase() +
+                                                                            text.substring(1);
+                                                                  }(_model
+                                                                      .message!),
+                                                                  chatId: ChatAssistantGroup
+                                                                      .chatIdCall
+                                                                      .chatId(
+                                                                    (_model.chatIdButtonApi
+                                                                            ?.jsonBody ??
+                                                                        ''),
+                                                                  ),
+                                                                ));
+                                                                _model.newChatButton =
+                                                                    ChatsRecord.getDocumentFromData(
+                                                                        createChatsRecordData(
+                                                                          createdBy:
+                                                                              currentUserUid,
+                                                                          createdAt:
+                                                                              getCurrentTimestamp,
+                                                                          title: (String
+                                                                              text) {
+                                                                            return text.isEmpty
+                                                                                ? ' '
+                                                                                : text[0].toUpperCase() + text.substring(1);
+                                                                          }(_model
+                                                                              .message!),
+                                                                          chatId: ChatAssistantGroup
+                                                                              .chatIdCall
+                                                                              .chatId(
+                                                                            (_model.chatIdButtonApi?.jsonBody ??
+                                                                                ''),
+                                                                          ),
+                                                                        ),
+                                                                        chatsRecordReference);
+                                                                _shouldSetState =
+                                                                    true;
+                                                                logFirebaseEvent(
+                                                                    'IconButtonSendN_update_app_state');
+                                                                FFAppState()
+                                                                        .chatRef =
+                                                                    _model
+                                                                        .newChatButton
+                                                                        ?.reference;
+                                                                FFAppState()
+                                                                        .chatId =
+                                                                    FFAppState()
+                                                                        .chatId;
+                                                                safeSetState(
+                                                                    () {});
+                                                                logFirebaseEvent(
+                                                                    'IconButtonSendN_update_page_state');
+                                                                _model.chatListShow =
+                                                                    false;
+                                                                _model.chatsUserCount =
+                                                                    _model.chatsUserCount +
+                                                                        1;
+                                                                safeSetState(
+                                                                    () {});
+                                                                logFirebaseEvent(
+                                                                    'IconButtonSendN_backend_call');
 
                                                                 var chatMessagesRecordReference =
                                                                     ChatMessagesRecord
@@ -2588,7 +3125,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                                                           .chatRef,
                                                                   role: 'user',
                                                                 ));
-                                                                _model.createMessageFieldNewChat =
+                                                                _model.createMessageButtonNewChat =
                                                                     ChatMessagesRecord
                                                                         .getDocumentFromData(
                                                                             createChatMessagesRecordData(
@@ -2601,547 +3138,121 @@ class _ChatPageWidgetState extends State<ChatPageWidget>
                                                                             chatMessagesRecordReference);
                                                                 _shouldSetState =
                                                                     true;
-                                                                logFirebaseEvent(
-                                                                    'messageFieldNewChat_update_page_state');
-                                                                _model.isTyping =
-                                                                    true;
-                                                                _model.messagesCount =
-                                                                    _model.messagesCount! +
-                                                                        1;
-                                                                safeSetState(
-                                                                    () {});
-                                                                logFirebaseEvent(
-                                                                    'messageFieldNewChat_wait__delay');
                                                                 await Future
-                                                                    .delayed(
-                                                                  Duration(
-                                                                    milliseconds:
-                                                                        5000,
-                                                                  ),
-                                                                );
-                                                              }),
-                                                              Future(() async {
-                                                                logFirebaseEvent(
-                                                                    'messageFieldNewChat_cloud_function');
-                                                                try {
-                                                                  final result = await FirebaseFunctions
-                                                                      .instance
-                                                                      .httpsCallable(
-                                                                          'chatMessageStream')
-                                                                      .call({
-                                                                    "chatId":
-                                                                        FFAppState()
-                                                                            .chatId,
-                                                                    "message":
-                                                                        _model
-                                                                            .message!,
-                                                                    "chatRefId":
-                                                                        FFAppState()
-                                                                            .chatRef!
-                                                                            .id,
-                                                                    "userId":
-                                                                        currentUserUid,
-                                                                  });
-                                                                  _model.chatMessFieldNew =
-                                                                      ChatMessageStreamCloudFunctionCallResponse(
-                                                                    succeeded:
-                                                                        true,
-                                                                  );
-                                                                } on FirebaseFunctionsException catch (error) {
-                                                                  _model.chatMessFieldNew =
-                                                                      ChatMessageStreamCloudFunctionCallResponse(
-                                                                    errorCode:
-                                                                        error
-                                                                            .code,
-                                                                    succeeded:
-                                                                        false,
-                                                                  );
-                                                                }
-
-                                                                _shouldSetState =
-                                                                    true;
-                                                              }),
-                                                            ]);
-                                                            logFirebaseEvent(
-                                                                'messageFieldNewChat_update_page_state');
-                                                            _model.message =
-                                                                null;
-                                                            _model.isTyping =
-                                                                false;
-                                                            safeSetState(() {});
-                                                          } else {
-                                                            logFirebaseEvent(
-                                                                'messageFieldNewChat_show_snack_bar');
-                                                            ScaffoldMessenger
-                                                                    .of(context)
-                                                                .showSnackBar(
-                                                              SnackBar(
-                                                                content: Text(
-                                                                  (_model.chatIdFieldApi
-                                                                          ?.bodyText ??
-                                                                      ''),
-                                                                  style:
-                                                                      TextStyle(
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primaryText,
-                                                                  ),
-                                                                ),
-                                                                duration: Duration(
-                                                                    milliseconds:
-                                                                        4000),
-                                                                backgroundColor:
-                                                                    FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .white12,
-                                                              ),
-                                                            );
-                                                            if (_shouldSetState)
-                                                              safeSetState(
-                                                                  () {});
-                                                            return;
-                                                          }
-                                                        } else {
-                                                          if (_shouldSetState)
-                                                            safeSetState(() {});
-                                                          return;
-                                                        }
-
-                                                        if (_shouldSetState)
-                                                          safeSetState(() {});
-                                                      },
-                                                      autofocus: false,
-                                                      textInputAction:
-                                                          TextInputAction.send,
-                                                      obscureText: false,
-                                                      decoration:
-                                                          InputDecoration(
-                                                        isDense: false,
-                                                        labelStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMedium
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelMediumFamily,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  useGoogleFonts:
-                                                                      !FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .labelMediumIsCustom,
-                                                                ),
-                                                        hintText:
-                                                            'Начать новый чат',
-                                                        hintStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMedium
-                                                                .override(
-                                                                  font:
-                                                                      GoogleFonts
-                                                                          .inter(
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .labelMedium
-                                                                        .fontWeight,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .labelMedium
-                                                                        .fontStyle,
-                                                                  ),
-                                                                  fontSize:
-                                                                      16.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelMedium
-                                                                      .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelMedium
-                                                                      .fontStyle,
-                                                                  lineHeight:
-                                                                      1.25,
-                                                                ),
-                                                        enabledBorder:
-                                                            InputBorder.none,
-                                                        focusedBorder:
-                                                            InputBorder.none,
-                                                        errorBorder:
-                                                            InputBorder.none,
-                                                        focusedErrorBorder:
-                                                            InputBorder.none,
-                                                        contentPadding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    16.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                      ),
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily,
-                                                            fontSize: 16.0,
-                                                            letterSpacing: 0.0,
-                                                            lineHeight: 1.25,
-                                                            useGoogleFonts:
-                                                                !FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumIsCustom,
-                                                          ),
-                                                      maxLines: 10,
-                                                      minLines: 1,
-                                                      cursorColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryText,
-                                                      enableInteractiveSelection:
-                                                          true,
-                                                      validator: _model
-                                                          .messageFieldNewChatTextControllerValidator
-                                                          .asValidator(context),
-                                                    ),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 2.0, 4.0, 4.0),
-                                                  child: ClipOval(
-                                                    child: BackdropFilter(
-                                                      filter: ImageFilter.blur(
-                                                        sigmaX: 12.0,
-                                                        sigmaY: 12.0,
-                                                      ),
-                                                      child:
-                                                          FlutterFlowIconButton(
-                                                        borderColor:
-                                                            Colors.transparent,
-                                                        borderRadius: 99.0,
-                                                        buttonSize: 40.0,
-                                                        fillColor:
-                                                            valueOrDefault<
-                                                                Color>(
-                                                          _model.messageFieldNewChatTextController
-                                                                          .text ==
-                                                                      null ||
-                                                                  _model.messageFieldNewChatTextController
-                                                                          .text ==
-                                                                      ''
-                                                              ? FlutterFlowTheme
-                                                                      .of(
-                                                                          context)
-                                                                  .white24
-                                                              : FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primary,
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .white24,
-                                                        ),
-                                                        disabledColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .white24,
-                                                        icon: Icon(
-                                                          FFIcons.karrowUp,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          size: 24.0,
-                                                        ),
-                                                        onPressed: (_model
-                                                                        .messageFieldNewChatTextController
-                                                                        .text ==
-                                                                    null ||
-                                                                _model.messageFieldNewChatTextController
-                                                                        .text ==
-                                                                    '')
-                                                            ? null
-                                                            : () async {
-                                                                logFirebaseEvent(
-                                                                    'CHAT_PAGE_PAGE_IconButtonSendN_ON_TAP');
-                                                                var _shouldSetState =
-                                                                    false;
-                                                                if (_model.messageFieldNewChatTextController
-                                                                            .text !=
-                                                                        null &&
-                                                                    _model.messageFieldNewChatTextController
-                                                                            .text !=
-                                                                        '') {
-                                                                  logFirebaseEvent(
-                                                                      'IconButtonSendN_update_app_state');
-                                                                  FFAppState()
-                                                                      .pressetChat = '';
-                                                                  FFAppState()
-                                                                          .chatRef =
-                                                                      null;
-                                                                  safeSetState(
-                                                                      () {});
-                                                                  logFirebaseEvent(
-                                                                      'IconButtonSendN_update_page_state');
-                                                                  _model.message =
-                                                                      _model
-                                                                          .messageFieldNewChatTextController
-                                                                          .text;
-                                                                  safeSetState(
-                                                                      () {});
-                                                                  logFirebaseEvent(
-                                                                      'IconButtonSendN_clear_text_fields_pin_co');
-                                                                  safeSetState(
-                                                                      () {
-                                                                    _model
-                                                                        .messageFieldNewChatTextController
-                                                                        ?.clear();
-                                                                    _model
-                                                                        .messageFieldTextController
-                                                                        ?.clear();
-                                                                  });
-                                                                  logFirebaseEvent(
-                                                                      'IconButtonSendN_custom_action');
-                                                                  unawaited(
-                                                                    () async {
-                                                                      await actions
-                                                                          .closeKeyboard(
-                                                                        context,
-                                                                      );
-                                                                    }(),
-                                                                  );
-                                                                  logFirebaseEvent(
-                                                                      'IconButtonSendN_backend_call');
-                                                                  _model.chatIdButtonApi =
-                                                                      await ChatAssistantGroup
-                                                                          .chatIdCall
-                                                                          .call(
-                                                                    userId:
-                                                                        currentUserUid,
-                                                                  );
-
-                                                                  _shouldSetState =
-                                                                      true;
-                                                                  if ((_model
-                                                                          .chatIdButtonApi
-                                                                          ?.succeeded ??
-                                                                      true)) {
-                                                                    logFirebaseEvent(
-                                                                        'IconButtonSendN_backend_call');
-
-                                                                    var chatsRecordReference =
-                                                                        ChatsRecord
-                                                                            .collection
-                                                                            .doc();
-                                                                    await chatsRecordReference
-                                                                        .set(
-                                                                            createChatsRecordData(
-                                                                      createdBy:
-                                                                          currentUserUid,
-                                                                      createdAt:
-                                                                          getCurrentTimestamp,
-                                                                      title: (String
-                                                                          text) {
-                                                                        return text.isEmpty
-                                                                            ? ' '
-                                                                            : text[0].toUpperCase() +
-                                                                                text.substring(1);
-                                                                      }(_model
-                                                                          .message!),
-                                                                      chatId: ChatAssistantGroup
-                                                                          .chatIdCall
-                                                                          .chatId(
-                                                                        (_model.chatIdButtonApi?.jsonBody ??
-                                                                            ''),
-                                                                      ),
-                                                                    ));
-                                                                    _model.newChatButton =
-                                                                        ChatsRecord.getDocumentFromData(
-                                                                            createChatsRecordData(
-                                                                              createdBy: currentUserUid,
-                                                                              createdAt: getCurrentTimestamp,
-                                                                              title: (String text) {
-                                                                                return text.isEmpty ? ' ' : text[0].toUpperCase() + text.substring(1);
-                                                                              }(_model.message!),
-                                                                              chatId: ChatAssistantGroup.chatIdCall.chatId(
-                                                                                (_model.chatIdButtonApi?.jsonBody ?? ''),
-                                                                              ),
-                                                                            ),
-                                                                            chatsRecordReference);
-                                                                    _shouldSetState =
-                                                                        true;
-                                                                    logFirebaseEvent(
-                                                                        'IconButtonSendN_update_app_state');
-                                                                    FFAppState()
-                                                                            .chatRef =
-                                                                        _model
-                                                                            .newChatButton
-                                                                            ?.reference;
-                                                                    FFAppState()
-                                                                            .chatId =
-                                                                        FFAppState()
-                                                                            .chatId;
-                                                                    safeSetState(
-                                                                        () {});
+                                                                    .wait([
+                                                                  Future(
+                                                                      () async {
                                                                     logFirebaseEvent(
                                                                         'IconButtonSendN_update_page_state');
-                                                                    _model.chatListShow =
-                                                                        false;
-                                                                    _model.chatsUserCount =
-                                                                        _model.chatsUserCount +
+                                                                    _model.isTyping =
+                                                                        true;
+                                                                    _model.messagesCount =
+                                                                        _model.messagesCount! +
                                                                             1;
                                                                     safeSetState(
                                                                         () {});
+                                                                    logFirebaseEvent(
+                                                                        'IconButtonSendN_wait__delay');
                                                                     await Future
-                                                                        .wait([
-                                                                      Future(
-                                                                          () async {
-                                                                        logFirebaseEvent(
-                                                                            'IconButtonSendN_backend_call');
-
-                                                                        var chatMessagesRecordReference = ChatMessagesRecord
-                                                                            .collection
-                                                                            .doc();
-                                                                        await chatMessagesRecordReference
-                                                                            .set(createChatMessagesRecordData(
-                                                                          createdBy:
-                                                                              currentUserUid,
-                                                                          createdAt:
-                                                                              getCurrentTimestamp,
-                                                                          text:
-                                                                              _model.message,
-                                                                          chatRef:
-                                                                              FFAppState().chatRef,
-                                                                          role:
-                                                                              'user',
-                                                                        ));
-                                                                        _model.createMessageButtonNewChat = ChatMessagesRecord.getDocumentFromData(
-                                                                            createChatMessagesRecordData(
-                                                                              createdBy: currentUserUid,
-                                                                              createdAt: getCurrentTimestamp,
-                                                                              text: _model.message,
-                                                                              chatRef: FFAppState().chatRef,
-                                                                              role: 'user',
-                                                                            ),
-                                                                            chatMessagesRecordReference);
-                                                                        _shouldSetState =
-                                                                            true;
-                                                                        logFirebaseEvent(
-                                                                            'IconButtonSendN_update_page_state');
-                                                                        _model.isTyping =
-                                                                            true;
-                                                                        _model.messagesCount =
-                                                                            _model.messagesCount! +
-                                                                                1;
-                                                                        safeSetState(
-                                                                            () {});
-                                                                        logFirebaseEvent(
-                                                                            'IconButtonSendN_wait__delay');
-                                                                        await Future
-                                                                            .delayed(
-                                                                          Duration(
-                                                                            milliseconds:
-                                                                                5000,
-                                                                          ),
-                                                                        );
-                                                                      }),
-                                                                      Future(
-                                                                          () async {
-                                                                        logFirebaseEvent(
-                                                                            'IconButtonSendN_cloud_function');
-                                                                        try {
-                                                                          final result = await FirebaseFunctions
-                                                                              .instance
-                                                                              .httpsCallable('chatMessageStream')
-                                                                              .call({
-                                                                            "chatId":
-                                                                                FFAppState().chatId,
-                                                                            "message":
-                                                                                _model.message!,
-                                                                            "chatRefId":
-                                                                                FFAppState().chatRef!.id,
-                                                                            "userId":
-                                                                                currentUserUid,
-                                                                          });
-                                                                          _model.chatMessFileButtonNew =
-                                                                              ChatMessageStreamCloudFunctionCallResponse(
-                                                                            succeeded:
-                                                                                true,
-                                                                          );
-                                                                        } on FirebaseFunctionsException catch (error) {
-                                                                          _model.chatMessFileButtonNew =
-                                                                              ChatMessageStreamCloudFunctionCallResponse(
-                                                                            errorCode:
-                                                                                error.code,
-                                                                            succeeded:
-                                                                                false,
-                                                                          );
-                                                                        }
-
-                                                                        _shouldSetState =
-                                                                            true;
-                                                                      }),
-                                                                    ]);
-                                                                    logFirebaseEvent(
-                                                                        'IconButtonSendN_update_page_state');
-                                                                    _model.message =
-                                                                        null;
-                                                                    _model.isTyping =
-                                                                        false;
-                                                                    safeSetState(
-                                                                        () {});
-                                                                  } else {
-                                                                    logFirebaseEvent(
-                                                                        'IconButtonSendN_show_snack_bar');
-                                                                    ScaffoldMessenger.of(
-                                                                            context)
-                                                                        .showSnackBar(
-                                                                      SnackBar(
-                                                                        content:
-                                                                            Text(
-                                                                          (_model.chatIdButtonApi?.bodyText ??
-                                                                              ''),
-                                                                          style:
-                                                                              TextStyle(
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).primaryText,
-                                                                          ),
-                                                                        ),
-                                                                        duration:
-                                                                            Duration(milliseconds: 4000),
-                                                                        backgroundColor:
-                                                                            FlutterFlowTheme.of(context).white12,
+                                                                        .delayed(
+                                                                      Duration(
+                                                                        milliseconds:
+                                                                            5000,
                                                                       ),
                                                                     );
-                                                                    if (_shouldSetState)
-                                                                      safeSetState(
-                                                                          () {});
-                                                                    return;
-                                                                  }
-                                                                } else {
-                                                                  if (_shouldSetState)
-                                                                    safeSetState(
-                                                                        () {});
-                                                                  return;
-                                                                }
+                                                                  }),
+                                                                  Future(
+                                                                      () async {
+                                                                    logFirebaseEvent(
+                                                                        'IconButtonSendN_cloud_function');
+                                                                    try {
+                                                                      final result = await FirebaseFunctions
+                                                                          .instance
+                                                                          .httpsCallable(
+                                                                              'chatMessageStream')
+                                                                          .call({
+                                                                        "chatId":
+                                                                            FFAppState().chatId,
+                                                                        "message":
+                                                                            _model.message!,
+                                                                        "chatRefId": FFAppState()
+                                                                            .chatRef!
+                                                                            .id,
+                                                                        "userId":
+                                                                            currentUserUid,
+                                                                      });
+                                                                      _model.chatMessFileButtonNew =
+                                                                          ChatMessageStreamCloudFunctionCallResponse(
+                                                                        succeeded:
+                                                                            true,
+                                                                      );
+                                                                    } on FirebaseFunctionsException catch (error) {
+                                                                      _model.chatMessFileButtonNew =
+                                                                          ChatMessageStreamCloudFunctionCallResponse(
+                                                                        errorCode:
+                                                                            error.code,
+                                                                        succeeded:
+                                                                            false,
+                                                                      );
+                                                                    }
 
+                                                                    _shouldSetState =
+                                                                        true;
+                                                                  }),
+                                                                ]);
+                                                                logFirebaseEvent(
+                                                                    'IconButtonSendN_update_page_state');
+                                                                _model.message =
+                                                                    null;
+                                                                _model.isTyping =
+                                                                    false;
+                                                                safeSetState(
+                                                                    () {});
+                                                              } else {
+                                                                logFirebaseEvent(
+                                                                    'IconButtonSendN_show_snack_bar');
+                                                                ScaffoldMessenger.of(
+                                                                        context)
+                                                                    .showSnackBar(
+                                                                  SnackBar(
+                                                                    content:
+                                                                        Text(
+                                                                      (_model.chatIdButtonApi
+                                                                              ?.bodyText ??
+                                                                          ''),
+                                                                      style:
+                                                                          TextStyle(
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryText,
+                                                                      ),
+                                                                    ),
+                                                                    duration: Duration(
+                                                                        milliseconds:
+                                                                            4000),
+                                                                    backgroundColor:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .white12,
+                                                                  ),
+                                                                );
                                                                 if (_shouldSetState)
                                                                   safeSetState(
                                                                       () {});
-                                                              },
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
+                                                                return;
+                                                              }
+                                                            } else {
+                                                              if (_shouldSetState)
+                                                                safeSetState(
+                                                                    () {});
+                                                              return;
+                                                            }
+
+                                                            if (_shouldSetState)
+                                                              safeSetState(
+                                                                  () {});
+                                                          },
+                                              ),
                                             ),
-                                          ),
+                                          ],
                                         ),
                                       ),
                                     ),

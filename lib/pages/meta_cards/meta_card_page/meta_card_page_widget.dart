@@ -8,6 +8,7 @@ import 'dart:async';
 import 'dart:math';
 import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -125,13 +126,39 @@ class _MetaCardPageWidgetState extends State<MetaCardPageWidget>
           ),
         ],
       ),
-      'columnOnPageLoadAnimation': AnimationInfo(
+      'columnOnPageLoadAnimation1': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
           FadeEffect(
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 1200.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+        ],
+      ),
+      'textOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          VisibilityEffect(duration: 500.ms),
+          FadeEffect(
+            curve: Curves.easeInOut,
+            delay: 500.0.ms,
+            duration: 400.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+        ],
+      ),
+      'columnOnPageLoadAnimation2': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          VisibilityEffect(duration: 500.ms),
+          FadeEffect(
+            curve: Curves.easeInOut,
+            delay: 500.0.ms,
+            duration: 400.0.ms,
             begin: 0.0,
             end: 1.0,
           ),
@@ -302,10 +329,10 @@ class _MetaCardPageWidgetState extends State<MetaCardPageWidget>
                                         borderRadius:
                                             BorderRadius.circular(20.0),
                                         child: Image.asset(
-                                          'assets/images/cardFront.webp',
+                                          'assets/images/CardNew.webp',
                                           width: 270.0,
                                           height: 440.0,
-                                          fit: BoxFit.cover,
+                                          fit: BoxFit.fill,
                                         ),
                                       ),
                                     ).animateOnActionTrigger(
@@ -368,7 +395,7 @@ class _MetaCardPageWidgetState extends State<MetaCardPageWidget>
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 20.0, 0.0, 0.0),
+                                          0.0, 20.0, 0.0, 20.0),
                                       child: ClipRRect(
                                         borderRadius:
                                             BorderRadius.circular(20.0),
@@ -376,19 +403,21 @@ class _MetaCardPageWidgetState extends State<MetaCardPageWidget>
                                           getCORSProxyUrl(
                                             valueOrDefault<String>(
                                               widget!.metaCard?.image,
-                                              'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/woman-103qa6/assets/cgfk1hn466i4/cardBack.webp',
+                                              'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/woman-103qa6/assets/0mna6qdpitis/CardNew.webp',
                                             ),
                                           ),
-                                          width: 270.0,
-                                          height: 440.0,
-                                          fit: BoxFit.cover,
+                                          height: MediaQuery.sizeOf(context)
+                                                  .height *
+                                              0.6,
+                                          fit: BoxFit.fill,
                                           errorBuilder:
                                               (context, error, stackTrace) =>
                                                   Image.asset(
                                             'assets/images/error_image.jpg',
-                                            width: 270.0,
-                                            height: 440.0,
-                                            fit: BoxFit.cover,
+                                            height: MediaQuery.sizeOf(context)
+                                                    .height *
+                                                0.6,
+                                            fit: BoxFit.fill,
                                           ),
                                         ),
                                       ).animateOnActionTrigger(
@@ -416,35 +445,39 @@ class _MetaCardPageWidgetState extends State<MetaCardPageWidget>
                                             BorderRadius.circular(20.0),
                                         child: CachedNetworkImage(
                                           fadeInDuration:
-                                              Duration(milliseconds: 1100),
+                                              Duration(milliseconds: 500),
                                           fadeOutDuration:
-                                              Duration(milliseconds: 1100),
+                                              Duration(milliseconds: 500),
                                           imageUrl: getCORSProxyUrl(
                                             valueOrDefault<String>(
                                               widget!.metaCard?.image,
-                                              'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/woman-103qa6/assets/cgfk1hn466i4/cardBack.webp',
+                                              'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/woman-103qa6/assets/0mna6qdpitis/CardNew.webp',
                                             ),
                                           ),
                                           width: 180.0,
-                                          fit: BoxFit.cover,
+                                          height: 280.0,
+                                          fit: BoxFit.fill,
                                           errorWidget:
                                               (context, error, stackTrace) =>
                                                   Image.asset(
                                             'assets/images/error_image.jpg',
                                             width: 180.0,
-                                            fit: BoxFit.cover,
+                                            height: 280.0,
+                                            fit: BoxFit.fill,
                                           ),
                                         ),
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 24.0, 0.0, 0.0),
-                                        child: Text(
+                                            20.0, 24.0, 20.0, 0.0),
+                                        child: AutoSizeText(
                                           valueOrDefault<String>(
                                             widget!.metaCard!.title
                                                 .toUpperCase(),
                                             'СОВЕТНИК',
                                           ),
+                                          textAlign: TextAlign.center,
+                                          maxLines: 2,
                                           style: FlutterFlowTheme.of(context)
                                               .headlineMedium
                                               .override(
@@ -458,7 +491,8 @@ class _MetaCardPageWidgetState extends State<MetaCardPageWidget>
                                                             context)
                                                         .headlineMediumIsCustom,
                                               ),
-                                        ),
+                                        ).animateOnPageLoad(animationsMap[
+                                            'textOnPageLoadAnimation']!),
                                       ),
                                       Align(
                                         alignment:
@@ -517,7 +551,8 @@ class _MetaCardPageWidgetState extends State<MetaCardPageWidget>
                                                         ),
                                               ),
                                             ].divide(SizedBox(height: 4.0)),
-                                          ),
+                                          ).animateOnPageLoad(animationsMap[
+                                              'columnOnPageLoadAnimation2']!),
                                         ),
                                       ),
                                     ]
@@ -525,7 +560,7 @@ class _MetaCardPageWidgetState extends State<MetaCardPageWidget>
                                         .addToEnd(SizedBox(height: 150.0)),
                                   ),
                                 ).animateOnPageLoad(animationsMap[
-                                    'columnOnPageLoadAnimation']!),
+                                    'columnOnPageLoadAnimation1']!),
                               );
                             }
                           },
@@ -535,143 +570,121 @@ class _MetaCardPageWidgetState extends State<MetaCardPageWidget>
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
                               20.0, 16.0, 20.0, 48.0),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(56.0),
-                            child: BackdropFilter(
-                              filter: ImageFilter.blur(
-                                sigmaX: 2.0,
-                                sigmaY: 2.0,
-                              ),
-                              child: FFButtonWidget(
-                                onPressed: () async {
-                                  logFirebaseEvent(
-                                      'META_CARD_PAGE_PAGE_cancelButton_ON_TAP');
-                                  logFirebaseEvent(
-                                      'cancelButton_update_page_state');
-                                  unawaited(
-                                    () async {
-                                      _model.step = 3;
-                                      safeSetState(() {});
-                                    }(),
-                                  );
-                                },
-                                text: 'ОТКРЫТЬ ОПИСАНИЕ',
-                                icon: Icon(
-                                  FFIcons.klock2,
-                                  size: 24.0,
-                                ),
-                                options: FFButtonOptions(
-                                  width: 264.0,
-                                  height: 56.0,
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      16.0, 0.0, 16.0, 0.0),
-                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 0.0),
-                                  iconColor:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  color: FlutterFlowTheme.of(context).white12,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: FlutterFlowTheme.of(context)
-                                            .titleSmallFamily,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        fontSize: 17.0,
-                                        letterSpacing: 0.0,
-                                        useGoogleFonts:
-                                            !FlutterFlowTheme.of(context)
-                                                .titleSmallIsCustom,
-                                      ),
-                                  elevation: 0.0,
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).white12,
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(56.0),
-                                ),
-                                showLoadingIndicator: false,
-                              ),
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              logFirebaseEvent(
+                                  'META_CARD_PAGE_PAGE_cancelButton_ON_TAP');
+                              logFirebaseEvent(
+                                  'cancelButton_update_page_state');
+                              unawaited(
+                                () async {
+                                  _model.step = 3;
+                                  safeSetState(() {});
+                                }(),
+                              );
+                            },
+                            text: 'ОТКРЫТЬ ОПИСАНИЕ',
+                            icon: Icon(
+                              FFIcons.klock2,
+                              size: 24.0,
                             ),
+                            options: FFButtonOptions(
+                              width: 264.0,
+                              height: 56.0,
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 0.0, 16.0, 0.0),
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              iconColor:
+                                  FlutterFlowTheme.of(context).primaryText,
+                              color: FlutterFlowTheme.of(context).white12,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .titleSmallFamily,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    fontSize: 17.0,
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts:
+                                        !FlutterFlowTheme.of(context)
+                                            .titleSmallIsCustom,
+                                  ),
+                              elevation: 0.0,
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context).white12,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(56.0),
+                            ),
+                            showLoadingIndicator: false,
                           ),
                         ),
                       Align(
                         alignment: AlignmentDirectional(0.0, -1.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(0.0),
-                          child: BackdropFilter(
-                            filter: ImageFilter.blur(
-                              sigmaX: 0.0,
-                              sigmaY: 0.0,
-                            ),
-                            child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 54.0, 0.0, 0.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  wrapWithModel(
-                                    model: _model.backButtonModel1,
-                                    updateCallback: () => safeSetState(() {}),
-                                    child: BackButtonWidget(
-                                      icon: Icon(
-                                        FFIcons.kleftIcon3,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        size: 24.0,
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 54.0, 0.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              wrapWithModel(
+                                model: _model.backButtonModel1,
+                                updateCallback: () => safeSetState(() {}),
+                                child: BackButtonWidget(
+                                  icon: Icon(
+                                    FFIcons.kleftIcon3,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    size: 24.0,
+                                  ),
+                                  action: () async {
+                                    logFirebaseEvent(
+                                        'META_CARD_Container_r9s1v6iq_CALLBACK');
+                                    logFirebaseEvent(
+                                        'backButton_navigate_back');
+                                    context.safePop();
+                                  },
+                                ),
+                              ),
+                              if (_model.step != 1)
+                                Builder(
+                                  builder: (context) => Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 12.0, 0.0),
+                                    child: wrapWithModel(
+                                      model: _model.backButtonModel2,
+                                      updateCallback: () => safeSetState(() {}),
+                                      child: BackButtonWidget(
+                                        icon: Icon(
+                                          FFIcons.kshare2,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                          size: 24.0,
+                                        ),
+                                        action: () async {
+                                          logFirebaseEvent(
+                                              'META_CARD_Container_bxs1ub2k_CALLBACK');
+                                          logFirebaseEvent('backButton_share');
+                                          unawaited(
+                                            () async {
+                                              await Share.share(
+                                                'woman://com.appfyl.woman${GoRouterState.of(context).uri.toString()}',
+                                                sharePositionOrigin:
+                                                    getWidgetBoundingBox(
+                                                        context),
+                                              );
+                                            }(),
+                                          );
+                                        },
                                       ),
-                                      action: () async {
-                                        logFirebaseEvent(
-                                            'META_CARD_Container_r9s1v6iq_CALLBACK');
-                                        logFirebaseEvent(
-                                            'backButton_navigate_back');
-                                        context.safePop();
-                                      },
                                     ),
                                   ),
-                                  if (_model.step != 1)
-                                    Builder(
-                                      builder: (context) => Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 12.0, 0.0),
-                                        child: wrapWithModel(
-                                          model: _model.backButtonModel2,
-                                          updateCallback: () =>
-                                              safeSetState(() {}),
-                                          child: BackButtonWidget(
-                                            icon: Icon(
-                                              FFIcons.kshare2,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              size: 24.0,
-                                            ),
-                                            action: () async {
-                                              logFirebaseEvent(
-                                                  'META_CARD_Container_bxs1ub2k_CALLBACK');
-                                              logFirebaseEvent(
-                                                  'backButton_share');
-                                              unawaited(
-                                                () async {
-                                                  await Share.share(
-                                                    'woman://com.appfyl.woman${GoRouterState.of(context).uri.toString()}',
-                                                    sharePositionOrigin:
-                                                        getWidgetBoundingBox(
-                                                            context),
-                                                  );
-                                                }(),
-                                              );
-                                            },
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                ],
-                              ),
-                            ),
+                                ),
+                            ],
                           ),
                         ),
                       ),

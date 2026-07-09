@@ -11,12 +11,12 @@ const SECURITY_TOKEN = "kL9mP4xR7vN2wQ8tY5zH3jB6fG1sD0aC";
 
 // SMTP settings
 const smtpTransport = nodemailer.createTransport({
-  host: "smtp.go2.unisender.ru",
+  host: "mail.hosting.reg.ru",
   port: 587,
   secure: false,
   auth: {
-    user: "YOUR_SMTP_LOGIN",
-    pass: "YOUR_SMTP_PASSWORD",
+    user: "noreply@darly.app",
+    pass: "jD1lJ2oO7zlQ6qV3",
   },
   tls: {
     rejectUnauthorized: false,

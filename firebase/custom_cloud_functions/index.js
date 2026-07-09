@@ -28,3 +28,8 @@ const setNewsHideDefault = require("./set_news_hide_default.js");
 exports.setNewsHideDefault = setNewsHideDefault.setNewsHideDefault;
 const setVideosHideDefault = require("./set_videos_hide_default.js");
 exports.setVideosHideDefault = setVideosHideDefault.setVideosHideDefault;
+const notificationPush = require("./notification_push.js");
+exports.notificationPush = notificationPush.notificationPush;
+const createWelcomeNotificationForUser = require("./create_welcome_notification_for_user.js");
+exports.createWelcomeNotificationForUser =
+  createWelcomeNotificationForUser.createWelcomeNotificationForUser;

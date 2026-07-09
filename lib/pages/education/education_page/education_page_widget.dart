@@ -433,36 +433,27 @@ class _EducationPageWidgetState extends State<EducationPageWidget> {
                                                                               borderRadius: BorderRadius.circular(100.0),
                                                                             ),
                                                                             child:
-                                                                                ClipRRect(
-                                                                              borderRadius: BorderRadius.circular(99.0),
-                                                                              child: BackdropFilter(
-                                                                                filter: ImageFilter.blur(
-                                                                                  sigmaX: 6.0,
-                                                                                  sigmaY: 14.0,
-                                                                                ),
-                                                                                child: Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
-                                                                                  child: Row(
-                                                                                    mainAxisSize: MainAxisSize.max,
-                                                                                    children: [
-                                                                                      Icon(
-                                                                                        FFIcons.kinfo,
-                                                                                        color: FlutterFlowTheme.of(context).primaryText,
-                                                                                        size: 24.0,
-                                                                                      ),
-                                                                                      Text(
-                                                                                        'Информация',
-                                                                                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                              fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
-                                                                                              fontSize: 15.0,
-                                                                                              letterSpacing: 0.0,
-                                                                                              lineHeight: 1.25,
-                                                                                              useGoogleFonts: !FlutterFlowTheme.of(context).bodyMediumIsCustom,
-                                                                                            ),
-                                                                                      ),
-                                                                                    ].divide(SizedBox(width: 4.0)),
+                                                                                Padding(
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                                                                              child: Row(
+                                                                                mainAxisSize: MainAxisSize.max,
+                                                                                children: [
+                                                                                  Icon(
+                                                                                    FFIcons.kinfo,
+                                                                                    color: FlutterFlowTheme.of(context).primaryText,
+                                                                                    size: 24.0,
                                                                                   ),
-                                                                                ),
+                                                                                  Text(
+                                                                                    'Информация',
+                                                                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                          fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                                                          fontSize: 15.0,
+                                                                                          letterSpacing: 0.0,
+                                                                                          lineHeight: 1.25,
+                                                                                          useGoogleFonts: !FlutterFlowTheme.of(context).bodyMediumIsCustom,
+                                                                                        ),
+                                                                                  ),
+                                                                                ].divide(SizedBox(width: 4.0)),
                                                                               ),
                                                                             ),
                                                                           ),
@@ -531,38 +522,32 @@ class _EducationPageWidgetState extends State<EducationPageWidget> {
                                                                                 BorderRadius.circular(100.0),
                                                                           ),
                                                                           child:
-                                                                              ClipRRect(
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(99.0),
+                                                                              Padding(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                                8.0,
+                                                                                0.0,
+                                                                                8.0,
+                                                                                0.0),
                                                                             child:
-                                                                                BackdropFilter(
-                                                                              filter: ImageFilter.blur(
-                                                                                sigmaX: 6.0,
-                                                                                sigmaY: 14.0,
-                                                                              ),
-                                                                              child: Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
-                                                                                child: Row(
-                                                                                  mainAxisSize: MainAxisSize.max,
-                                                                                  children: [
-                                                                                    Icon(
-                                                                                      FFIcons.kbook,
-                                                                                      color: FlutterFlowTheme.of(context).primaryText,
-                                                                                      size: 24.0,
-                                                                                    ),
-                                                                                    Text(
-                                                                                      'Блокнот',
-                                                                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                            fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
-                                                                                            fontSize: 15.0,
-                                                                                            letterSpacing: 0.0,
-                                                                                            lineHeight: 1.25,
-                                                                                            useGoogleFonts: !FlutterFlowTheme.of(context).bodyMediumIsCustom,
-                                                                                          ),
-                                                                                    ),
-                                                                                  ].divide(SizedBox(width: 4.0)),
+                                                                                Row(
+                                                                              mainAxisSize: MainAxisSize.max,
+                                                                              children: [
+                                                                                Icon(
+                                                                                  FFIcons.kbook,
+                                                                                  color: FlutterFlowTheme.of(context).primaryText,
+                                                                                  size: 24.0,
                                                                                 ),
-                                                                              ),
+                                                                                Text(
+                                                                                  'Блокнот',
+                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                        fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                                                        fontSize: 15.0,
+                                                                                        letterSpacing: 0.0,
+                                                                                        lineHeight: 1.25,
+                                                                                        useGoogleFonts: !FlutterFlowTheme.of(context).bodyMediumIsCustom,
+                                                                                      ),
+                                                                                ),
+                                                                              ].divide(SizedBox(width: 4.0)),
                                                                             ),
                                                                           ),
                                                                         ),
@@ -605,46 +590,40 @@ class _EducationPageWidgetState extends State<EducationPageWidget> {
                                                                                 BorderRadius.circular(100.0),
                                                                           ),
                                                                           child:
-                                                                              ClipRRect(
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(99.0),
+                                                                              Padding(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                                8.0,
+                                                                                0.0,
+                                                                                8.0,
+                                                                                0.0),
                                                                             child:
-                                                                                BackdropFilter(
-                                                                              filter: ImageFilter.blur(
-                                                                                sigmaX: 8.0,
-                                                                                sigmaY: 14.0,
-                                                                              ),
-                                                                              child: Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
-                                                                                child: Row(
-                                                                                  mainAxisSize: MainAxisSize.max,
-                                                                                  children: [
-                                                                                    Container(
-                                                                                      width: 24.0,
-                                                                                      height: 24.0,
-                                                                                      decoration: BoxDecoration(
-                                                                                        image: DecorationImage(
-                                                                                          fit: BoxFit.cover,
-                                                                                          image: Image.asset(
-                                                                                            'assets/images/Telegram.png',
-                                                                                          ).image,
-                                                                                        ),
-                                                                                        shape: BoxShape.circle,
-                                                                                      ),
+                                                                                Row(
+                                                                              mainAxisSize: MainAxisSize.max,
+                                                                              children: [
+                                                                                Container(
+                                                                                  width: 24.0,
+                                                                                  height: 24.0,
+                                                                                  decoration: BoxDecoration(
+                                                                                    image: DecorationImage(
+                                                                                      fit: BoxFit.cover,
+                                                                                      image: Image.asset(
+                                                                                        'assets/images/Telegram.png',
+                                                                                      ).image,
                                                                                     ),
-                                                                                    Text(
-                                                                                      'Новости',
-                                                                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                            fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
-                                                                                            fontSize: 15.0,
-                                                                                            letterSpacing: 0.0,
-                                                                                            lineHeight: 1.25,
-                                                                                            useGoogleFonts: !FlutterFlowTheme.of(context).bodyMediumIsCustom,
-                                                                                          ),
-                                                                                    ),
-                                                                                  ].divide(SizedBox(width: 4.0)),
+                                                                                    shape: BoxShape.circle,
+                                                                                  ),
                                                                                 ),
-                                                                              ),
+                                                                                Text(
+                                                                                  'Новости',
+                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                        fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                                                        fontSize: 15.0,
+                                                                                        letterSpacing: 0.0,
+                                                                                        lineHeight: 1.25,
+                                                                                        useGoogleFonts: !FlutterFlowTheme.of(context).bodyMediumIsCustom,
+                                                                                      ),
+                                                                                ),
+                                                                              ].divide(SizedBox(width: 4.0)),
                                                                             ),
                                                                           ),
                                                                         ),
@@ -676,41 +655,23 @@ class _EducationPageWidgetState extends State<EducationPageWidget> {
                                                                         0.0,
                                                                         20.0,
                                                                         0.0),
-                                                                child:
-                                                                    ClipRRect(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              0.0),
-                                                                  child:
-                                                                      BackdropFilter(
-                                                                    filter:
-                                                                        ImageFilter
-                                                                            .blur(
-                                                                      sigmaX:
-                                                                          3.0,
-                                                                      sigmaY:
-                                                                          5.0,
-                                                                    ),
-                                                                    child: Text(
-                                                                      'СТАРТ В ${functions.monthsText(rowEducationRecord!.startDate!)}',
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .titleMedium
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                FlutterFlowTheme.of(context).titleMediumFamily,
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).secondaryText,
-                                                                            letterSpacing:
-                                                                                3.0,
-                                                                            lineHeight:
-                                                                                1.4,
-                                                                            useGoogleFonts:
-                                                                                !FlutterFlowTheme.of(context).titleMediumIsCustom,
-                                                                          ),
-                                                                    ),
-                                                                  ),
+                                                                child: Text(
+                                                                  'СТАРТ В ${functions.monthsText(rowEducationRecord!.startDate!)}',
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            FlutterFlowTheme.of(context).titleMediumFamily,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .secondaryText,
+                                                                        letterSpacing:
+                                                                            3.0,
+                                                                        lineHeight:
+                                                                            1.4,
+                                                                        useGoogleFonts:
+                                                                            !FlutterFlowTheme.of(context).titleMediumIsCustom,
+                                                                      ),
                                                                 ),
                                                               );
                                                             } else {
@@ -1106,20 +1067,13 @@ class _EducationPageWidgetState extends State<EducationPageWidget> {
                                                                     ),
                                                                   ),
                                                                 ),
-                                                              if ((rowEducationRecord
-                                                                              ?.information !=
-                                                                          null &&
-                                                                      rowEducationRecord
-                                                                              ?.information !=
-                                                                          '') &&
-                                                                  responsiveVisibility(
-                                                                    context:
-                                                                        context,
-                                                                    tabletLandscape:
-                                                                        false,
-                                                                    desktop:
-                                                                        false,
-                                                                  ))
+                                                              if (responsiveVisibility(
+                                                                context:
+                                                                    context,
+                                                                tabletLandscape:
+                                                                    false,
+                                                                desktop: false,
+                                                              ))
                                                                 Padding(
                                                                   padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
@@ -1128,81 +1082,70 @@ class _EducationPageWidgetState extends State<EducationPageWidget> {
                                                                           0.0,
                                                                           0.0),
                                                                   child:
-                                                                      ClipRRect(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            56.0),
-                                                                    child:
-                                                                        BackdropFilter(
-                                                                      filter: ImageFilter
-                                                                          .blur(
-                                                                        sigmaX:
-                                                                            12.0,
-                                                                        sigmaY:
-                                                                            12.0,
-                                                                      ),
-                                                                      child:
-                                                                          Visibility(
-                                                                        visible:
-                                                                            responsiveVisibility(
-                                                                          context:
-                                                                              context,
-                                                                          tabletLandscape:
-                                                                              false,
-                                                                          desktop:
-                                                                              false,
-                                                                        ),
-                                                                        child:
-                                                                            FFButtonWidget(
-                                                                          onPressed:
-                                                                              () async {
-                                                                            logFirebaseEvent('EDUCATION_PAGE_PAGE___BTN_ON_TAP');
-                                                                            logFirebaseEvent('Button_haptic_feedback');
-                                                                            HapticFeedback.mediumImpact();
-                                                                            logFirebaseEvent('Button_launch_u_r_l');
-                                                                            unawaited(
-                                                                              () async {
-                                                                                await launchURL(rowEducationRecord!.reviewURL);
-                                                                              }(),
-                                                                            );
-                                                                          },
-                                                                          text:
-                                                                              'ЧИТАТЬ ОТЗЫВЫ',
-                                                                          options:
-                                                                              FFButtonOptions(
-                                                                            height:
-                                                                                48.0,
-                                                                            padding: EdgeInsetsDirectional.fromSTEB(
-                                                                                16.0,
-                                                                                0.0,
-                                                                                16.0,
-                                                                                0.0),
-                                                                            iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                                                                0.0,
-                                                                                0.0,
-                                                                                0.0,
-                                                                                0.0),
+                                                                      FFButtonWidget(
+                                                                    onPressed:
+                                                                        () async {
+                                                                      logFirebaseEvent(
+                                                                          'EDUCATION_PAGE_PAGE___BTN_ON_TAP');
+                                                                      logFirebaseEvent(
+                                                                          'Button_haptic_feedback');
+                                                                      HapticFeedback
+                                                                          .mediumImpact();
+                                                                      logFirebaseEvent(
+                                                                          'Button_launch_u_r_l');
+                                                                      unawaited(
+                                                                        () async {
+                                                                          await launchURL(
+                                                                              rowEducationRecord!.reviewURL);
+                                                                        }(),
+                                                                      );
+                                                                    },
+                                                                    text:
+                                                                        'ЧИТАТЬ ОТЗЫВЫ',
+                                                                    options:
+                                                                        FFButtonOptions(
+                                                                      height:
+                                                                          48.0,
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          16.0,
+                                                                          0.0,
+                                                                          16.0,
+                                                                          0.0),
+                                                                      iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .white12,
+                                                                      textStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .titleSmall
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                FlutterFlowTheme.of(context).titleSmallFamily,
                                                                             color:
-                                                                                FlutterFlowTheme.of(context).white12,
-                                                                            textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                                                                                  fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
-                                                                                  color: FlutterFlowTheme.of(context).primaryText,
-                                                                                  letterSpacing: 0.0,
-                                                                                  lineHeight: 1.2,
-                                                                                  useGoogleFonts: !FlutterFlowTheme.of(context).titleSmallIsCustom,
-                                                                                ),
-                                                                            elevation:
+                                                                                FlutterFlowTheme.of(context).primaryText,
+                                                                            letterSpacing:
                                                                                 0.0,
-                                                                            borderSide:
-                                                                                BorderSide(
-                                                                              color: FlutterFlowTheme.of(context).white12,
-                                                                              width: 1.0,
-                                                                            ),
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(56.0),
+                                                                            lineHeight:
+                                                                                1.2,
+                                                                            useGoogleFonts:
+                                                                                !FlutterFlowTheme.of(context).titleSmallIsCustom,
                                                                           ),
-                                                                        ),
+                                                                      elevation:
+                                                                          0.0,
+                                                                      borderSide:
+                                                                          BorderSide(
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .white12,
+                                                                        width:
+                                                                            1.0,
                                                                       ),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              56.0),
                                                                     ),
                                                                   ),
                                                                 ),
@@ -1537,64 +1480,72 @@ class _EducationPageWidgetState extends State<EducationPageWidget> {
                                                                           16.0,
                                                                           0.0),
                                                                       child:
-                                                                          ClipRRect(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(56.0),
-                                                                        child:
-                                                                            BackdropFilter(
-                                                                          filter:
-                                                                              ImageFilter.blur(
-                                                                            sigmaX:
-                                                                                12.0,
-                                                                            sigmaY:
-                                                                                12.0,
-                                                                          ),
-                                                                          child:
-                                                                              FFButtonWidget(
-                                                                            onPressed:
-                                                                                () {
-                                                                              print('Button pressed ...');
-                                                                            },
-                                                                            text:
-                                                                                valueOrDefault<String>(
-                                                                              'КУРС ОТКРОЕТСЯ ${dateTimeFormat(
-                                                                                "d MMMM",
-                                                                                rowEducationRecord?.startDate,
-                                                                                locale: FFLocalizations.of(context).languageCode,
-                                                                              )}',
-                                                                              'КУРС ОТКРОЕТСЯ ',
-                                                                            ).toUpperCase(),
-                                                                            icon:
-                                                                                Icon(
-                                                                              FFIcons.klock2,
-                                                                              size: 24.0,
-                                                                            ),
-                                                                            options:
-                                                                                FFButtonOptions(
-                                                                              width: double.infinity,
-                                                                              height: 56.0,
-                                                                              padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                                                                              iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                                                              iconColor: FlutterFlowTheme.of(context).primary50,
-                                                                              color: FlutterFlowTheme.of(context).white12,
-                                                                              textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                                                                                    fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
-                                                                                    color: FlutterFlowTheme.of(context).primary50,
-                                                                                    fontSize: 17.0,
-                                                                                    letterSpacing: 0.0,
-                                                                                    useGoogleFonts: !FlutterFlowTheme.of(context).titleSmallIsCustom,
-                                                                                  ),
-                                                                              elevation: 0.0,
-                                                                              borderSide: BorderSide(
-                                                                                color: FlutterFlowTheme.of(context).white12,
-                                                                                width: 1.0,
-                                                                              ),
-                                                                              borderRadius: BorderRadius.circular(56.0),
-                                                                            ),
-                                                                            showLoadingIndicator:
-                                                                                false,
-                                                                          ),
+                                                                          FFButtonWidget(
+                                                                        onPressed:
+                                                                            () {
+                                                                          print(
+                                                                              'Button pressed ...');
+                                                                        },
+                                                                        text: valueOrDefault<
+                                                                            String>(
+                                                                          'КУРС ОТКРОЕТСЯ ${dateTimeFormat(
+                                                                            "d MMMM",
+                                                                            rowEducationRecord?.startDate,
+                                                                            locale:
+                                                                                FFLocalizations.of(context).languageCode,
+                                                                          )}',
+                                                                          'КУРС ОТКРОЕТСЯ ',
+                                                                        ).toUpperCase(),
+                                                                        icon:
+                                                                            Icon(
+                                                                          FFIcons
+                                                                              .klock2,
+                                                                          size:
+                                                                              24.0,
                                                                         ),
+                                                                        options:
+                                                                            FFButtonOptions(
+                                                                          width:
+                                                                              double.infinity,
+                                                                          height:
+                                                                              56.0,
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              16.0,
+                                                                              0.0,
+                                                                              16.0,
+                                                                              0.0),
+                                                                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                                                              0.0,
+                                                                              0.0,
+                                                                              0.0,
+                                                                              0.0),
+                                                                          iconColor:
+                                                                              FlutterFlowTheme.of(context).primary50,
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).white12,
+                                                                          textStyle: FlutterFlowTheme.of(context)
+                                                                              .titleSmall
+                                                                              .override(
+                                                                                fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
+                                                                                color: FlutterFlowTheme.of(context).primary50,
+                                                                                fontSize: 17.0,
+                                                                                letterSpacing: 0.0,
+                                                                                useGoogleFonts: !FlutterFlowTheme.of(context).titleSmallIsCustom,
+                                                                              ),
+                                                                          elevation:
+                                                                              0.0,
+                                                                          borderSide:
+                                                                              BorderSide(
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).white12,
+                                                                            width:
+                                                                                1.0,
+                                                                          ),
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(56.0),
+                                                                        ),
+                                                                        showLoadingIndicator:
+                                                                            false,
                                                                       ),
                                                                     ),
                                                                   ],

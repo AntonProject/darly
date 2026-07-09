@@ -86,67 +86,55 @@ class _EducationModuleLessonCompWidgetState
                     functions.dateGreatherThanToday(widget!.lesson?.startDate),
                     false,
                   ))
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(14.0),
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(
-                      sigmaX: 2.0,
-                      sigmaY: 2.0,
+                Container(
+                  width: 165.0,
+                  height: 100.0,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: CachedNetworkImageProvider(
+                        getCORSProxyUrl(
+                          widget!.lesson!.image,
+                        ),
+                      ),
                     ),
-                    child: Container(
-                      width: 165.0,
-                      height: 100.0,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: CachedNetworkImageProvider(
-                            getCORSProxyUrl(
-                              widget!.lesson!.image,
-                            ),
-                          ),
+                    borderRadius: BorderRadius.circular(14.0),
+                    border: Border.all(
+                      color: FlutterFlowTheme.of(context).tertiary,
+                      width: 1.0,
+                    ),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          FFIcons.klock2,
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          size: 24.0,
                         ),
-                        borderRadius: BorderRadius.circular(14.0),
-                        border: Border.all(
-                          color: FlutterFlowTheme.of(context).tertiary,
-                          width: 1.0,
+                        Text(
+                          'Откроется ${dateTimeFormat(
+                            "d.M",
+                            widget!.lesson?.startDate,
+                            locale: FFLocalizations.of(context).languageCode,
+                          )}',
+                          style: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyMediumFamily,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                fontSize: 13.0,
+                                letterSpacing: 0.0,
+                                lineHeight: 1.25,
+                                useGoogleFonts: !FlutterFlowTheme.of(context)
+                                    .bodyMediumIsCustom,
+                              ),
                         ),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.all(16.0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              FFIcons.klock2,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 24.0,
-                            ),
-                            Text(
-                              'Откроется ${dateTimeFormat(
-                                "d.M",
-                                widget!.lesson?.startDate,
-                                locale:
-                                    FFLocalizations.of(context).languageCode,
-                              )}',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .bodyMediumFamily,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    fontSize: 13.0,
-                                    letterSpacing: 0.0,
-                                    lineHeight: 1.25,
-                                    useGoogleFonts:
-                                        !FlutterFlowTheme.of(context)
-                                            .bodyMediumIsCustom,
-                                  ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      ],
                     ),
                   ),
                 ),

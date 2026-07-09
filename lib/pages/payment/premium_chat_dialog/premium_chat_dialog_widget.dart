@@ -74,43 +74,33 @@ class _PremiumChatDialogWidgetState extends State<PremiumChatDialogWidget> {
                   Padding(
                     padding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 14.0, 0.0, 0.0),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(24.0),
-                      child: BackdropFilter(
-                        filter: ImageFilter.blur(
-                          sigmaX: 12.0,
-                          sigmaY: 12.0,
+                    child: Container(
+                      width: 72.0,
+                      height: 72.0,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            FlutterFlowTheme.of(context).secondaryBackground,
+                            Color(0x14999999)
+                          ],
+                          stops: [0.0, 1.0],
+                          begin: AlignmentDirectional(0.0, 1.0),
+                          end: AlignmentDirectional(0, -1.0),
                         ),
-                        child: Container(
-                          width: 72.0,
-                          height: 72.0,
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                Color(0x14999999)
-                              ],
-                              stops: [0.0, 1.0],
-                              begin: AlignmentDirectional(0.0, 1.0),
-                              end: AlignmentDirectional(0, -1.0),
-                            ),
-                            borderRadius: BorderRadius.circular(24.0),
-                            border: Border.all(
-                              color: FlutterFlowTheme.of(context).white12,
-                            ),
-                          ),
-                          child: Align(
-                            alignment: AlignmentDirectional(0.0, 0.0),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(0.0),
-                              child: Image.asset(
-                                'assets/images/Realistic123.png',
-                                width: 24.0,
-                                height: 32.0,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
+                        borderRadius: BorderRadius.circular(24.0),
+                        border: Border.all(
+                          color: FlutterFlowTheme.of(context).white12,
+                        ),
+                      ),
+                      child: Align(
+                        alignment: AlignmentDirectional(0.0, 0.0),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(0.0),
+                          child: Image.asset(
+                            'assets/images/Realistic123.png',
+                            width: 24.0,
+                            height: 32.0,
+                            fit: BoxFit.cover,
                           ),
                         ),
                       ),
@@ -214,255 +204,246 @@ class _PremiumChatDialogWidgetState extends State<PremiumChatDialogWidget> {
                                           (columnIndex) {
                                 final columnPaymentsRecord =
                                     columnPaymentsRecordList[columnIndex];
-                                return ClipRRect(
-                                  borderRadius: BorderRadius.circular(24.0),
-                                  child: BackdropFilter(
-                                    filter: ImageFilter.blur(
-                                      sigmaX: 12.0,
-                                      sigmaY: 12.0,
+                                return InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    logFirebaseEvent(
+                                        'PREMIUM_CHAT_DIALOG_Container_d2o0udw7_O');
+                                    logFirebaseEvent(
+                                        'Container_update_component_state');
+                                    _model.period = columnPaymentsRecord.period;
+                                    _model.price = columnPaymentsRecord.price;
+                                    safeSetState(() {});
+                                  },
+                                  child: Container(
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      color:
+                                          FlutterFlowTheme.of(context).white12,
+                                      borderRadius: BorderRadius.circular(24.0),
+                                      border: Border.all(
+                                        color: Colors.transparent,
+                                      ),
                                     ),
-                                    child: InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        logFirebaseEvent(
-                                            'PREMIUM_CHAT_DIALOG_Container_d2o0udw7_O');
-                                        logFirebaseEvent(
-                                            'Container_update_component_state');
-                                        _model.period =
-                                            columnPaymentsRecord.period;
-                                        _model.price =
-                                            columnPaymentsRecord.price;
-                                        safeSetState(() {});
-                                      },
-                                      child: Container(
-                                        width: double.infinity,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .white12,
-                                          borderRadius:
-                                              BorderRadius.circular(24.0),
-                                          border: Border.all(
-                                            color: Colors.transparent,
-                                          ),
-                                        ),
-                                        child: Padding(
-                                          padding: EdgeInsets.all(4.0),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 0.0, 0.0, 4.0),
-                                                child: Text(
-                                                  columnPaymentsRecord.title,
-                                                  style:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .labelSmall
-                                                          .override(
-                                                            fontFamily:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelSmallFamily,
-                                                            letterSpacing: 0.0,
-                                                            lineHeight: 1.25,
-                                                            useGoogleFonts:
-                                                                !FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelSmallIsCustom,
-                                                          ),
-                                                ),
-                                              ),
-                                              Container(
-                                                width: double.infinity,
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primary8,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          20.0),
-                                                  border: Border.all(
-                                                    color: Colors.transparent,
-                                                  ),
-                                                ),
-                                                child: Padding(
-                                                  padding: EdgeInsets.all(16.0),
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      Builder(
-                                                        builder: (context) {
-                                                          if (_model.period ==
-                                                              columnPaymentsRecord
-                                                                  .period) {
-                                                            return Container(
-                                                              width: 32.0,
-                                                              height: 32.0,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
-                                                                shape: BoxShape
-                                                                    .circle,
-                                                                border:
-                                                                    Border.all(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryText,
-                                                                  width: 1.5,
-                                                                ),
-                                                              ),
-                                                              child: Icon(
-                                                                FFIcons
-                                                                    .kcheckMini,
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryBackground,
-                                                                size: 20.0,
-                                                              ),
-                                                            );
-                                                          } else {
-                                                            return Container(
-                                                              width: 32.0,
-                                                              height: 32.0,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .white12,
-                                                                shape: BoxShape
-                                                                    .circle,
-                                                                border:
-                                                                    Border.all(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryText,
-                                                                  width: 1.5,
-                                                                ),
-                                                              ),
-                                                            );
-                                                          }
-                                                        },
+                                    child: Padding(
+                                      padding: EdgeInsets.all(4.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 4.0),
+                                            child: Text(
+                                              columnPaymentsRecord.title,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelSmall
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelSmallFamily,
+                                                        letterSpacing: 0.0,
+                                                        lineHeight: 1.25,
+                                                        useGoogleFonts:
+                                                            !FlutterFlowTheme
+                                                                    .of(context)
+                                                                .labelSmallIsCustom,
                                                       ),
-                                                      Expanded(
-                                                        child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            RichText(
-                                                              textScaler:
-                                                                  MediaQuery.of(
-                                                                          context)
-                                                                      .textScaler,
-                                                              text: TextSpan(
-                                                                children: [
-                                                                  TextSpan(
-                                                                    text: valueOrDefault<
+                                            ),
+                                          ),
+                                          Container(
+                                            width: double.infinity,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary8,
+                                              borderRadius:
+                                                  BorderRadius.circular(20.0),
+                                              border: Border.all(
+                                                color: Colors.transparent,
+                                              ),
+                                            ),
+                                            child: Padding(
+                                              padding: EdgeInsets.all(16.0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Builder(
+                                                    builder: (context) {
+                                                      if (_model.period ==
+                                                          columnPaymentsRecord
+                                                              .period) {
+                                                        return Container(
+                                                          width: 32.0,
+                                                          height: 32.0,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryText,
+                                                            shape:
+                                                                BoxShape.circle,
+                                                            border: Border.all(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryText,
+                                                              width: 1.5,
+                                                            ),
+                                                          ),
+                                                          child: Icon(
+                                                            FFIcons.kcheckMini,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryBackground,
+                                                            size: 20.0,
+                                                          ),
+                                                        );
+                                                      } else {
+                                                        return Container(
+                                                          width: 32.0,
+                                                          height: 32.0,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .white12,
+                                                            shape:
+                                                                BoxShape.circle,
+                                                            border: Border.all(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryText,
+                                                              width: 1.5,
+                                                            ),
+                                                          ),
+                                                        );
+                                                      }
+                                                    },
+                                                  ),
+                                                  Expanded(
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        RichText(
+                                                          textScaler:
+                                                              MediaQuery.of(
+                                                                      context)
+                                                                  .textScaler,
+                                                          text: TextSpan(
+                                                            children: [
+                                                              TextSpan(
+                                                                text:
+                                                                    valueOrDefault<
                                                                         String>(
-                                                                      '${valueOrDefault<String>(
-                                                                        functions
-                                                                            .priceFormat(columnPaymentsRecord.price),
-                                                                        '0',
-                                                                      )}₽',
-                                                                      '0₽',
-                                                                    ),
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .titleSmall
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              FlutterFlowTheme.of(context).titleSmallFamily,
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).primaryText,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          useGoogleFonts:
-                                                                              !FlutterFlowTheme.of(context).titleSmallIsCustom,
-                                                                        ),
-                                                                  ),
-                                                                  TextSpan(
-                                                                    text: valueOrDefault<
-                                                                        String>(
-                                                                      '/${valueOrDefault<String>(
-                                                                        functions
-                                                                            .periodFormat(columnPaymentsRecord.period),
-                                                                        'год',
-                                                                      )}',
-                                                                      '/год',
-                                                                    ),
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .labelMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              FlutterFlowTheme.of(context).labelMediumFamily,
-                                                                          fontSize:
-                                                                              13.0,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          useGoogleFonts:
-                                                                              !FlutterFlowTheme.of(context).labelMediumIsCustom,
-                                                                        ),
-                                                                  )
-                                                                ],
+                                                                  '${valueOrDefault<String>(
+                                                                    functions.priceFormat(
+                                                                        columnPaymentsRecord
+                                                                            .price),
+                                                                    '0',
+                                                                  )}₽',
+                                                                  '0₽',
+                                                                ),
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .bodyMedium
+                                                                    .titleSmall
                                                                     .override(
                                                                       fontFamily:
                                                                           FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily,
+                                                                              .titleSmallFamily,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryText,
                                                                       letterSpacing:
                                                                           0.0,
                                                                       useGoogleFonts:
                                                                           !FlutterFlowTheme.of(context)
-                                                                              .bodyMediumIsCustom,
+                                                                              .titleSmallIsCustom,
                                                                     ),
                                                               ),
-                                                            ),
-                                                            Text(
-                                                              columnPaymentsRecord
-                                                                  .description,
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .labelMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .labelMediumFamily,
-                                                                    fontSize:
-                                                                        13.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    lineHeight:
-                                                                        1.25,
-                                                                    useGoogleFonts:
-                                                                        !FlutterFlowTheme.of(context)
-                                                                            .labelMediumIsCustom,
-                                                                  ),
-                                                            ),
-                                                          ].divide(SizedBox(
-                                                              height: 4.0)),
+                                                              TextSpan(
+                                                                text:
+                                                                    valueOrDefault<
+                                                                        String>(
+                                                                  '/${valueOrDefault<String>(
+                                                                    functions.periodFormat(
+                                                                        columnPaymentsRecord
+                                                                            .period),
+                                                                    'год',
+                                                                  )}',
+                                                                  '/год',
+                                                                ),
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .labelMediumFamily,
+                                                                      fontSize:
+                                                                          13.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      useGoogleFonts:
+                                                                          !FlutterFlowTheme.of(context)
+                                                                              .labelMediumIsCustom,
+                                                                    ),
+                                                              )
+                                                            ],
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  useGoogleFonts:
+                                                                      !FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMediumIsCustom,
+                                                                ),
+                                                          ),
                                                         ),
-                                                      ),
-                                                    ].divide(
-                                                        SizedBox(width: 12.0)),
+                                                        Text(
+                                                          columnPaymentsRecord
+                                                              .description,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .labelMedium
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMediumFamily,
+                                                                fontSize: 13.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                lineHeight:
+                                                                    1.25,
+                                                                useGoogleFonts:
+                                                                    !FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelMediumIsCustom,
+                                                              ),
+                                                        ),
+                                                      ].divide(SizedBox(
+                                                          height: 4.0)),
+                                                    ),
                                                   ),
-                                                ),
+                                                ].divide(SizedBox(width: 12.0)),
                                               ),
-                                            ],
+                                            ),
                                           ),
-                                        ),
+                                        ],
                                       ),
                                     ),
                                   ),
@@ -664,151 +645,6 @@ class _PremiumChatDialogWidgetState extends State<PremiumChatDialogWidget> {
               ),
             ),
           ),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(0.0),
-            child: BackdropFilter(
-              filter: ImageFilter.blur(
-                sigmaX: 1.0,
-                sigmaY: 3.0,
-              ),
-              child: Container(
-                decoration: BoxDecoration(),
-                child: Padding(
-                  padding:
-                      EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 54.0),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(56.0),
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(
-                        sigmaX: 12.0,
-                        sigmaY: 12.0,
-                      ),
-                      child: InkWell(
-                        splashColor: Colors.transparent,
-                        focusColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onTap: () async {
-                          logFirebaseEvent(
-                              'PREMIUM_CHAT_DIALOG_Container_60iwmbzm_O');
-                          logFirebaseEvent('Container_backend_call');
-
-                          var orderRecordReference =
-                              OrderRecord.collection.doc();
-                          await orderRecordReference.set(createOrderRecordData(
-                            rlUser: currentUserReference,
-                            date: getCurrentTimestamp,
-                            status: 'new',
-                            description:
-                                'Получите все возможности приложения по цене похода в кафе',
-                            price: _model.price,
-                            currency: 'RUB',
-                            clientEmail: currentUserEmail,
-                            paid: false,
-                            amount: (_model.price!).round() ?? 0,
-                            recurrentInterval: 'Month',
-                            recurrentPeriod: _model.period,
-                            clientId: currentUserUid,
-                          ));
-                          _model.newOrder = OrderRecord.getDocumentFromData(
-                              createOrderRecordData(
-                                rlUser: currentUserReference,
-                                date: getCurrentTimestamp,
-                                status: 'new',
-                                description:
-                                    'Получите все возможности приложения по цене похода в кафе',
-                                price: _model.price,
-                                currency: 'RUB',
-                                clientEmail: currentUserEmail,
-                                paid: false,
-                                amount: (_model.price!).round() ?? 0,
-                                recurrentInterval: 'Month',
-                                recurrentPeriod: _model.period,
-                                clientId: currentUserUid,
-                              ),
-                              orderRecordReference);
-                          logFirebaseEvent('Container_navigate_to');
-
-                          context.pushNamed(
-                            CloudPaymentPageWidget.routeName,
-                            queryParameters: {
-                              'orderRef': serializeParam(
-                                _model.newOrder?.reference,
-                                ParamType.DocumentReference,
-                              ),
-                            }.withoutNulls,
-                          );
-
-                          logFirebaseEvent('Container_bottom_sheet');
-                          Navigator.pop(context);
-
-                          safeSetState(() {});
-                        },
-                        child: Container(
-                          width: double.infinity,
-                          height: 56.0,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context).primary,
-                            borderRadius: BorderRadius.circular(56.0),
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'ОФОРМИТЬ ПОДПИСКУ',
-                                style: FlutterFlowTheme.of(context)
-                                    .titleMedium
-                                    .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .titleMediumFamily,
-                                      fontSize: 17.0,
-                                      letterSpacing: 0.0,
-                                      useGoogleFonts:
-                                          !FlutterFlowTheme.of(context)
-                                              .titleMediumIsCustom,
-                                    ),
-                              ),
-                              if (valueOrDefault<bool>(
-                                valueOrDefault(
-                                            currentUserDocument?.subscriptionId,
-                                            '') ==
-                                        null ||
-                                    valueOrDefault(
-                                            currentUserDocument?.subscriptionId,
-                                            '') ==
-                                        '',
-                                true,
-                              ))
-                                AuthUserStreamWidget(
-                                  builder: (context) => Text(
-                                    'Первые 3 дня — за 1₽',
-                                    style: FlutterFlowTheme.of(context)
-                                        .titleMedium
-                                        .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .titleMediumFamily,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          fontSize: 13.0,
-                                          letterSpacing: 0.0,
-                                          useGoogleFonts:
-                                              !FlutterFlowTheme.of(context)
-                                                  .titleMediumIsCustom,
-                                        ),
-                                  ),
-                                ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
           Align(
             alignment: AlignmentDirectional(1.0, -1.0),
             child: Padding(
@@ -828,6 +664,124 @@ class _PremiumChatDialogWidgetState extends State<PremiumChatDialogWidget> {
                     logFirebaseEvent('backButton_bottom_sheet');
                     Navigator.pop(context);
                   },
+                ),
+              ),
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(),
+            child: Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(20.0, 12.0, 20.0, 54.0),
+              child: InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () async {
+                  logFirebaseEvent('PREMIUM_CHAT_DIALOG_Container_60iwmbzm_O');
+                  logFirebaseEvent('Container_backend_call');
+
+                  var orderRecordReference = OrderRecord.collection.doc();
+                  await orderRecordReference.set(createOrderRecordData(
+                    rlUser: currentUserReference,
+                    date: getCurrentTimestamp,
+                    status: 'new',
+                    description:
+                        'Получите все возможности приложения по цене похода в кафе',
+                    price: _model.price,
+                    currency: 'RUB',
+                    clientEmail: currentUserEmail,
+                    paid: false,
+                    amount: (_model.price!).round() ?? 0,
+                    recurrentInterval: 'Month',
+                    recurrentPeriod: _model.period,
+                    clientId: currentUserUid,
+                  ));
+                  _model.newOrder = OrderRecord.getDocumentFromData(
+                      createOrderRecordData(
+                        rlUser: currentUserReference,
+                        date: getCurrentTimestamp,
+                        status: 'new',
+                        description:
+                            'Получите все возможности приложения по цене похода в кафе',
+                        price: _model.price,
+                        currency: 'RUB',
+                        clientEmail: currentUserEmail,
+                        paid: false,
+                        amount: (_model.price!).round() ?? 0,
+                        recurrentInterval: 'Month',
+                        recurrentPeriod: _model.period,
+                        clientId: currentUserUid,
+                      ),
+                      orderRecordReference);
+                  logFirebaseEvent('Container_navigate_to');
+
+                  context.pushNamed(
+                    CloudPaymentPageWidget.routeName,
+                    queryParameters: {
+                      'orderRef': serializeParam(
+                        _model.newOrder?.reference,
+                        ParamType.DocumentReference,
+                      ),
+                    }.withoutNulls,
+                  );
+
+                  logFirebaseEvent('Container_bottom_sheet');
+                  Navigator.pop(context);
+
+                  safeSetState(() {});
+                },
+                child: Container(
+                  width: double.infinity,
+                  height: 56.0,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).primary,
+                    borderRadius: BorderRadius.circular(56.0),
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'ОФОРМИТЬ ПОДПИСКУ',
+                        style:
+                            FlutterFlowTheme.of(context).titleMedium.override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .titleMediumFamily,
+                                  fontSize: 17.0,
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts: !FlutterFlowTheme.of(context)
+                                      .titleMediumIsCustom,
+                                ),
+                      ),
+                      if (valueOrDefault<bool>(
+                        valueOrDefault(
+                                    currentUserDocument?.subscriptionId, '') ==
+                                null ||
+                            valueOrDefault(
+                                    currentUserDocument?.subscriptionId, '') ==
+                                '',
+                        true,
+                      ))
+                        AuthUserStreamWidget(
+                          builder: (context) => Text(
+                            'Первые 3 дня — за 1₽',
+                            style: FlutterFlowTheme.of(context)
+                                .titleMedium
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .titleMediumFamily,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  fontSize: 13.0,
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts: !FlutterFlowTheme.of(context)
+                                      .titleMediumIsCustom,
+                                ),
+                          ),
+                        ),
+                    ],
+                  ),
                 ),
               ),
             ),

@@ -23,6 +23,18 @@ exports.createNotificationsForUsers = functions
       const targetAudience = notificationData.target_audience || "All";
       const userRefsStr = notificationData.user_refs || "";
 
+      if (notificationData.skip_notification_document === true) {
+        console.log(
+          `Skipping notification creation for ${snapshot.ref.path}: notification document already exists`,
+        );
+        await snapshot.ref.update({
+          notifications_created: true,
+          notifications_count: 0,
+          notifications_skipped: true,
+        });
+        return;
+      }
+
       // Skip if title or text is empty
       if (!title || !text) {
         console.log("Skipping notification creation: title or text is empty");
@@ -98,6 +110,7 @@ exports.createNotificationsForUsers = functions
             created_at: admin.firestore.FieldValue.serverTimestamp(),
             readingUsers: [], // Empty list instead of reading bool
             image: image || null,
+            source_push_notification_ref: snapshot.ref.path,
           };
 
           // Add userId only if shouldIncludeUserId is true and userId is not null

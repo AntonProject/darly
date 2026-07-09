@@ -24,8 +24,8 @@ export '/pages/profile/support_page/support_page_widget.dart'
 export '/pages/notification_page/notification_page_widget.dart'
     show NotificationPageWidget;
 export '/pages/news_page/news_page_widget.dart' show NewsPageWidget;
-export '/pages/message_letter/message_letter_page/message_letter_page_widget.dart'
-    show MessageLetterPageWidget;
+export '/pages/message_letter/message_letter_page_start/message_letter_page_start_widget.dart'
+    show MessageLetterPageStartWidget;
 export '/pages/video_page/video_page_widget.dart' show VideoPageWidget;
 export '/pages/meta_cards/meta_card_page/meta_card_page_widget.dart'
     show MetaCardPageWidget;
@@ -55,3 +55,7 @@ export '/pages/meta_cards/meta_card_select_page/meta_card_select_page_widget.dar
     show MetaCardSelectPageWidget;
 export '/pages/calendar/calendar_months_page/calendar_months_page_widget.dart'
     show CalendarMonthsPageWidget;
+export '/pages/message_letter/message_letter_page/message_letter_page_widget.dart'
+    show MessageLetterPageWidget;
+export '/pages/auth/splash_start_page/splash_start_page_widget.dart'
+    show SplashStartPageWidget;

@@ -23,7 +23,9 @@ async function sendPushToUser(userRef, title, body, initialPageName) {
 
 exports.pushNoAudio = functions
   .runWith({ timeoutSeconds: 300, memory: "128MB" })
-  .pubsub.schedule("0 10 * * *")
+  // Every 3 days at 10:00 UTC, on days 2,5,8,… (staggered vs the other
+  // reminders so they never land on the same day).
+  .pubsub.schedule("0 10 2-31/3 * *")
   .onRun(async (_) => {
     const THRESHOLD_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
     const cutoff = new Date(Date.now() - THRESHOLD_MS);
@@ -33,17 +35,36 @@ exports.pushNoAudio = functions
       .where("last_listened_at", "<=", cutoff)
       .get();
 
+    // Cooldown: never send this reminder to the same user more than once per
+    // 7 days, even though the schedule keeps matching the same inactive users
+    const COOLDOWN_MS = 7 * 24 * 60 * 60 * 1000;
+    let sent = 0;
+
     await Promise.all(
       usersSnap.docs.map(async (doc) => {
+        const data = doc.data() || {};
+        const last = data.last_noaudio_push_at;
+        const lastDate =
+          last && typeof last.toDate === "function" ? last.toDate() : null;
+        if (lastDate && Date.now() - lastDate.getTime() < COOLDOWN_MS) {
+          return; // already reminded within the cooldown window
+        }
+
         await sendPushToUser(
           `users/${doc.id}`,
           "Как ты? ❤️",
           "Сделаем короткую практику?",
           "AudioPage",
         );
+        await doc.ref.update({
+          last_noaudio_push_at: admin.firestore.FieldValue.serverTimestamp(),
+        });
+        sent += 1;
         console.log(`[pushNoAudio] Sent to user: ${doc.id}`);
       }),
     );
 
-    console.log(`[pushNoAudio] Done. Notified: ${usersSnap.size} users`);
+    console.log(
+      `[pushNoAudio] Done. Candidates: ${usersSnap.size}, sent: ${sent}`,
+    );
   });

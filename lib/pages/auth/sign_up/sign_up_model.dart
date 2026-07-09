@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:async';
 import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'sign_up_widget.dart' show SignUpWidget;
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -50,30 +51,12 @@ class SignUpModel extends FlutterFlowModel<SignUpWidget> {
   TextEditingController? passwordTextController;
   late bool passwordVisibility;
   String? Function(BuildContext, String?)? passwordTextControllerValidator;
-  String? _passwordTextControllerValidator(BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Введите пароль';
-    }
-
-    if (val.length < 6) {
-      return 'Минимум 6 символов';
-    }
-    if (val.length > 50) {
-      return 'Максимум 50 символов';
-    }
-
-    return null;
-  }
-
-  // Stores action output result for [Backend Call - Create Document] action in Button widget.
-  NotificationsRecord? newNotif;
 
   @override
   void initState(BuildContext context) {
     backButtonModel = createModel(context, () => BackButtonModel());
     emailTextControllerValidator = _emailTextControllerValidator;
     passwordVisibility = false;
-    passwordTextControllerValidator = _passwordTextControllerValidator;
   }
 
   @override

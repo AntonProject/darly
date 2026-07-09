@@ -9,6 +9,7 @@ import '/pages/calendar/days_dropdown_dialog/days_dropdown_dialog_widget.dart';
 import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:aligned_dialog/aligned_dialog.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
@@ -501,7 +502,7 @@ class _EditCycleLengthWidgetState extends State<EditCycleLengthWidget> {
                                       color: Colors.transparent,
                                       child: WebViewAware(
                                         child: DaysDropdownDialogWidget(
-                                          max: 30,
+                                          max: 45,
                                           select: (days) async {
                                             logFirebaseEvent(
                                                 '_update_component_state');
@@ -518,6 +519,7 @@ class _EditCycleLengthWidgetState extends State<EditCycleLengthWidget> {
                                 width: double.infinity,
                                 constraints: BoxConstraints(
                                   minHeight: 56.0,
+                                  maxHeight: 72.0,
                                 ),
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
@@ -536,12 +538,13 @@ class _EditCycleLengthWidgetState extends State<EditCycleLengthWidget> {
                                       Expanded(
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            Text(
-                                              'Сколько дней между месячными',
-                                              maxLines: 1,
+                                            AutoSizeText(
+                                              'Сколько дней от начала месячных до начала следующих',
                                               style: FlutterFlowTheme.of(
                                                       context)
                                                   .labelMedium
@@ -641,7 +644,7 @@ class _EditCycleLengthWidgetState extends State<EditCycleLengthWidget> {
                               {
                                 'monthCycles': getMonthCycleListFirestoreData(
                                   functions.editDurationMonthCycle(
-                                      _model.durationState!,
+                                      _model.lengthState!,
                                       widget!.listCycles!.toList(),
                                       getCurrentTimestamp,
                                       _model.durationState!,

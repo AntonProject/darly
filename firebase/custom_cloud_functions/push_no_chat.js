@@ -23,16 +23,32 @@ async function sendPushToUser(userRef, title, body, initialPageName) {
 
 exports.pushNoChat = functions
   .runWith({ timeoutSeconds: 300, memory: "128MB" })
-  .pubsub.schedule("0 11 * * *")
+  // Every 3 days at 11:00 UTC, on days 3,6,9,… (staggered vs the other
+  // reminders so they never land on the same day).
+  .pubsub.schedule("0 11 3-31/3 * *")
   .onRun(async (_) => {
     const THRESHOLD_MS = 3 * 24 * 60 * 60 * 1000; // 3 days
     const cutoff = new Date(Date.now() - THRESHOLD_MS);
 
     const usersSnap = await firestore.collection("users").get();
 
+    // Cooldown: never send this reminder to the same user more than once per
+    // 7 days, even though the schedule keeps matching the same inactive users.
+    const COOLDOWN_MS = 7 * 24 * 60 * 60 * 1000;
+    let sent = 0;
+
     await Promise.all(
       usersSnap.docs.map(async (userDoc) => {
         const uid = userDoc.id;
+        const data = userDoc.data() || {};
+
+        // Cooldown check first — also skips the two subqueries below.
+        const last = data.last_nochat_push_at;
+        const lastDate =
+          last && typeof last.toDate === "function" ? last.toDate() : null;
+        if (lastDate && Date.now() - lastDate.getTime() < COOLDOWN_MS) {
+          return; // already reminded within the cooldown window
+        }
 
         // Check if user sent any message after the cutoff
         const recentMessageSnap = await firestore
@@ -61,9 +77,15 @@ exports.pushNoChat = functions
           "Я рядом, чтобы обсудить важное",
           "ChatPage",
         );
+        await userDoc.ref.update({
+          last_nochat_push_at: admin.firestore.FieldValue.serverTimestamp(),
+        });
+        sent += 1;
         console.log(`[pushNoChat] Sent to user: ${uid}`);
       }),
     );
 
-    console.log(`[pushNoChat] Done. Processed ${usersSnap.size} users`);
+    console.log(
+      `[pushNoChat] Done. Processed ${usersSnap.size} users, sent: ${sent}`,
+    );
   });

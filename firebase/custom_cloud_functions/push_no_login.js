@@ -23,7 +23,9 @@ async function sendPushToUser(userRef, title, body, initialPageName) {
 
 exports.pushNoLogin = functions
   .runWith({ timeoutSeconds: 300, memory: "128MB" })
-  .pubsub.schedule("0 9 * * *")
+  // Every 3 days at 09:00 UTC, on days 1,4,7,… (staggered vs the other
+  // reminders so they never land on the same day).
+  .pubsub.schedule("0 9 1-31/3 * *")
   .onRun(async (_) => {
     const THRESHOLD_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
     const cutoff = new Date(Date.now() - THRESHOLD_MS);
@@ -33,17 +35,36 @@ exports.pushNoLogin = functions
       .where("last_login_at", "<=", cutoff)
       .get();
 
+    // Cooldown: never send this reminder to the same user more than once per
+    // 7 days, even though the schedule keeps matching the same inactive users.
+    const COOLDOWN_MS = 7 * 24 * 60 * 60 * 1000;
+    let sent = 0;
+
     await Promise.all(
       usersSnap.docs.map(async (doc) => {
+        const data = doc.data() || {};
+        const last = data.last_nologin_push_at;
+        const lastDate =
+          last && typeof last.toDate === "function" ? last.toDate() : null;
+        if (lastDate && Date.now() - lastDate.getTime() < COOLDOWN_MS) {
+          return; // already reminded within the cooldown window
+        }
+
         await sendPushToUser(
           `users/${doc.id}`,
           "Мы рядом🤍",
           "Загляни в своё женское пространство💎",
           "HomePage",
         );
+        await doc.ref.update({
+          last_nologin_push_at: admin.firestore.FieldValue.serverTimestamp(),
+        });
+        sent += 1;
         console.log(`[pushNoLogin] Sent to user: ${doc.id}`);
       }),
     );
 
-    console.log(`[pushNoLogin] Done. Notified: ${usersSnap.size} users`);
+    console.log(
+      `[pushNoLogin] Done. Candidates: ${usersSnap.size}, sent: ${sent}`,
+    );
   });

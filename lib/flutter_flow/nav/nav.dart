@@ -201,19 +201,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: MessageLetterPageWidget.routeName,
-          path: MessageLetterPageWidget.routePath,
+          name: MessageLetterPageStartWidget.routeName,
+          path: MessageLetterPageStartWidget.routePath,
           requireAuth: true,
-          builder: (context, params) => MessageLetterPageWidget(
-            message: params.getParam(
-              'message',
-              ParamType.String,
-            ),
-            messageImg: params.getParam(
-              'messageImg',
-              ParamType.String,
-            ),
-          ),
+          builder: (context, params) => MessageLetterPageStartWidget(),
         ),
         FFRoute(
           name: VideoPageWidget.routeName,
@@ -464,6 +455,27 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.DateTime,
             ),
           ),
+        ),
+        FFRoute(
+          name: MessageLetterPageWidget.routeName,
+          path: MessageLetterPageWidget.routePath,
+          requireAuth: true,
+          builder: (context, params) => MessageLetterPageWidget(
+            message: params.getParam(
+              'message',
+              ParamType.String,
+            ),
+            messageImg: params.getParam(
+              'messageImg',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: SplashStartPageWidget.routeName,
+          path: SplashStartPageWidget.routePath,
+          requireAuth: true,
+          builder: (context, params) => SplashStartPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],
@@ -651,13 +663,15 @@ class FFRoute {
                 )
               : builder(context, ffParams);
           final child = appStateNotifier.loading
-              ? Container(
-                  color: Colors.transparent,
-                  child: Image.asset(
-                    'assets/images/ezgif.com-webp-maker_(1).webp',
-                    fit: BoxFit.cover,
-                  ),
-                )
+              ? isWeb
+                  ? Container()
+                  : Container(
+                      color: Colors.transparent,
+                      child: Image.asset(
+                        'assets/images/Page-Calendar.webp',
+                        fit: BoxFit.cover,
+                      ),
+                    )
               : PushNotificationsHandler(child: page);
 
           final transitionInfo = state.transitionInfo;

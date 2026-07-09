@@ -61,7 +61,7 @@ class _CalendarMonthsPageWidgetState extends State<CalendarMonthsPageWidget> {
       logFirebaseEvent('CalendarMonthsPage_update_page_state');
       _model.cycles = functions
           .calendarMonths(widget!.monthCyles?.toList(), widget!.fisrtdate,
-              widget!.duration, widget!.duration)
+              widget!.length, widget!.duration)
           .toList()
           .cast<MonthCycleStruct>();
       safeSetState(() {});
@@ -208,168 +208,166 @@ class _CalendarMonthsPageWidgetState extends State<CalendarMonthsPageWidget> {
                                                 (monthsIndex) {
                                           final monthsItem =
                                               months[monthsIndex];
-                                          return ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(24.0),
-                                            child: BackdropFilter(
-                                              filter: ImageFilter.blur(
-                                                sigmaX: 32.0,
-                                                sigmaY: 32.0,
-                                              ),
-                                              child: Container(
-                                                width: double.infinity,
-                                                decoration: BoxDecoration(
-                                                  color: Color(0x10FFFFFF),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          24.0),
-                                                  border: Border.all(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
+                                          return Container(
+                                            width: double.infinity,
+                                            decoration: BoxDecoration(
+                                              color: Color(0x10FFFFFF),
+                                              borderRadius:
+                                                  BorderRadius.circular(24.0),
+                                              border: Border.all(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
                                                         .white12,
-                                                    width: 1.0,
-                                                  ),
-                                                ),
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(16.0, 24.0,
-                                                          16.0, 24.0),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      Align(
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                -1.0, 0.0),
-                                                        child: Text(
-                                                          functions.monthTitle(
-                                                              monthsItem.month),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .titleMedium
-                                                              .override(
-                                                                fontFamily: FlutterFlowTheme.of(
+                                                width: 1.0,
+                                              ),
+                                            ),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      12.0, 24.0, 12.0, 24.0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            -1.0, 0.0),
+                                                    child: Text(
+                                                      functions.monthTitle(
+                                                          monthsItem.month),
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .titleMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                FlutterFlowTheme.of(
                                                                         context)
                                                                     .titleMediumFamily,
-                                                                fontSize: 17.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                useGoogleFonts:
-                                                                    !FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .titleMediumIsCustom,
-                                                              ),
-                                                        ),
-                                                      ),
-                                                      Align(
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                -1.0, 0.0),
-                                                        child: Builder(
-                                                          builder: (context) {
-                                                            final days = functions
-                                                                .monthDaysWithOffset(
-                                                                    monthsItem
-                                                                        .month)
-                                                                .toList();
-
-                                                            return Wrap(
-                                                              spacing: 4.0,
-                                                              runSpacing: 4.0,
-                                                              alignment:
-                                                                  WrapAlignment
-                                                                      .start,
-                                                              crossAxisAlignment:
-                                                                  WrapCrossAlignment
-                                                                      .start,
-                                                              direction: Axis
-                                                                  .horizontal,
-                                                              runAlignment:
-                                                                  WrapAlignment
-                                                                      .start,
-                                                              verticalDirection:
-                                                                  VerticalDirection
-                                                                      .down,
-                                                              clipBehavior:
-                                                                  Clip.none,
-                                                              children:
-                                                                  List.generate(
-                                                                      days.length,
-                                                                      (daysIndex) {
-                                                                final daysItem =
-                                                                    days[
-                                                                        daysIndex];
-                                                                return wrapWithModel(
-                                                                  model: _model
-                                                                      .monthDayModels
-                                                                      .getModel(
-                                                                    daysItem
-                                                                        .toString(),
-                                                                    daysIndex,
-                                                                  ),
-                                                                  updateCallback: () =>
-                                                                      safeSetState(
-                                                                          () {}),
-                                                                  updateOnChange:
-                                                                      true,
-                                                                  child:
-                                                                      MonthDayWidget(
-                                                                    key: Key(
-                                                                      'Keyxzb_${daysItem.toString()}',
-                                                                    ),
-                                                                    month: monthsItem
-                                                                        .month!,
-                                                                    day:
-                                                                        daysItem,
-                                                                    edit: _model
-                                                                        .edit,
-                                                                    cycleList:
-                                                                        _model
-                                                                            .cycles,
-                                                                    remove:
-                                                                        () async {
-                                                                      logFirebaseEvent(
-                                                                          'CALENDAR_MONTHS_Container_xzb7xmks_CALLB');
-                                                                      logFirebaseEvent(
-                                                                          'monthDay_update_page_state');
-                                                                      _model.cycles = functions
-                                                                          .removeDayToMensCycle(
-                                                                              daysItem,
-                                                                              _model.cycles.toList())
-                                                                          .toList()
-                                                                          .cast<MonthCycleStruct>();
-                                                                      safeSetState(
-                                                                          () {});
-                                                                    },
-                                                                    add:
-                                                                        () async {
-                                                                      logFirebaseEvent(
-                                                                          'CALENDAR_MONTHS_Container_xzb7xmks_CALLB');
-                                                                      logFirebaseEvent(
-                                                                          'monthDay_update_page_state');
-                                                                      _model.cycles = functions
-                                                                          .addDayToMensCycle(
-                                                                              _model.cycles.toList(),
-                                                                              daysItem,
-                                                                              widget!.duration,
-                                                                              widget!.length)
-                                                                          .toList()
-                                                                          .cast<MonthCycleStruct>();
-                                                                      safeSetState(
-                                                                          () {});
-                                                                    },
-                                                                  ),
-                                                                );
-                                                              }),
-                                                            );
-                                                          },
-                                                        ),
-                                                      ),
-                                                    ].divide(
-                                                        SizedBox(height: 4.0)),
+                                                            fontSize: 17.0,
+                                                            letterSpacing: 0.0,
+                                                            useGoogleFonts:
+                                                                !FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleMediumIsCustom,
+                                                          ),
+                                                    ),
                                                   ),
-                                                ),
+                                                  Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            -1.0, 0.0),
+                                                    child: Container(
+                                                      width: double.infinity,
+                                                      decoration:
+                                                          BoxDecoration(),
+                                                      child: Builder(
+                                                        builder: (context) {
+                                                          final days = functions
+                                                              .monthDaysWithOffset(
+                                                                  monthsItem
+                                                                      .month)
+                                                              .toList();
+
+                                                          return GridView
+                                                              .builder(
+                                                            padding:
+                                                                EdgeInsets.zero,
+                                                            gridDelegate:
+                                                                SliverGridDelegateWithFixedCrossAxisCount(
+                                                              crossAxisCount: 7,
+                                                              crossAxisSpacing:
+                                                                  4.0,
+                                                              mainAxisSpacing:
+                                                                  4.0,
+                                                              childAspectRatio:
+                                                                  1.0,
+                                                            ),
+                                                            primary: false,
+                                                            shrinkWrap: true,
+                                                            scrollDirection:
+                                                                Axis.vertical,
+                                                            itemCount:
+                                                                days.length,
+                                                            itemBuilder:
+                                                                (context,
+                                                                    daysIndex) {
+                                                              final daysItem =
+                                                                  days[
+                                                                      daysIndex];
+                                                              return wrapWithModel(
+                                                                model: _model
+                                                                    .monthDayModels
+                                                                    .getModel(
+                                                                  daysItem
+                                                                      .toString(),
+                                                                  daysIndex,
+                                                                ),
+                                                                updateCallback: () =>
+                                                                    safeSetState(
+                                                                        () {}),
+                                                                updateOnChange:
+                                                                    true,
+                                                                child:
+                                                                    MonthDayWidget(
+                                                                  key: Key(
+                                                                    'Keyxzb_${daysItem.toString()}',
+                                                                  ),
+                                                                  month:
+                                                                      monthsItem
+                                                                          .month!,
+                                                                  day: daysItem,
+                                                                  edit: _model
+                                                                      .edit,
+                                                                  cycleList:
+                                                                      _model
+                                                                          .cycles,
+                                                                  remove:
+                                                                      () async {
+                                                                    logFirebaseEvent(
+                                                                        'CALENDAR_MONTHS_Container_xzb7xmks_CALLB');
+                                                                    logFirebaseEvent(
+                                                                        'monthDay_update_page_state');
+                                                                    _model.cycles = functions
+                                                                        .removeDayToMensCycle(
+                                                                            daysItem,
+                                                                            _model.cycles
+                                                                                .toList())
+                                                                        .toList()
+                                                                        .cast<
+                                                                            MonthCycleStruct>();
+                                                                    safeSetState(
+                                                                        () {});
+                                                                  },
+                                                                  add:
+                                                                      () async {
+                                                                    logFirebaseEvent(
+                                                                        'CALENDAR_MONTHS_Container_xzb7xmks_CALLB');
+                                                                    logFirebaseEvent(
+                                                                        'monthDay_update_page_state');
+                                                                    _model.cycles = functions
+                                                                        .addDayToMensCycle(
+                                                                            _model.cycles
+                                                                                .toList(),
+                                                                            daysItem,
+                                                                            widget!
+                                                                                .duration,
+                                                                            widget!
+                                                                                .length)
+                                                                        .toList()
+                                                                        .cast<
+                                                                            MonthCycleStruct>();
+                                                                    safeSetState(
+                                                                        () {});
+                                                                  },
+                                                                ),
+                                                              );
+                                                            },
+                                                          );
+                                                        },
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ].divide(SizedBox(height: 4.0)),
                                               ),
                                             ),
                                           );
@@ -386,270 +384,6 @@ class _CalendarMonthsPageWidgetState extends State<CalendarMonthsPageWidget> {
                           ],
                         ),
                       ),
-                      Align(
-                        alignment: AlignmentDirectional(0.0, 1.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(0.0),
-                          child: BackdropFilter(
-                            filter: ImageFilter.blur(
-                              sigmaX: 1.0,
-                              sigmaY: 3.0,
-                            ),
-                            child: Container(
-                              constraints: BoxConstraints(
-                                maxWidth: 600.0,
-                              ),
-                              decoration: BoxDecoration(),
-                              child: Builder(
-                                builder: (context) {
-                                  if (_model.edit) {
-                                    return Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 48.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Expanded(
-                                            child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(56.0),
-                                              child: BackdropFilter(
-                                                filter: ImageFilter.blur(
-                                                  sigmaX: 12.0,
-                                                  sigmaY: 12.0,
-                                                ),
-                                                child: FFButtonWidget(
-                                                  onPressed: () async {
-                                                    logFirebaseEvent(
-                                                        'CALENDAR_MONTHS_PAGE_PAGE__BTN_ON_TAP');
-                                                    logFirebaseEvent(
-                                                        'Button_update_page_state');
-                                                    _model.edit = false;
-                                                    _model.cycles = functions
-                                                        .calendarMonths(
-                                                            widget!.monthCyles
-                                                                ?.toList(),
-                                                            widget!.fisrtdate,
-                                                            widget!.length,
-                                                            widget!.duration)
-                                                        .toList()
-                                                        .cast<
-                                                            MonthCycleStruct>();
-                                                    safeSetState(() {});
-                                                  },
-                                                  text: 'ОТМЕНА',
-                                                  options: FFButtonOptions(
-                                                    width: 50.0,
-                                                    height: 56.0,
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(16.0, 0.0,
-                                                                16.0, 0.0),
-                                                    iconPadding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                0.0, 0.0),
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .white24,
-                                                    textStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .titleSmall
-                                                            .override(
-                                                              fontFamily:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmallFamily,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primaryText,
-                                                              fontSize: 17.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              useGoogleFonts:
-                                                                  !FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmallIsCustom,
-                                                            ),
-                                                    borderSide: BorderSide(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .white12,
-                                                      width: 1.0,
-                                                    ),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            56.0),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Expanded(
-                                            child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(56.0),
-                                              child: BackdropFilter(
-                                                filter: ImageFilter.blur(
-                                                  sigmaX: 12.0,
-                                                  sigmaY: 12.0,
-                                                ),
-                                                child: FFButtonWidget(
-                                                  onPressed: () async {
-                                                    logFirebaseEvent(
-                                                        'CALENDAR_MONTHS_PAGE_PAGE__BTN_ON_TAP');
-                                                    logFirebaseEvent(
-                                                        'Button_update_page_state');
-                                                    _model.edit = false;
-                                                    safeSetState(() {});
-                                                    logFirebaseEvent(
-                                                        'Button_backend_call');
-                                                    unawaited(
-                                                      () async {
-                                                        await widget!
-                                                            .calendarRef!
-                                                            .update({
-                                                          ...mapToFirestore(
-                                                            {
-                                                              'monthCycles':
-                                                                  getMonthCycleListFirestoreData(
-                                                                _model.cycles,
-                                                              ),
-                                                            },
-                                                          ),
-                                                        });
-                                                      }(),
-                                                    );
-                                                  },
-                                                  text: 'СОХРАНИТЬ',
-                                                  options: FFButtonOptions(
-                                                    width: 50.0,
-                                                    height: 56.0,
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(16.0, 0.0,
-                                                                16.0, 0.0),
-                                                    iconPadding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                0.0, 0.0),
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .white24,
-                                                    textStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .titleSmall
-                                                            .override(
-                                                              fontFamily:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmallFamily,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primaryText,
-                                                              fontSize: 17.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              useGoogleFonts:
-                                                                  !FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmallIsCustom,
-                                                            ),
-                                                    borderSide: BorderSide(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .white12,
-                                                      width: 1.0,
-                                                    ),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            56.0),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ]
-                                            .divide(SizedBox(width: 12.0))
-                                            .addToStart(SizedBox(width: 20.0))
-                                            .addToEnd(SizedBox(width: 20.0)),
-                                      ),
-                                    );
-                                  } else {
-                                    return Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          20.0, 0.0, 20.0, 48.0),
-                                      child: ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(56.0),
-                                        child: BackdropFilter(
-                                          filter: ImageFilter.blur(
-                                            sigmaX: 12.0,
-                                            sigmaY: 12.0,
-                                          ),
-                                          child: FFButtonWidget(
-                                            onPressed: () async {
-                                              logFirebaseEvent(
-                                                  'CALENDAR_MONTHS_PAGE_PAGE____BTN_ON_TAP');
-                                              logFirebaseEvent(
-                                                  'Button_update_page_state');
-                                              _model.edit = true;
-                                              safeSetState(() {});
-                                            },
-                                            text: 'ИЗМЕНИТЬ ДАТЫ МЕСЯЧНЫХ',
-                                            options: FFButtonOptions(
-                                              width: double.infinity,
-                                              height: 56.0,
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      16.0, 0.0, 16.0, 0.0),
-                                              iconPadding: EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .white24,
-                                              textStyle: FlutterFlowTheme.of(
-                                                      context)
-                                                  .titleSmall
-                                                  .override(
-                                                    fontFamily:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .titleSmallFamily,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryText,
-                                                    fontSize: 17.0,
-                                                    letterSpacing: 0.0,
-                                                    useGoogleFonts:
-                                                        !FlutterFlowTheme.of(
-                                                                context)
-                                                            .titleSmallIsCustom,
-                                                  ),
-                                              borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .white12,
-                                                width: 1.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(56.0),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    );
-                                  }
-                                },
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
                       if (_model.edit)
                         Align(
                           alignment: AlignmentDirectional(0.0, -1.0),
@@ -663,184 +397,417 @@ class _CalendarMonthsPageWidgetState extends State<CalendarMonthsPageWidget> {
                                   sigmaX: 12.0,
                                   sigmaY: 12.0,
                                 ),
-                                child: Container(
-                                  width: double.infinity,
-                                  height: 32.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context).white12,
-                                    borderRadius: BorderRadius.circular(30.0),
-                                    border: Border.all(
+                                child: Visibility(
+                                  visible: _model.edit,
+                                  child: Container(
+                                    width: double.infinity,
+                                    height: 32.0,
+                                    decoration: BoxDecoration(
                                       color:
                                           FlutterFlowTheme.of(context).white12,
-                                      width: 1.0,
+                                      borderRadius: BorderRadius.circular(30.0),
+                                      border: Border.all(
+                                        color: FlutterFlowTheme.of(context)
+                                            .white12,
+                                        width: 1.0,
+                                      ),
                                     ),
-                                  ),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Expanded(
-                                        child: Align(
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: Text(
-                                            'пн',
-                                            style: FlutterFlowTheme.of(context)
-                                                .titleMedium
-                                                .override(
-                                                  fontFamily:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleMediumFamily,
-                                                  letterSpacing: 0.0,
-                                                  useGoogleFonts:
-                                                      !FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleMediumIsCustom,
-                                                ),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 8.0, 0.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Expanded(
+                                            child: Align(
+                                              alignment: AlignmentDirectional(
+                                                  0.0, 0.0),
+                                              child: Text(
+                                                'пн',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleMediumFamily,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts:
+                                                              !FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .titleMediumIsCustom,
+                                                        ),
+                                              ),
+                                            ),
                                           ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: Align(
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: Text(
-                                            'вт',
-                                            style: FlutterFlowTheme.of(context)
-                                                .titleMedium
-                                                .override(
-                                                  fontFamily:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleMediumFamily,
-                                                  letterSpacing: 0.0,
-                                                  useGoogleFonts:
-                                                      !FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleMediumIsCustom,
-                                                ),
+                                          Expanded(
+                                            child: Align(
+                                              alignment: AlignmentDirectional(
+                                                  0.0, 0.0),
+                                              child: Text(
+                                                'вт',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleMediumFamily,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts:
+                                                              !FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .titleMediumIsCustom,
+                                                        ),
+                                              ),
+                                            ),
                                           ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: Align(
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: Text(
-                                            'ср',
-                                            style: FlutterFlowTheme.of(context)
-                                                .titleMedium
-                                                .override(
-                                                  fontFamily:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleMediumFamily,
-                                                  letterSpacing: 0.0,
-                                                  useGoogleFonts:
-                                                      !FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleMediumIsCustom,
-                                                ),
+                                          Expanded(
+                                            child: Align(
+                                              alignment: AlignmentDirectional(
+                                                  0.0, 0.0),
+                                              child: Text(
+                                                'ср',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleMediumFamily,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts:
+                                                              !FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .titleMediumIsCustom,
+                                                        ),
+                                              ),
+                                            ),
                                           ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: Align(
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: Text(
-                                            'чт',
-                                            style: FlutterFlowTheme.of(context)
-                                                .titleMedium
-                                                .override(
-                                                  fontFamily:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleMediumFamily,
-                                                  letterSpacing: 0.0,
-                                                  useGoogleFonts:
-                                                      !FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleMediumIsCustom,
-                                                ),
+                                          Expanded(
+                                            child: Align(
+                                              alignment: AlignmentDirectional(
+                                                  0.0, 0.0),
+                                              child: Text(
+                                                'чт',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleMediumFamily,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts:
+                                                              !FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .titleMediumIsCustom,
+                                                        ),
+                                              ),
+                                            ),
                                           ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: Align(
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: Text(
-                                            'пт',
-                                            style: FlutterFlowTheme.of(context)
-                                                .titleMedium
-                                                .override(
-                                                  fontFamily:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleMediumFamily,
-                                                  letterSpacing: 0.0,
-                                                  useGoogleFonts:
-                                                      !FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleMediumIsCustom,
-                                                ),
+                                          Expanded(
+                                            child: Align(
+                                              alignment: AlignmentDirectional(
+                                                  0.0, 0.0),
+                                              child: Text(
+                                                'пт',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleMediumFamily,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts:
+                                                              !FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .titleMediumIsCustom,
+                                                        ),
+                                              ),
+                                            ),
                                           ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: Align(
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: Text(
-                                            'сб',
-                                            style: FlutterFlowTheme.of(context)
-                                                .titleMedium
-                                                .override(
-                                                  fontFamily:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleMediumFamily,
-                                                  letterSpacing: 0.0,
-                                                  useGoogleFonts:
-                                                      !FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleMediumIsCustom,
-                                                ),
+                                          Expanded(
+                                            child: Align(
+                                              alignment: AlignmentDirectional(
+                                                  0.0, 0.0),
+                                              child: Text(
+                                                'сб',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleMediumFamily,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts:
+                                                              !FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .titleMediumIsCustom,
+                                                        ),
+                                              ),
+                                            ),
                                           ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: Align(
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: Text(
-                                            'вс',
-                                            style: FlutterFlowTheme.of(context)
-                                                .titleMedium
-                                                .override(
-                                                  fontFamily:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleMediumFamily,
-                                                  letterSpacing: 0.0,
-                                                  useGoogleFonts:
-                                                      !FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleMediumIsCustom,
-                                                ),
+                                          Expanded(
+                                            child: Align(
+                                              alignment: AlignmentDirectional(
+                                                  0.0, 0.0),
+                                              child: Text(
+                                                'вс',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleMediumFamily,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts:
+                                                              !FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .titleMediumIsCustom,
+                                                        ),
+                                              ),
+                                            ),
                                           ),
-                                        ),
+                                        ]
+                                            .addToStart(SizedBox(width: 8.0))
+                                            .addToEnd(SizedBox(width: 8.0)),
                                       ),
-                                    ]
-                                        .addToStart(SizedBox(width: 8.0))
-                                        .addToEnd(SizedBox(width: 8.0)),
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
                           ),
                         ),
+                      Align(
+                        alignment: AlignmentDirectional(0.0, 1.0),
+                        child: Container(
+                          constraints: BoxConstraints(
+                            maxWidth: 600.0,
+                          ),
+                          decoration: BoxDecoration(),
+                          child: Builder(
+                            builder: (context) {
+                              if (_model.edit) {
+                                return Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 48.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Expanded(
+                                        child: FFButtonWidget(
+                                          onPressed: () async {
+                                            logFirebaseEvent(
+                                                'CALENDAR_MONTHS_PAGE_PAGE__BTN_ON_TAP');
+                                            logFirebaseEvent(
+                                                'Button_update_page_state');
+                                            _model.edit = false;
+                                            _model.cycles = functions
+                                                .calendarMonths(
+                                                    widget!.monthCyles
+                                                        ?.toList(),
+                                                    widget!.fisrtdate,
+                                                    widget!.length,
+                                                    widget!.duration)
+                                                .toList()
+                                                .cast<MonthCycleStruct>();
+                                            safeSetState(() {});
+                                          },
+                                          text: 'ОТМЕНА',
+                                          options: FFButtonOptions(
+                                            width: 50.0,
+                                            height: 56.0,
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    16.0, 0.0, 16.0, 0.0),
+                                            iconPadding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 0.0),
+                                            color: FlutterFlowTheme.of(context)
+                                                .white24,
+                                            textStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmall
+                                                    .override(
+                                                      fontFamily:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmallFamily,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                      fontSize: 17.0,
+                                                      letterSpacing: 0.0,
+                                                      useGoogleFonts:
+                                                          !FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmallIsCustom,
+                                                    ),
+                                            borderSide: BorderSide(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .white12,
+                                              width: 1.0,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(56.0),
+                                          ),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: FFButtonWidget(
+                                          onPressed: () async {
+                                            logFirebaseEvent(
+                                                'CALENDAR_MONTHS_PAGE_PAGE__BTN_ON_TAP');
+                                            logFirebaseEvent(
+                                                'Button_update_page_state');
+                                            _model.edit = false;
+                                            safeSetState(() {});
+                                            logFirebaseEvent(
+                                                'Button_backend_call');
+                                            unawaited(
+                                              () async {
+                                                await widget!.calendarRef!
+                                                    .update({
+                                                  ...mapToFirestore(
+                                                    {
+                                                      'monthCycles':
+                                                          getMonthCycleListFirestoreData(
+                                                        _model.cycles,
+                                                      ),
+                                                    },
+                                                  ),
+                                                });
+                                              }(),
+                                            );
+                                          },
+                                          text: 'СОХРАНИТЬ',
+                                          options: FFButtonOptions(
+                                            width: 50.0,
+                                            height: 56.0,
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    16.0, 0.0, 16.0, 0.0),
+                                            iconPadding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 0.0),
+                                            color: FlutterFlowTheme.of(context)
+                                                .white24,
+                                            textStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmall
+                                                    .override(
+                                                      fontFamily:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmallFamily,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                      fontSize: 17.0,
+                                                      letterSpacing: 0.0,
+                                                      useGoogleFonts:
+                                                          !FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmallIsCustom,
+                                                    ),
+                                            borderSide: BorderSide(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .white12,
+                                              width: 1.0,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(56.0),
+                                          ),
+                                        ),
+                                      ),
+                                    ]
+                                        .divide(SizedBox(width: 12.0))
+                                        .addToStart(SizedBox(width: 20.0))
+                                        .addToEnd(SizedBox(width: 20.0)),
+                                  ),
+                                );
+                              } else {
+                                return Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      20.0, 0.0, 20.0, 48.0),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(56.0),
+                                    child: BackdropFilter(
+                                      filter: ImageFilter.blur(
+                                        sigmaX: 12.0,
+                                        sigmaY: 12.0,
+                                      ),
+                                      child: FFButtonWidget(
+                                        onPressed: () async {
+                                          logFirebaseEvent(
+                                              'CALENDAR_MONTHS_PAGE_PAGE____BTN_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Button_update_page_state');
+                                          _model.edit = true;
+                                          safeSetState(() {});
+                                        },
+                                        text: 'ИЗМЕНИТЬ ДАТЫ МЕСЯЧНЫХ',
+                                        options: FFButtonOptions(
+                                          width: double.infinity,
+                                          height: 56.0,
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  16.0, 0.0, 16.0, 0.0),
+                                          iconPadding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
+                                          color: FlutterFlowTheme.of(context)
+                                              .white24,
+                                          textStyle: FlutterFlowTheme.of(
+                                                  context)
+                                              .titleSmall
+                                              .override(
+                                                fontFamily:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmallFamily,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                fontSize: 17.0,
+                                                letterSpacing: 0.0,
+                                                useGoogleFonts:
+                                                    !FlutterFlowTheme.of(
+                                                            context)
+                                                        .titleSmallIsCustom,
+                                              ),
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .white12,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(56.0),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }
+                            },
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),

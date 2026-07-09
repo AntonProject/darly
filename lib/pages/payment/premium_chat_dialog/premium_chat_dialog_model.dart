@@ -23,10 +23,10 @@ class PremiumChatDialogModel extends FlutterFlowModel<PremiumChatDialogWidget> {
 
   ///  State fields for stateful widgets in this component.
 
-  // Stores action output result for [Backend Call - Create Document] action in Container widget.
-  OrderRecord? newOrder;
   // Model for backButton component.
   late BackButtonModel backButtonModel;
+  // Stores action output result for [Backend Call - Create Document] action in Container widget.
+  OrderRecord? newOrder;
 
   @override
   void initState(BuildContext context) {

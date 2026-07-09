@@ -7,6 +7,7 @@ class FFIcons {
   static const String _iconWomanFamily = 'IconWoman';
   static const String _womanIcon3Family = 'WomanIcon3';
   static const String _icomoonWoman3Family = 'IcomoonWoman3';
+  static const String _icomoonDarlyFamily = 'IcomoonDarly';
 
   // womanIconMoon
   static const IconData khome =
@@ -120,4 +121,8 @@ class FFIcons {
   // icomoonWoman3
   static const IconData kiconTeam =
       IconData(0xe900, fontFamily: _icomoonWoman3Family);
+
+  // icomoonDarly
+  static const IconData khistory24 =
+      IconData(0xe901, fontFamily: _icomoonDarlyFamily);
 }

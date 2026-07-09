@@ -379,181 +379,166 @@ class _PaymentPageWidgetState extends State<PaymentPageWidget> {
                                                                   16.0,
                                                                   0.0,
                                                                   0.0),
-                                                      child: ClipRRect(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(56.0),
-                                                        child: BackdropFilter(
-                                                          filter:
-                                                              ImageFilter.blur(
-                                                            sigmaX: 12.0,
-                                                            sigmaY: 12.0,
-                                                          ),
-                                                          child: FFButtonWidget(
-                                                            onPressed:
-                                                                () async {
-                                                              logFirebaseEvent(
-                                                                  'PAYMENT_PAGE_PAGE_Button_905b2amx_ON_TAP');
-                                                              logFirebaseEvent(
-                                                                  'Button_haptic_feedback');
-                                                              HapticFeedback
-                                                                  .selectionClick();
-                                                              logFirebaseEvent(
-                                                                  'Button_backend_call');
+                                                      child: FFButtonWidget(
+                                                        onPressed: () async {
+                                                          logFirebaseEvent(
+                                                              'PAYMENT_PAGE_PAGE_Button_905b2amx_ON_TAP');
+                                                          logFirebaseEvent(
+                                                              'Button_haptic_feedback');
+                                                          HapticFeedback
+                                                              .selectionClick();
+                                                          logFirebaseEvent(
+                                                              'Button_backend_call');
 
-                                                              var orderRecordReference =
-                                                                  OrderRecord
-                                                                      .collection
-                                                                      .doc();
-                                                              await orderRecordReference
-                                                                  .set(
-                                                                      createOrderRecordData(
-                                                                rlUser:
-                                                                    currentUserReference,
-                                                                date:
-                                                                    getCurrentTimestamp,
-                                                                status: 'new',
-                                                                description:
-                                                                    'Получите все возможности приложения по цене похода в кафе',
-                                                                price: _model
-                                                                    .price,
-                                                                currency: 'RUB',
-                                                                clientEmail:
-                                                                    currentUserEmail,
-                                                                paid: false,
-                                                                amount: (_model
-                                                                            .price!)
-                                                                        .round() ??
-                                                                    0,
-                                                                recurrentInterval:
-                                                                    'Month',
-                                                                recurrentPeriod:
-                                                                    _model
-                                                                        .period,
-                                                                clientId:
-                                                                    currentUserUid,
-                                                              ));
-                                                              _model.newOrder =
-                                                                  OrderRecord.getDocumentFromData(
-                                                                      createOrderRecordData(
-                                                                        rlUser:
-                                                                            currentUserReference,
-                                                                        date:
-                                                                            getCurrentTimestamp,
-                                                                        status:
-                                                                            'new',
-                                                                        description:
-                                                                            'Получите все возможности приложения по цене похода в кафе',
-                                                                        price: _model
-                                                                            .price,
-                                                                        currency:
-                                                                            'RUB',
-                                                                        clientEmail:
-                                                                            currentUserEmail,
-                                                                        paid:
-                                                                            false,
-                                                                        amount:
-                                                                            (_model.price!).round() ??
-                                                                                0,
-                                                                        recurrentInterval:
-                                                                            'Month',
-                                                                        recurrentPeriod:
-                                                                            _model.period,
-                                                                        clientId:
-                                                                            currentUserUid,
-                                                                      ),
-                                                                      orderRecordReference);
-                                                              logFirebaseEvent(
-                                                                  'Button_navigate_to');
-
-                                                              context.pushNamed(
-                                                                CloudPaymentPageWidget
-                                                                    .routeName,
-                                                                queryParameters:
-                                                                    {
-                                                                  'orderRef':
-                                                                      serializeParam(
-                                                                    _model
-                                                                        .newOrder
-                                                                        ?.reference,
-                                                                    ParamType
-                                                                        .DocumentReference,
+                                                          var orderRecordReference =
+                                                              OrderRecord
+                                                                  .collection
+                                                                  .doc();
+                                                          await orderRecordReference
+                                                              .set(
+                                                                  createOrderRecordData(
+                                                            rlUser:
+                                                                currentUserReference,
+                                                            date:
+                                                                getCurrentTimestamp,
+                                                            status: 'new',
+                                                            description:
+                                                                'Получите все возможности приложения по цене похода в кафе',
+                                                            price: _model.price,
+                                                            currency: 'RUB',
+                                                            clientEmail:
+                                                                currentUserEmail,
+                                                            paid: false,
+                                                            amount: (_model
+                                                                        .price!)
+                                                                    .round() ??
+                                                                0,
+                                                            recurrentInterval:
+                                                                'Month',
+                                                            recurrentPeriod:
+                                                                _model.period,
+                                                            clientId:
+                                                                currentUserUid,
+                                                          ));
+                                                          _model.newOrder = OrderRecord
+                                                              .getDocumentFromData(
+                                                                  createOrderRecordData(
+                                                                    rlUser:
+                                                                        currentUserReference,
+                                                                    date:
+                                                                        getCurrentTimestamp,
+                                                                    status:
+                                                                        'new',
+                                                                    description:
+                                                                        'Получите все возможности приложения по цене похода в кафе',
+                                                                    price: _model
+                                                                        .price,
+                                                                    currency:
+                                                                        'RUB',
+                                                                    clientEmail:
+                                                                        currentUserEmail,
+                                                                    paid: false,
+                                                                    amount:
+                                                                        (_model.price!).round() ??
+                                                                            0,
+                                                                    recurrentInterval:
+                                                                        'Month',
+                                                                    recurrentPeriod:
+                                                                        _model
+                                                                            .period,
+                                                                    clientId:
+                                                                        currentUserUid,
                                                                   ),
-                                                                }.withoutNulls,
-                                                              );
+                                                                  orderRecordReference);
+                                                          logFirebaseEvent(
+                                                              'Button_navigate_to');
 
-                                                              safeSetState(
-                                                                  () {});
-                                                            },
-                                                            text: _model.paymentId ==
-                                                                    columnPaymentsRecord
-                                                                        .reference
-                                                                        .id
-                                                                ? valueOrDefault<
-                                                                    String>(
-                                                                    'Купить – ${functions.priceFormat(columnPaymentsRecord.newPriceDate! > getCurrentTimestamp ? columnPaymentsRecord.price : columnPaymentsRecord.newPrice)}₽',
-                                                                    'Купить – 39990₽',
-                                                                  )
-                                                                : valueOrDefault<
-                                                                    String>(
-                                                                    'Купить – ${functions.priceFormat(columnPaymentsRecord.newPriceDate! > getCurrentTimestamp ? columnPaymentsRecord.price : columnPaymentsRecord.newPrice)}₽',
-                                                                    'Купить – 39990₽',
-                                                                  ),
-                                                            options:
-                                                                FFButtonOptions(
-                                                              width: double
-                                                                  .infinity,
-                                                              height: 56.0,
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          16.0,
-                                                                          0.0,
-                                                                          16.0,
-                                                                          0.0),
-                                                              iconPadding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .white12,
-                                                              textStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmall
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            FlutterFlowTheme.of(context).titleSmallFamily,
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primaryText,
-                                                                        fontSize:
-                                                                            17.0,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        useGoogleFonts:
-                                                                            !FlutterFlowTheme.of(context).titleSmallIsCustom,
-                                                                      ),
-                                                              elevation: 0.0,
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .white12,
-                                                                width: 1.0,
+                                                          context.pushNamed(
+                                                            CloudPaymentPageWidget
+                                                                .routeName,
+                                                            queryParameters: {
+                                                              'orderRef':
+                                                                  serializeParam(
+                                                                _model.newOrder
+                                                                    ?.reference,
+                                                                ParamType
+                                                                    .DocumentReference,
                                                               ),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          56.0),
-                                                            ),
-                                                            showLoadingIndicator:
-                                                                false,
+                                                            }.withoutNulls,
+                                                          );
+
+                                                          safeSetState(() {});
+                                                        },
+                                                        text: _model.paymentId ==
+                                                                columnPaymentsRecord
+                                                                    .reference
+                                                                    .id
+                                                            ? valueOrDefault<
+                                                                String>(
+                                                                'Купить – ${functions.priceFormat(columnPaymentsRecord.newPriceDate! > getCurrentTimestamp ? columnPaymentsRecord.price : columnPaymentsRecord.newPrice)}₽',
+                                                                'Купить – 39990₽',
+                                                              )
+                                                            : valueOrDefault<
+                                                                String>(
+                                                                'Купить – ${functions.priceFormat(columnPaymentsRecord.newPriceDate! > getCurrentTimestamp ? columnPaymentsRecord.price : columnPaymentsRecord.newPrice)}₽',
+                                                                'Купить – 39990₽',
+                                                              ),
+                                                        options:
+                                                            FFButtonOptions(
+                                                          width:
+                                                              double.infinity,
+                                                          height: 56.0,
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      16.0,
+                                                                      0.0,
+                                                                      16.0,
+                                                                      0.0),
+                                                          iconPadding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .white12,
+                                                          textStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmall
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .titleSmallFamily,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryText,
+                                                                    fontSize:
+                                                                        17.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    useGoogleFonts:
+                                                                        !FlutterFlowTheme.of(context)
+                                                                            .titleSmallIsCustom,
+                                                                  ),
+                                                          elevation: 0.0,
+                                                          borderSide:
+                                                              BorderSide(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .white12,
+                                                            width: 1.0,
                                                           ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      56.0),
                                                         ),
+                                                        showLoadingIndicator:
+                                                            false,
                                                       ),
                                                     ),
                                                     if ((columnPaymentsRecord

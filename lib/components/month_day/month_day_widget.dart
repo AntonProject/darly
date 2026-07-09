@@ -2,7 +2,6 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -210,16 +209,7 @@ class _MonthDayWidgetState extends State<MonthDayWidget> {
               } else {
                 return Builder(
                   builder: (context) {
-                    if (dateTimeFormat(
-                          "MMyyyy",
-                          widget!.month,
-                          locale: FFLocalizations.of(context).languageCode,
-                        ) ==
-                        dateTimeFormat(
-                          "MMyyyy",
-                          getCurrentTimestamp,
-                          locale: FFLocalizations.of(context).languageCode,
-                        )) {
+                    if (!functions.dayGreatherThanToday(widget!.day)) {
                       return Builder(
                         builder: (context) {
                           if (functions.ovulationCentralDayInDays(
@@ -259,20 +249,8 @@ class _MonthDayWidgetState extends State<MonthDayWidget> {
                                         fontFamily: FlutterFlowTheme.of(context)
                                             .titleMediumFamily,
                                         color: valueOrDefault<Color>(
-                                          dateTimeFormat(
-                                                    "yM",
-                                                    widget!.day,
-                                                    locale: FFLocalizations.of(
-                                                            context)
-                                                        .languageCode,
-                                                  ) ==
-                                                  dateTimeFormat(
-                                                    "yM",
-                                                    getCurrentTimestamp,
-                                                    locale: FFLocalizations.of(
-                                                            context)
-                                                        .languageCode,
-                                                  )
+                                          !functions.dayGreatherThanToday(
+                                                  widget!.day)
                                               ? FlutterFlowTheme.of(context)
                                                   .primaryText
                                               : FlutterFlowTheme.of(context)
@@ -321,20 +299,8 @@ class _MonthDayWidgetState extends State<MonthDayWidget> {
                                         fontFamily: FlutterFlowTheme.of(context)
                                             .titleMediumFamily,
                                         color: valueOrDefault<Color>(
-                                          dateTimeFormat(
-                                                    "yM",
-                                                    widget!.day,
-                                                    locale: FFLocalizations.of(
-                                                            context)
-                                                        .languageCode,
-                                                  ) ==
-                                                  dateTimeFormat(
-                                                    "yM",
-                                                    getCurrentTimestamp,
-                                                    locale: FFLocalizations.of(
-                                                            context)
-                                                        .languageCode,
-                                                  )
+                                          !functions.dayGreatherThanToday(
+                                                  widget!.day)
                                               ? FlutterFlowTheme.of(context)
                                                   .primaryText
                                               : FlutterFlowTheme.of(context)
@@ -357,7 +323,7 @@ class _MonthDayWidgetState extends State<MonthDayWidget> {
                               width: 40.0,
                               height: 40.0,
                               decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).primary,
+                                color: FlutterFlowTheme.of(context).mens,
                                 shape: BoxShape.circle,
                                 border: Border.all(
                                   color: Colors.transparent,
@@ -383,20 +349,8 @@ class _MonthDayWidgetState extends State<MonthDayWidget> {
                                         fontFamily: FlutterFlowTheme.of(context)
                                             .titleMediumFamily,
                                         color: valueOrDefault<Color>(
-                                          dateTimeFormat(
-                                                    "yM",
-                                                    widget!.day,
-                                                    locale: FFLocalizations.of(
-                                                            context)
-                                                        .languageCode,
-                                                  ) ==
-                                                  dateTimeFormat(
-                                                    "yM",
-                                                    getCurrentTimestamp,
-                                                    locale: FFLocalizations.of(
-                                                            context)
-                                                        .languageCode,
-                                                  )
+                                          !functions.dayGreatherThanToday(
+                                                  widget!.day)
                                               ? FlutterFlowTheme.of(context)
                                                   .primaryText
                                               : FlutterFlowTheme.of(context)
@@ -414,75 +368,51 @@ class _MonthDayWidgetState extends State<MonthDayWidget> {
                               ),
                             );
                           } else {
-                            return ClipOval(
-                              child: BackdropFilter(
-                                filter: ImageFilter.blur(
-                                  sigmaX: 12.0,
-                                  sigmaY: 12.0,
+                            return Container(
+                              width: 40.0,
+                              height: 40.0,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context).white12,
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  color: FlutterFlowTheme.of(context).white12,
+                                  width: 1.0,
                                 ),
-                                child: Container(
-                                  width: 40.0,
-                                  height: 40.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context).white12,
-                                    shape: BoxShape.circle,
-                                    border: Border.all(
-                                      color:
-                                          FlutterFlowTheme.of(context).white12,
-                                      width: 1.0,
+                              ),
+                              child: Align(
+                                alignment: AlignmentDirectional(0.0, 0.0),
+                                child: Text(
+                                  valueOrDefault<String>(
+                                    dateTimeFormat(
+                                      "d",
+                                      widget!.day,
+                                      locale: FFLocalizations.of(context)
+                                          .languageCode,
                                     ),
+                                    '1',
                                   ),
-                                  child: Align(
-                                    alignment: AlignmentDirectional(0.0, 0.0),
-                                    child: Text(
-                                      valueOrDefault<String>(
-                                        dateTimeFormat(
-                                          "d",
-                                          widget!.day,
-                                          locale: FFLocalizations.of(context)
-                                              .languageCode,
+                                  maxLines: 1,
+                                  style: FlutterFlowTheme.of(context)
+                                      .titleMedium
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .titleMediumFamily,
+                                        color: valueOrDefault<Color>(
+                                          !functions.dayGreatherThanToday(
+                                                  widget!.day)
+                                              ? FlutterFlowTheme.of(context)
+                                                  .primaryText
+                                              : FlutterFlowTheme.of(context)
+                                                  .secondaryText,
+                                          FlutterFlowTheme.of(context)
+                                              .primaryText,
                                         ),
-                                        '1',
+                                        fontSize: 17.0,
+                                        letterSpacing: 0.0,
+                                        useGoogleFonts:
+                                            !FlutterFlowTheme.of(context)
+                                                .titleMediumIsCustom,
                                       ),
-                                      maxLines: 1,
-                                      style: FlutterFlowTheme.of(context)
-                                          .titleMedium
-                                          .override(
-                                            fontFamily:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleMediumFamily,
-                                            color: valueOrDefault<Color>(
-                                              dateTimeFormat(
-                                                        "yM",
-                                                        widget!.day,
-                                                        locale:
-                                                            FFLocalizations.of(
-                                                                    context)
-                                                                .languageCode,
-                                                      ) ==
-                                                      dateTimeFormat(
-                                                        "yM",
-                                                        getCurrentTimestamp,
-                                                        locale:
-                                                            FFLocalizations.of(
-                                                                    context)
-                                                                .languageCode,
-                                                      )
-                                                  ? FlutterFlowTheme.of(context)
-                                                      .primaryText
-                                                  : FlutterFlowTheme.of(context)
-                                                      .secondaryText,
-                                              FlutterFlowTheme.of(context)
-                                                  .primaryText,
-                                            ),
-                                            fontSize: 17.0,
-                                            letterSpacing: 0.0,
-                                            useGoogleFonts:
-                                                !FlutterFlowTheme.of(context)
-                                                    .titleMediumIsCustom,
-                                          ),
-                                    ),
-                                  ),
                                 ),
                               ),
                             );
@@ -529,20 +459,8 @@ class _MonthDayWidgetState extends State<MonthDayWidget> {
                                         fontFamily: FlutterFlowTheme.of(context)
                                             .titleMediumFamily,
                                         color: valueOrDefault<Color>(
-                                          dateTimeFormat(
-                                                    "yM",
-                                                    widget!.day,
-                                                    locale: FFLocalizations.of(
-                                                            context)
-                                                        .languageCode,
-                                                  ) ==
-                                                  dateTimeFormat(
-                                                    "yM",
-                                                    getCurrentTimestamp,
-                                                    locale: FFLocalizations.of(
-                                                            context)
-                                                        .languageCode,
-                                                  )
+                                          !functions.dayGreatherThanToday(
+                                                  widget!.day)
                                               ? FlutterFlowTheme.of(context)
                                                   .primaryText
                                               : FlutterFlowTheme.of(context)
@@ -596,20 +514,8 @@ class _MonthDayWidgetState extends State<MonthDayWidget> {
                                         fontFamily: FlutterFlowTheme.of(context)
                                             .titleMediumFamily,
                                         color: valueOrDefault<Color>(
-                                          dateTimeFormat(
-                                                    "yM",
-                                                    widget!.day,
-                                                    locale: FFLocalizations.of(
-                                                            context)
-                                                        .languageCode,
-                                                  ) ==
-                                                  dateTimeFormat(
-                                                    "yM",
-                                                    getCurrentTimestamp,
-                                                    locale: FFLocalizations.of(
-                                                            context)
-                                                        .languageCode,
-                                                  )
+                                          !functions.dayGreatherThanToday(
+                                                  widget!.day)
                                               ? FlutterFlowTheme.of(context)
                                                   .primaryText
                                               : FlutterFlowTheme.of(context)
@@ -663,20 +569,8 @@ class _MonthDayWidgetState extends State<MonthDayWidget> {
                                         fontFamily: FlutterFlowTheme.of(context)
                                             .titleMediumFamily,
                                         color: valueOrDefault<Color>(
-                                          dateTimeFormat(
-                                                    "yM",
-                                                    widget!.day,
-                                                    locale: FFLocalizations.of(
-                                                            context)
-                                                        .languageCode,
-                                                  ) ==
-                                                  dateTimeFormat(
-                                                    "yM",
-                                                    getCurrentTimestamp,
-                                                    locale: FFLocalizations.of(
-                                                            context)
-                                                        .languageCode,
-                                                  )
+                                          !functions.dayGreatherThanToday(
+                                                  widget!.day)
                                               ? FlutterFlowTheme.of(context)
                                                   .primaryText
                                               : FlutterFlowTheme.of(context)

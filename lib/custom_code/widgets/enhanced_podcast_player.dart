@@ -3,12 +3,14 @@ import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'index.dart'; // Imports other custom widgets
+import '/custom_code/widgets/index.dart'; // Imports other custom widgets
 import '/custom_code/actions/index.dart'; // Imports custom actions
 import '/flutter_flow/custom_functions.dart'; // Imports custom functions
 import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
+
+import 'index.dart'; // Imports other custom widgets
 
 import 'dart:async';
 import 'dart:math';
@@ -17,6 +19,29 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:rxdart/rxdart.dart';
+
+// ─── Синглтон: плеер живёт пока живёт приложение ───
+class _AudioPlayerManager {
+  static final _AudioPlayerManager instance = _AudioPlayerManager._();
+  _AudioPlayerManager._();
+
+  AudioPlayer? _player;
+  bool _sessionConfigured = false;
+  String? loadedSourceKey;
+  String? cachedPath;
+
+  AudioPlayer get player {
+    _player ??= AudioPlayer();
+    return _player!;
+  }
+
+  Future<void> ensureSessionConfigured() async {
+    if (_sessionConfigured) return;
+    _sessionConfigured = true;
+    final session = await AudioSession.instance;
+    await session.configure(const AudioSessionConfiguration.music());
+  }
+}
 
 class EnhancedPodcastPlayer extends StatefulWidget {
   const EnhancedPodcastPlayer({
@@ -77,21 +102,22 @@ class EnhancedPodcastPlayer extends StatefulWidget {
 }
 
 class _EnhancedPodcastPlayerState extends State<EnhancedPodcastPlayer> {
-  late final AudioPlayer player;
+  AudioPlayer get player => _AudioPlayerManager.instance.player;
 
-  String? cache;
   double? drag;
   bool repeatOne = false;
   double speed = 1;
 
   String? _currentTrackUrl;
-  String? _loadedSourceKey;
 
   bool _isLoadingTrack = false;
   bool _isPrecaching = false;
 
   int _currentIndex = 0;
   int _loadToken = 0;
+
+  StreamSubscription<PlayerState>? _playerStateSub;
+  StreamSubscription<Duration?>? _durationSub;
 
   List<AudioRecord> get _effectivePlaylist {
     if (widget.playlist != null && widget.playlist!.isNotEmpty) {
@@ -338,8 +364,6 @@ class _EnhancedPodcastPlayerState extends State<EnhancedPodcastPlayer> {
   void initState() {
     super.initState();
 
-    player = AudioPlayer();
-
     final playlist = _effectivePlaylist;
     if (playlist.isNotEmpty && widget.currentTrack != null) {
       final currentPath = widget.currentTrack!.audioPath;
@@ -375,7 +399,9 @@ class _EnhancedPodcastPlayerState extends State<EnhancedPodcastPlayer> {
   }
 
   Future<void> _init() async {
-    player.playerStateStream.listen((state) {
+    await _AudioPlayerManager.instance.ensureSessionConfigured();
+
+    _playerStateSub = player.playerStateStream.listen((state) {
       if (state.processingState == ProcessingState.completed) {
         if (repeatOne) {
           player
@@ -387,12 +413,16 @@ class _EnhancedPodcastPlayerState extends State<EnhancedPodcastPlayer> {
       }
     });
 
-    player.durationStream.listen((_) {
+    _durationSub = player.durationStream.listen((_) {
       if (mounted) setState(() {});
     });
 
-    final session = await AudioSession.instance;
-    await session.configure(const AudioSessionConfiguration.speech());
+    // Если плеер уже играет тот же трек — просто подключаем UI
+    final mgr = _AudioPlayerManager.instance;
+    if (mgr.loadedSourceKey == _currentTrackUrl && player.playing) {
+      // Уже играет нужный трек — ничего не перезагружаем
+      return;
+    }
 
     await _reload(autoPlay: true, preservePosition: false);
   }
@@ -403,17 +433,18 @@ class _EnhancedPodcastPlayerState extends State<EnhancedPodcastPlayer> {
 
     try {
       final urls = <String>{};
+      final mgr = _AudioPlayerManager.instance;
       final prevUrl = _previousTrack?.audioPath;
       final nextUrl = _nextTrack?.audioPath;
 
       if (prevUrl != null &&
           prevUrl.isNotEmpty &&
-          prevUrl != _loadedSourceKey) {
+          prevUrl != mgr.loadedSourceKey) {
         urls.add(prevUrl);
       }
       if (nextUrl != null &&
           nextUrl.isNotEmpty &&
-          nextUrl != _loadedSourceKey) {
+          nextUrl != mgr.loadedSourceKey) {
         urls.add(nextUrl);
       }
 
@@ -438,6 +469,7 @@ class _EnhancedPodcastPlayerState extends State<EnhancedPodcastPlayer> {
     if (url.isEmpty) return;
 
     final int token = ++_loadToken;
+    final mgr = _AudioPlayerManager.instance;
 
     if (mounted) {
       setState(() => _isLoadingTrack = true);
@@ -446,16 +478,16 @@ class _EnhancedPodcastPlayerState extends State<EnhancedPodcastPlayer> {
     }
 
     try {
-      final sourceChanged = _loadedSourceKey != url;
+      final sourceChanged = mgr.loadedSourceKey != url;
 
       if (sourceChanged) {
-        cache = null;
+        mgr.cachedPath = null;
         await player.stop();
 
         final loaded = await _loadForToken(token, track);
         if (!loaded || token != _loadToken) return;
 
-        _loadedSourceKey = url;
+        mgr.loadedSourceKey = url;
       }
 
       if (token != _loadToken) return;
@@ -500,22 +532,17 @@ class _EnhancedPodcastPlayerState extends State<EnhancedPodcastPlayer> {
     final url = track.audioPath ?? '';
     if (url.isEmpty) return false;
 
-    String? localCache;
+    final title = _normalizeTitle(track.audioTitle);
+    final artist = _normalizeArtist(track.authorTitle);
+    final mgr = _AudioPlayerManager.instance;
 
-    try {
-      final file = await DefaultCacheManager().getSingleFile(url);
-      localCache = file.path;
-    } catch (_) {
-      localCache = null;
-    }
+    final fileInfo = await DefaultCacheManager().getFileFromCache(url);
+    final cachedPath = fileInfo?.file.path;
 
     if (token != _loadToken) return false;
 
-    final title = _normalizeTitle(track.audioTitle);
-    final artist = _normalizeArtist(track.authorTitle);
-
     final source = AudioSource.uri(
-      localCache != null ? Uri.file(localCache) : Uri.parse(url),
+      cachedPath != null ? Uri.file(cachedPath) : Uri.parse(url),
       tag: MediaItem(
         id: 'id$url',
         album: artist,
@@ -530,13 +557,24 @@ class _EnhancedPodcastPlayerState extends State<EnhancedPodcastPlayer> {
 
     if (token != _loadToken) return false;
 
-    cache = localCache;
+    mgr.cachedPath = cachedPath;
+
+    if (cachedPath == null) {
+      unawaited(
+        DefaultCacheManager().getSingleFile(url).then((f) {
+          mgr.cachedPath = f.path;
+        }).catchError((_) {}),
+      );
+    }
+
     return true;
   }
 
   @override
   void dispose() {
-    player.dispose();
+    // НЕ убиваем плеер — только отписываемся от стримов
+    _playerStateSub?.cancel();
+    _durationSub?.cancel();
     super.dispose();
   }
 

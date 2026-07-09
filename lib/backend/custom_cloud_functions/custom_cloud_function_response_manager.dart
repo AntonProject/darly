@@ -146,3 +146,25 @@ class SetVideosHideDefaultCloudFunctionCallResponse {
   bool? succeeded;
   dynamic jsonBody;
 }
+
+class NotificationPushCloudFunctionCallResponse {
+  NotificationPushCloudFunctionCallResponse({
+    this.errorCode,
+    this.succeeded,
+    this.jsonBody,
+  });
+  String? errorCode;
+  bool? succeeded;
+  dynamic jsonBody;
+}
+
+class CreateWelcomeNotificationForUserCloudFunctionCallResponse {
+  CreateWelcomeNotificationForUserCloudFunctionCallResponse({
+    this.errorCode,
+    this.succeeded,
+    this.jsonBody,
+  });
+  String? errorCode;
+  bool? succeeded;
+  dynamic jsonBody;
+}
